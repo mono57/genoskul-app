@@ -1903,12 +1903,6 @@ img.mfp-img {
 	cursor: pointer;
 }
 
-.notification.success .close {background: url(../images/alert_boxes_close_ico.html) 0 -8px no-repeat;}
-.notification.error .close {background: url(../images/alert_boxes_close_ico.html) 0 0 no-repeat;}
-.notification.warning .close {background: url(../images/alert_boxes_close_ico.html) 0 -16px no-repeat;}
-.notification.notice .close {background: url(../images/alert_boxes_close_ico.html) 0 -24px no-repeat;}
-
-
 .notification.notice p span i { font-weight: 500; }
 .notification a.button {
 	float: right;
@@ -4726,7 +4720,6 @@ body .recent-post a h4 { font-size: 20px; }
 	padding: 0;
 	max-height: 640px !important;
 	overflow: hidden;
-	background-image:url(../images/loader.html);
 	background-repeat: no-repeat;
 	background-position: 50%;
 	margin-bottom: 42px;
