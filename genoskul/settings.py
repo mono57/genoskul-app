@@ -14,9 +14,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'iwd^4am&mbqn2#d-n6g-03mppo8rza@fh9-wqsi@ua1%@o^zya'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+DEBUG = os.getenv('DEBUG', True)
+
+ALLOWED_HOSTS = ["*"]
 
 LOGIN_REDIRECT_URL = '/'
 # Application definition

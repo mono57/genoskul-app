@@ -1,53 +1,12 @@
-/*
-* Author: Vasterad
-* URL: http://purethemes.net
-*/
 
 
-/* ------------------------------------------------------------------- */
-/* Import Section
----------------------------------------------------------------------- */
-@import url("base.css");				/* Default Reset, Typography, Forms, etc. */
-@import url("responsive.css");			/* Responsive Grid */
-@import url("font-awesome.css");		/* Font Awesome Icons */
+@import url("base.css");				
+@import url("responsive.css");			
+@import url("font-awesome.css");		
 @import url("http://fonts.googleapis.com/css?family=Montserrat:400,500,600");
 @import url("http://fonts.googleapis.com/css?family=Lato:400,700,300");
 
 
-/* ------------------------------------------------------------------- */
-/* Table of Contents
----------------------------------------------------------------------- 
-1. Header
-2. Mobile Navigation
-2. Homepage Banner
-3. Titlebar
-4. Miscellaneous
-5. Tables + Stacktable (responsive tables plug-in)
-6. Magnific Popup
-7. Shortcodes
-8. Social Icons
-9. Job List Styles
-10. Revolution Slider
-11. Flexslider
-12. ShowBiz Carousel
-13. Blog Styles
-14. Widgets
-15. Chosen Plugin
-16. SCEditor
-17. Submit Pages
-18. Footer
-19. Manage Applications Styles
-20. Job List Page
-21. Media Queries
-22. Styles Switcher
-23. Border Radius for Elements
-
----------------------------------------------------------------------- */
-
-
-/* ------------------------------------------------------------------- */
-/* Header
----------------------------------------------------------------------- */
 header {
 	height: 90px;
 	background-color: #fff;
