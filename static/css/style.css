@@ -623,7 +623,6 @@ ul li ul a.sf-with-ul:after {
 
 
 /* Form Icons */
-input.ico-02 { background: #fff url("../images/ico-02.png") no-repeat scroll 96% 20px / 14px 21px; }
 input.ico-01 { background: #fff; }
 
 .search-container input:focus { border: none; }
@@ -4662,7 +4661,6 @@ body .recent-post a h4 { font-size: 20px; }
 #testimonials {
 	position: relative;
 	margin-top: 0;
-	background: url('../images/testimonials-bg.jpg') no-repeat 50%;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -4907,7 +4905,6 @@ body .recent-post a h4 { font-size: 20px; }
 	visibility:hidden;
 }
 
-.tp-transparentimg {content:"url(../assets/transparent.png)"}
 .tp-3d {-webkit-transform-style: preserve-3d;-webkit-transform-origin: 50% 50%;}
 
 
@@ -6161,7 +6158,6 @@ a.post-img:hover:before {
 
 div.sceditor-grip,
 .sceditor-button div {
-	background-image: url('../images/famfamfam.png');
 	background-repeat: no-repeat;
 	width: 16px;
 	height: 16px;
@@ -9328,7 +9324,6 @@ a.button ,
 	}
 	
 	#style-switcher h2 a {
-		background: url("../images/switcher.png") no-repeat 9px center transparent;
 		background-color: #282828;
 		display: block;
 		height: 43px;
@@ -9391,22 +9386,7 @@ a.button ,
 	.olive, .olive-bg { background: #b3c211; }
 	.light { background: #e9e9e9; }
 
-	.bg1 { background-image: url("../images/bg/squared_metal.png"); }
-	.bg2 { background-image: url("../images/bg/retina_wood.png"); }
-	.bg3 { background-image: url("../images/bg/brushed_alu.png"); }
-	.bg4 { background-image: url("../images/bg/crisp_paper_ruffles.png"); }
-	.bg5 { background-image: url("../images/bg/navy_blue.png"); }
-	.bg6 { background-image: url("../images/bg/bedge_grunge.png"); }
-	.bg7 { background-image: url("../images/bg/diamond_upholstery.png"); }
-	.bg8 { background-image: url("../images/bg/shattered.png"); }
-	.bg9 { background-image: url("../images/bg/light_toast.png"); }
-	.bg10 { background-image: url("../images/bg/noise_pattern_with_crosslines.png"); }
-	.bg11 { background-image: url("../images/bg/purty_wood.png"); }
-	.bg12 { background-image: url("../images/bg/subtle_stripes.png"); }
-	.bg13 { background-image: url("../images/bg/textured_stripes.png"); }
-	.bg14 { background-image: url("../images/bg/tileable_wood_texture.png"); }
-	.bg15 { background-image: url("../images/bg/stardust.png"); }
-	.bg16 { background-image: url("../images/bg/vichy.png"); }
+
 
 	.colors li a.active { box-shadow: 0 0 0 2px #fff inset }
 
