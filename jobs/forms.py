@@ -43,7 +43,6 @@ class JobFilterForm(forms.Form):
     type = forms.ChoiceField(
         required=False,
         label="Type de l'emploi",
-        choices=([('all', '------')] + [(choice.pk, choice.name) for choice in JobType.objects.all()]),
         widget=forms.Select(attrs={
             'class': 'chosen-select-no-single',
             'data-placeholder': 'Choisissez un type'
