@@ -1,0 +1,59 @@
+{% extends "dashboard/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+{{title}}
+{% endblock title %}
+
+{% block breadcrumb %}
+<li>{{title}}</li>
+{% endblock breadcrumb %}
+
+
+{% block dashboard_content %}
+<div class="row">
+    <div class="col-lg-6 col-md-12">
+        <div class="dashboard-list-box margin-top-0">
+            <h4 class="gray">Modifiez vos informations personnelles</h4>
+            <div class="dashboard-list-box-static">
+
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="edit-profile-photo">
+                        {% if profile.avatar %}
+                        <img src="{{profile.avatar.url}}" alt="">
+                        <p>{{profile.avatar.url}}</p>
+                        {% endif %}
+
+                    </div>
+
+                    <div class="my-profile">
+                        {{form|crispy}}
+                    </div>
+
+                    <button class="button margin-top-15" type="submit">Enregistrer les changements</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="col-lg-6 col-md-12">
+        <div class="dashboard-list-box margin-top-0">
+            <h4 class="gray">Changez votre mot de passe</h4>
+            <div class="dashboard-list-box-static">
+
+                <div class="my-profile">
+                    {{password_change_form|crispy}}
+
+                    <button class="button margin-top-15">Changer le mot de passe</button>
+                </div>
+
+            </div>
+        </div>
+    </div> -->
+
+    {% include "dashboard/footer.html" %}
+</div>
+{% endblock dashboard_content %}

@@ -1,0 +1,19 @@
+{% load static %}
+
+<a href="{{job.get_absolute_url}}" class="listing full-time">
+    <div class="listing-logo">
+        {% if job.company.logo %}
+          <img src="{{job.company.logo.url}}" alt="{{job.company.name}}">
+        {% endif %}
+        <img src="{% static 'images/logo-05.png' %}" alt="{{job.company.name}}">
+    </div>
+    <div class="listing-title">
+        <h4>{{job.title}}<span class="listing-type">{{job.type}}</span></h4>
+        <ul class="listing-icons">
+            <li><i class="ln ln-icon-Management"></i> {{job.company.name}}</li>
+            <li><i class="ln ln-icon-Map2"></i> {{job.location}}</li>
+            <!-- <li><i class="ln ln-icon-Money-2"></i> $5000 - $7000</li> -->
+            <li><i class="fa fa-calendar"></i> Clorure: <div class="listing-date new">{{job.closing_date|default:'non definie'}}</div></li>
+        </ul>
+    </div>
+</a>

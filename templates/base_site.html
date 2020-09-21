@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+
+{% block breadcrumbs %}
+<div id="titlebar" class="single" style="padding: 20px;">
+	<div class="container">
+
+		<div class="sixteen columns">
+			<nav id="breadcrumbs">
+				<ul>
+					<li>Vous êtes ici :</li>
+					<li><a href="{% url 'home' %}">Accueil</a></li>
+					{% block breadcrumb-item %}
+                      
+                    {% endblock breadcrumb-item %}
+				</ul>
+			</nav>
+		</div>
+
+	</div>
+</div>
+
+{% endblock breadcrumbs %}
+
+
+{% block content %}
+
+
+
+{% endblock content %}
+
+{% block footer %}
+{% include "base/footer.html" %}
+{% endblock footer %}

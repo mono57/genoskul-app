@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+{{title}}
+{% endblock title %}
+
+{% block content %}
+<div id="titlebar" class="resume">
+    <div class="container">
+        <div class="ten columns">
+            <div class="resume-titlebar">
+                {% with profile.user.profile as user_profile %}
+                  {% if user_profile.avatar %}
+                <img src="{% static 'images/avatar-placeholder.png' %}" alt="">
+                    {% else %}
+                <img src="{% static 'images/avatar-placeholder.png' %}" alt="">
+
+                  {% endif %}
+                {% endwith %}
+                <div class="resumes-list-content">
+                    <h4>{{profile.user.get_full_name}} <span>{{profile.pro_title}}</span></h4>
+                    <span class="icons"><i class="fa fa-map-marker"></i> {{profile.location}}</span>
+                    <!-- <span class="icons"><i class="fa fa-money"></i> $100 / hour</span> -->
+                    <span class="icons"><a href="{{profile.website}}"><i class="fa fa-link"></i> Portfolio ou Site internet</a></span>
+                    <span class="icons"><a href="mailto:{{profile.user.email}}"><i class="fa fa-envelope"></i>
+                        {{profile.user.email}}</a></span>
+                    <!-- <div class="skills">
+                        <span>JavaScript</span>
+                        <span>PHP</span>
+                        <span>WordPress</span>
+                    </div> -->
+                    <div class="clearfix"></div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="six columns">
+            <div class="two-buttons">
+
+                <a href="{{profile.resume_file.url}}" class="button"><i class="fa fa-download"></i> Télécharger son CV</a>
+
+                <!-- <div id="small-dialog" class="zoom-anim-dialog mfp-hide apply-popup">
+                    <div class="small-dialog-headline">
+                        <h2>Send Message to John Doe</h2>
+                    </div>
+
+                    <div class="small-dialog-content">
+                        <form action="#" method="get">
+                            <input type="text" placeholder="Full Name" value="" />
+                            <input type="text" placeholder="Email Address" value="" />
+                            <textarea placeholder="Message"></textarea>
+
+                            <button class="send">Send Application</button>
+                        </form>
+                    </div>
+
+                </div>
+                <a href="#" class="button dark"><i class="fa fa-star"></i> Bookmark This Resume</a> -->
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="eight columns">
+        <div class="padding-right">
+
+            <h3 class="margin-bottom-15">A propos</h3>
+
+            <p class="margin-reset">
+                {{profile.description|safe}}
+            </p>
+
+
+
+        </div>
+    </div>
+
+
+</div>
+{% endblock content %}
+
+{% block footer %}
+<div class="margin-top-45"></div>
+
+{% include "base/footer.html" %}
+{% endblock footer %}

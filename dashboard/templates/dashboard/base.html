@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}
+Tableau de bord
+{% endblock title %}
+
+
+{% block extrastyles %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+{% endblock extrastyles %}
+
+{% block navbar %}
+{% include "base/headers/navbar-dashboard.html" %}
+{% endblock navbar %}
+
+{% block content %}
+
+
+{% url 'dashboard:jobs-list' as jobs_list_url %}
+{% url 'dashboard:job-create' as job_create_url %}
+{% url 'dashboard:documents' as documents_url %}
+{% url 'dashboard:document-create' as document_create_url %}
+{% url 'dashboard:products' as products_url %}
+{% url 'dashboard:product-create' as product_create_url %}
+{% url 'dashboard:dashboard' as dashboard_url %}
+{% url 'dashboard:profile-update' as profile_url %}
+
+<div id="dashboard">
+
+
+	<a href="#" class="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i> Dashboard Navigation</a>
+
+	<div class="dashboard-nav">
+		<div class="dashboard-nav-inner">
+
+			<ul data-submenu-title="Chat">
+				<!-- <li class="active"><a href="dashboard.html">Dashboard</a></li> -->
+				<li><a href="#">Messages <span class="badge badge-warning">bientôt dispo</span> </a></li>
+			</ul>
+
+			{% with request.user as user %}
+			<ul data-submenu-title="Gérer">
+				<li><a>Documents</a>
+					<ul>
+						<li><a href="{{documents_url}}">Mes documents <span
+									class="nav-tag">{{user.documents.count}}</span></a></li>
+						<!-- <li><a href="#">Manage Applications <span class="nav-tag">4</span></a></li> -->
+						<li><a href="{{document_create_url}}">Publier un document</a></li>
+					</ul>
+				</li>
+				<li><a>Produits</a>
+					<ul>
+						<li><a href="{{products_url}}">Mes produits <span class="nav-tag">{{user.products.count}}</span></a></li>
+						<li><a href="{{product_create_url}}">Ajouter un produit</a></li>
+					</ul>
+				</li>
+				<!-- <li><a>Candidatures</a>
+					<ul>
+						<li><a href="#">Manage Jobs <span class="nav-tag">5</span></a></li>
+						<li><a href="#">Manage Applications <span class="nav-tag">4</span></a></li>
+						<li><a href="#">Add Job</a></li>
+					</ul>
+				</li> -->
+
+				<li><a>Espace employeur</a>
+					<ul>
+						<li><a href="{{jobs_list_url}}">Mes offres <span class="nav-tag">{{request.user.jobs.count}}</span></a></li>
+						<!-- <li><a href="dashboard-job-alerts.html">Job Alerts</a></li> -->
+						<li><a href="{{job_create_url}}">Publier une offre</a></li>
+					</ul>
+				</li>
+			</ul>
+
+			{% endwith %}
+			<ul data-submenu-title="Compte">
+				<li><a href="{{profile_url}}">Mon profile</a></li>
+				<li><a href="{{profile_url}}">Securité</a></li>
+				<li><a href="{{profile_url}}">Perso</a></li>
+			</ul>
+
+		</div>
+	</div>
+
+	<div class="dashboard-content">
+
+		<div id="titlebar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Hello {{request.user.get_username}}</h2>
+					<!-- Breadcrumbs -->
+					<nav id="breadcrumbs">
+						<ul>
+							<li><a href="{{dashboard_url}}">Accueil</a></li>
+							{% block breadcrumb %}
+
+							{% endblock breadcrumb %}
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+
+		{% if messages %}
+		{% for message in messages %}
+		<div class="notification {{message.tags}}">
+			{{message}}
+		</div>
+		{% endfor %}
+		{% endif %}
+		{% block dashboard_content %}
+
+		{% endblock dashboard_content %}
+
+	</div>
+
+
+</div>
+{% endblock content %}

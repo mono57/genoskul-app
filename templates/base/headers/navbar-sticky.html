@@ -1,0 +1,8 @@
+{% url 'home' as home_url %}
+
+<header class="{% if request.path == home_url %}
+transparent 
+{% endif %} sticky-header">
+
+    {% include "base/headers/navbar.html" %}
+</header>

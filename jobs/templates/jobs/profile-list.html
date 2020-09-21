@@ -1,0 +1,61 @@
+{% extends "base_site.html" %}
+
+{% block title %}
+{{title}}
+{% endblock title %}
+
+{% block breadcrumb-item %}
+<li>Profils disponibles </li>
+{% endblock breadcrumb-item %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-8">
+            <div class="ten columns" style="">
+                <div class="padding-right">
+
+                    <ul class="resumes-list alternative">
+
+                        {% for resume in resumes %}
+                        {% include "jobs/includes/profile-single.html" with profile=resume %}
+                        {% empty %}
+                        <p>Aucun profil trouvé !</p>
+                        {% endfor %}
+
+                    </ul>
+                    <div class="clearfix"></div>
+
+                    {% if is_paginated %}
+
+                    {% include "includes/pagination.html" %}
+
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="five columns">
+
+                <div class="widget">
+                    <h4>Rechercher</h4>
+
+                    <form action="{% url 'jobs:resume-list' %}" method="get">
+                        <input type="text" name="query" value="{{query}}" class="form-control"
+                            placeholder="Entrez le motif de la recherche">
+                        <button class="btn btn-primary">Rechercher</button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</div>
+
+{% endblock content %}

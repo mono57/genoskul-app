@@ -1,0 +1,81 @@
+{% extends "base_site.html" %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+{{title}}
+{% endblock title %}
+
+{% block breadcrumb-item %}
+<li>{{title}}</li>
+{% endblock breadcrumb-item %}
+
+{% block content %}
+<div class="container">
+
+	<div class="ten columns">
+		<div class="padding-right">
+
+			<div class="listings-container">
+
+				{% for job in jobs %}
+				{% include "jobs/includes/job-single.html" with job=job %}
+				{% empty %}
+
+				<p class="primary">Aucune offre d'emploi à lister !</p>
+
+				{% endfor %}
+
+				<!-- <a href="job-page.html" class="listing internship">
+							<div class="listing-logo">
+								<img src="images/job-list-logo-04.png" alt="">
+							</div>
+							<div class="listing-title">
+								<h4>Power Systems User Experience Designer <span class="listing-type">Internship</span></h4>
+								<ul class="listing-icons">
+									<li><i class="ln ln-icon-Management"></i> Hexagon</li>
+									<li><i class="ln ln-icon-Map2"></i> London</li>
+									<li><i class="ln ln-icon-Money-2"></i> $55 / hour</li>
+									<li><div class="listing-date">4d ago</div></li>
+								</ul>
+							</div>
+						</a> -->
+
+			</div>
+			<div class="clearfix"></div>
+
+			{% if is_paginated %}
+			{% include "includes/pagination.html" %}
+			{% endif %}
+
+		</div>
+	</div>
+	<div class="five columns">
+
+		<div class="widget">
+			<h4>Filtrer les offres par</h4>
+
+			<form method="get" action="{% url 'jobs:job-list' %}">
+				{{form.type|as_crispy_field}}
+
+				{{form.location|as_crispy_field}}
+
+				<button class="btn btn-primary" type="submit">Filtrer</button>
+			</form>
+
+		</div>
+
+		
+
+	</div>
+
+
+
+
+	<!-- Widgets / End -->
+
+
+</div>
+
+{% endblock content %}

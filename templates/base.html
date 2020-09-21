@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}
+
+        {% endblock title %} - Genoskul</title>
+
+    {% block extrastyles %}
+    
+    {% endblock extrastyles %}
+
+    {% include "base/css.html" %}
+</head>
+
+<body>
+    <div id="wrapper">
+
+
+        {% block navbar %}
+        {% include "base/headers/navbar-sticky.html" %}
+        {% endblock navbar %}
+
+        {% block breadcrumbs %}
+
+        {% endblock breadcrumbs %}
+
+        {% block content %}
+
+        {% endblock content %}
+
+        {% block footer %}
+
+        {% endblock footer %}
+
+    </div>
+    {% include "base/js.html" %}
+
+</body>
+
+</html>

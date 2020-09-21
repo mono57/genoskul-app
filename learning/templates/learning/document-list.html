@@ -1,0 +1,54 @@
+{% extends "base_site.html" %}
+
+{% block title %}
+{{title}}
+{% endblock title %}
+
+{% block breadcrumb-item %}
+<li>{{title}}</li>
+{% endblock breadcrumb-item %}
+
+
+{% block content %}
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-12 col-md-8">
+      {% for document in documents %}
+      <div class="col-md-6 mb-2 mb-md-3">
+        <div class="card">
+          <div class="card-body">
+            <p class="h5">{{document.name}}</p>
+            <p><a href="{{document.file.url}}">cliquez pour télécharger</a></p>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p>Aucun document n'a encore été publié !</p>
+      {% endfor %}
+
+
+
+    </div>
+
+    <!-- <div class="col-md-4">
+      <div class="five columns">
+        {% include "includes/filter.html" %}
+      </div>
+    </div> -->
+  </div>
+  {% if is_paginated %}
+  <div class="row">
+    <div class="col-12 col-md-8">
+      {% include "includes/pagination.html" %}
+    </div>
+
+  </div>
+  {% endif %}
+
+
+</div>
+
+
+{% endblock content %}

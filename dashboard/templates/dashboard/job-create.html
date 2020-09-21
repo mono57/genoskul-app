@@ -1,0 +1,112 @@
+{% extends "dashboard/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+{{title}}
+{% endblock title %}
+
+{% block breadcrumb %}
+<li><a href="{% url 'dashboard:dashboard' %}">Tableau de bord</a></li>
+<li>{{title}}</li>
+{% endblock breadcrumb %}
+
+{% block dashboard_content %}
+
+<div class="row">
+
+    <div class="col-lg-12 col-md-12">
+
+        <form method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+
+            <div class="dashboard-list-box margin-top-0">
+                <h4>Informations sur l'offre</h4>
+                <div class="dashboard-list-box-content">
+
+                    <div class="submit-page">
+
+                        <div class="form">
+                            {{form.title|as_crispy_field}}
+                        </div>
+
+                        <div class="form">
+                            {{form.type|as_crispy_field}}
+                        </div>
+
+                        <div class="form" style="width: 100%;">
+                            <div class="select">
+                                {{form.category|as_crispy_field}}
+                            </div>
+                        </div>
+
+                        <div class="form">
+                            {{form.location|as_crispy_field}}
+                        </div>
+
+                        <div class="form">
+                            {{form.tags|as_crispy_field}}
+                        </div>
+
+                        <div class="form" style="width: 100%;">
+                            {{form.description|as_crispy_field}}
+                        </div>
+
+                        <div class="form">
+                            {{form.application_email|as_crispy_field}}
+                        </div>
+
+                        <div class="form">
+                            {{form.closing_date|as_crispy_field}}
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="dashboard-list-box margin-top-30">
+                <h4>Details sur l'entreprise</h4>
+                <div class="dashboard-list-box-content">
+
+                    <div class="submit-page">
+
+                        <div class="form">
+                            {{form.company_name|as_crispy_field}}
+                        </div>
+
+                        <div class="form">
+                            {{form.website|as_crispy_field}}
+                        </div>
+
+                        <div class="form">
+                            {{form.tagline|as_crispy_field}}
+                        </div>
+
+                        <div class="form">
+                            {{form.logo|as_crispy_field}}
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <button type="submit" class="button margin-top-30">{% if job %}
+              Modifier mon offre d'emploi
+              {% else %}
+              Enregistrer mon offre
+            {% endif %}</button>
+
+
+        </form>
+
+    </div>
+
+
+    {% include "dashboard/footer.html" %}
+</div>
+
+{% endblock dashboard_content %}

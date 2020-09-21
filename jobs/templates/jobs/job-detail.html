@@ -1,0 +1,118 @@
+{% extends "base_site.html" %}
+
+{% load static %}
+
+{% block title %}
+{{title}}
+{% endblock title %}
+
+{% block breadcrumb-item %}
+    <li>
+        <a href="{% url 'jobs:job-list' %}">Offres disponibles</a>
+    </li>
+    <li>{{title}}</li>
+{% endblock breadcrumb-item %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- Recent Jobs -->
+    <div class="ten columns">
+        <div class="padding-right">
+
+            <!-- Company Info -->
+            <div class="company-info">
+                {% if job.company.logo %}
+                <img src="{{job.company.logo.url}}" alt="{{job.title}}">
+                {% else %}
+                <img src="{% static 'images/logo-05.png' %}" alt="{{job.title}}">
+                {% endif %}
+                <div class="content">
+                    <h4>{{job.company.name}}</h4>
+                    <span><a href="{{job.company.website}}"><i class="fa fa-link"></i> Site internet</a></span>
+                    <!-- <span><a href="#"><i class="fa fa-twitter"></i> @kingrestaurants</a></span> -->
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <p class="margin-reset">
+                {{job.description|safe}}</p>
+
+
+
+        </div>
+    </div>
+
+
+    <!-- Widgets -->
+    <div class="five columns">
+
+        <!-- Sort by -->
+        <div class="widget">
+            <h4>Vue d'ensemble</h4>
+
+            <div class="job-overview">
+
+                <ul>
+                    <li>
+                        <i class="fa fa-map-marker"></i>
+                        <div>
+                            <strong>Lieu d'execution:</strong>
+                            <span>{{job.location}}</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa fa-user"></i>
+                        <div>
+                            <strong>Titre de l'emploi</strong>
+                            <span>{{job.title}}</span>
+                        </div>
+                    </li>
+
+                </ul>
+
+
+                <a href="#" class="popup-with-zoom-anim button">Postuler pour cet offre</a>
+
+                <div id="small-dialog" class="zoom-anim-dialog mfp-hide apply-popup">
+                    <div class="small-dialog-headline">
+                        <h2>Apply For This Job</h2>
+                    </div>
+
+                    <div class="small-dialog-content">
+                        <form action="#" method="get">
+                            <input type="text" placeholder="Full Name" value="" />
+                            <input type="text" placeholder="Email Address" value="" />
+                            <textarea placeholder="Your message / cover letter sent to the employer"></textarea>
+
+                            <!-- Upload CV -->
+                            <div class="upload-info"><strong>Upload your CV (optional)</strong> <span>Max. file size:
+                                    5MB</span></div>
+                            <div class="clearfix"></div>
+
+                            <label class="upload-btn">
+                                <input type="file" multiple />
+                                <i class="fa fa-upload"></i> Browse
+                            </label>
+                            <span class="fake-input">No file selected</span>
+
+                            <div class="divider"></div>
+
+                            <button class="send">Send Application</button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,36 @@
+from django.urls import path
+
+from dashboard.views import *
+from accounts.views import ProfileUpdateView
+from ndjor.views import ProductCreateView, ProductUpdateView
+from learning.views import DocumentCreateView
+# from jobs.views import
+
+app_name = 'dashboard'
+
+urlpatterns = [
+    path('', DashboardTemplateView.as_view(), name='dashboard'),
+    path('documents/',
+         DashboardDocumentListView.as_view(),
+         name='documents'),
+    path('document/create/', DocumentCreateView.as_view(), name='document-create'),
+    path('jobs/create/',
+         DashboardJobCreateView.as_view(),
+         name='job-create'),
+    path('job/<int:pk>/update/', DashboardJobUpdateView.as_view(), name='job-update'),
+    path('jobs/list/', DashboardJobsListView.as_view(), name='jobs-list'),
+    path('resume/add/',
+         DashboardResumeCreateView.as_view(),
+         name='resume-create'),
+
+    path('product/create/',
+         ProductCreateView.as_view(), name='product-create'),
+    path('product/<int:pk>/update/',
+         ProductUpdateView.as_view(),
+         name='product-update'
+         ),
+    path('product/list/',
+         DashboardProductListView.as_view(), name='products'),
+
+    path('profile/update/', ProfileUpdateView.as_view(), name='profile-update'),
+]

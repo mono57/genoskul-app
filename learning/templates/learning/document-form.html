@@ -1,0 +1,78 @@
+{% extends "dashboard/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+{{title}}
+{% endblock title %}
+
+{% block breadcrumb %}
+<li><a href="{% url 'dashboard:dashboard' %}">Tableau de bord</a></li>
+
+<li>{{title}}</li>
+{% endblock breadcrumb %}
+
+{% block dashboard_content %}
+<!-- <div class="container py-2 py-md-3">
+    <div class="row">
+        <div class="col-12 col-md-5">
+            <form method="POST" enctype="multipart/form-data">
+
+                {% csrf_token %}
+                {{form|crispy}}
+
+                <button class="btn btn-primary" type="submit">Publier le document</button>
+            </form>
+        </div>
+    </div>
+  </div> -->
+<div class="row">
+
+  <!-- Table-->
+  <div class="col-lg-12 col-md-12">
+
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="dashboard-list-box margin-top-0">
+        <h4>Nouveau document</h4>
+        <div class="dashboard-list-box-content">
+
+          <div class="submit-page">
+
+
+            <div class="form">
+              {{form.file|as_crispy_field}}
+            </div>
+            <div class="form">
+              {{form.type|as_crispy_field}}
+            </div>
+
+            <div class="form">
+              {{form.categories|as_crispy_field}}
+            </div>
+
+            <div class="form">
+              {{form.description|as_crispy_field}}
+            </div>
+
+
+          </div>
+
+        </div>
+      </div>
+
+
+
+      <button type="submit" class="button margin-top-30">Publier le document </button>
+
+    </form>
+  </div>
+  {% include "dashboard/footer.html" %}
+
+  <!-- <div class="copyrights">© 2019 WorkScout. All Rights Reserved.</div> -->
+</div>
+</div>
+
+
+{% endblock dashboard_content %}

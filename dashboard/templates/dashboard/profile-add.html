@@ -1,0 +1,67 @@
+{% extends "dashboard/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+{{title}}
+{% endblock title %}
+
+{% block breadcrumb %}
+<li><a href="{% url 'dashboard:dashboard' %}">Tableau de bord</a></li>
+<li>Ajouter un CV</li>
+{% endblock breadcrumb %}
+
+
+{% block dashboard_content %}
+
+<div class="row">
+
+  <!-- Table-->
+  <div class="col-lg-12 col-md-12">
+
+  <form method="post" enctype="multipart/form-data">
+    
+    {% csrf_token %}
+
+    <div class="dashboard-list-box margin-top-0">
+      <h4>Details</h4>
+      <div class="dashboard-list-box-content">
+
+        <div class="submit-page">
+
+          <div class="form">
+            {{form.pro_title|as_crispy_field}}
+          </div>
+
+          <div class="form">
+            {{form.location|as_crispy_field}}</div>
+
+
+          <div class="form">
+              {{form.resume_file|as_crispy_field}} 
+          </div>
+
+          <div class="form">
+            {{form.website|as_crispy_field}} 
+        </div>
+          <!-- Description -->
+          <div class="form" style="width: 100%;">
+            {{form.description|as_crispy_field}}
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+    <button class="button margin-top-30" type="submit">Publier mon CV </button>
+
+  </div>
+    
+  </form>
+
+  {% include "dashboard/footer.html" %}
+</div>
+
+{% endblock dashboard_content %}
