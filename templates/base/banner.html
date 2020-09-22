@@ -6,26 +6,42 @@
     <div class="container">
         <div class="sixteen columns">
 
-            <div class="search-container">
-
-                <form action="" method="get" class="form-inline">
-                    <div class="form-group">
-                        <label>Explorer</label>
-                        <select name="" id="" class="chosen-select-no-single    ">
-                            <option value="news"><a href="">Actualité </a></option>
-                            <option value="learning">Education</option>
-                            <option value="others">Loisirs et autres</option>
-                        </select>
-                        <button class="btn btn-primary">Commencer</button>
+            <div style="padding: 12rem 0" class="text-left">
+                <h1 class="text-white font-weight-bold display-4">Bienvenue sur Genoskul</h1>
+                <h4 class="text-white">Notre soucis est de vous faire defaire de vos soucis !</h4>
+                <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis nobis
+                    exercitationem quasi accusamus vel molestias?</p>
+                <div class="dropdown mt-md-3">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Publier
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'dashboard:document-create' %}">Document</a>
+                        <a class="dropdown-item" href="#">Une offre d'emploi</a>
+                        <a class="dropdown-item" href="#">Ndjor (commerce)</a>
                     </div>
-                </form>
+                </div>
+            </div>
+            <!-- <div class="search-container">
+
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Dropdown button
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div>
 
                 <div class="browse-jobs">
                     Explorer 02 de nos plus grandes catégories<a href="#"> Produits</a> ou <a href="#">Offres
                         d'emploi</a>
                 </div>
 
-            </div>
+            </div> -->
 
         </div>
     </div>
