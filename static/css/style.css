@@ -319,7 +319,6 @@ ul.float-right li a:hover,
 
 .menu ul ul:before {
 	font-family: "FontAwesome";
-	content:"";
 	font-size: 23px;
 	color: #282828;
 	display: block;
@@ -2142,8 +2141,6 @@ img.mfp-img {
 	color: #777;
 }
 
-.list-1 li:before { content: ""; font-size: 8px; }
-
 
 /* Tabs
 ------------------------------------- */
@@ -2243,7 +2240,7 @@ img.mfp-img {
 .post-quote .icon:before {
 	font-family: "FontAwesome";
 	font-size: 28px;
-	content: "";
+
 	color: #d0d0d0;
 	position: relative;
 	height: 15px;
@@ -4771,9 +4768,6 @@ body .recent-post a h4 { font-size: 20px; }
 	top: 21px;
 }
 
-.tp-rightarrow.default:before { content: ""; left: 19px; }
-.tp-leftarrow.default:before { content: ""; left: 15px; }
-
 
 /* Other Styles
 ------------------------------------ */
@@ -5844,7 +5838,6 @@ a.post-img:hover:before {
 }
 
 .chosen-container-single .chosen-single div b:after {
-	content: "";
 	font-family: "FontAwesome";
 	font-size: 14px;
 	margin: 0 14px 0 0;
@@ -5881,7 +5874,6 @@ a.post-img:hover:before {
 }
 
 .chosen-container-single .chosen-search:before {
-	content: "";
 	font-family: "FontAwesome";
 	font-size: 15px;
 	margin: 0 10px 0 0;
@@ -6034,7 +6026,6 @@ a.post-img:hover:before {
 }
 
 .chosen-container-multi .chosen-choices li.search-choice .search-choice-close:before {
-	content: "";
 	font-family: "FontAwesome";
 	font-size: 13px;
 	top: 1px;
@@ -6078,7 +6069,6 @@ a.post-img:hover:before {
 	background: transparent;
 }
 
-.chosen-container-active.chosen-with-drop .chosen-single div b:after { content: "" }
 .chosen-container-active .chosen-choices li.search-field input[type="text"] { color: #808080 !important; }
 
 
@@ -6742,13 +6732,6 @@ textarea.WYSIWYG { min-height: 300px; }
 
 
 
-/* Forms for URL(s), Education and Skills */
-.form.boxed {
-	background-color: #f9f9f9;
-	padding: 38px 38px 23px 38px;
-	position: relative;
-	margin-top: 20px;
-}
 
 .form.with-line {
     border-top: 1px solid #E0E0E0;
@@ -7020,30 +7003,6 @@ ul.footer-links { margin: 0 0 15px 0; }
 .rating.no-stars .star-rating:after { display: none; }
 
 
-.rating .star-rating:after {
-	content:"    ";
-	font-family: "FontAwesome";
-	color: #ffc741;
-	display: block;
-	position: absolute;
-	font-size: 19px;
-	z-index: 10;
-	letter-spacing: -0.5px;
-}
-
-.rating .star-bg:after {
-	content:"    ";
-	font-family: "FontAwesome";
-	color: #c0c0c0;
-	display: block;
-	position: absolute;
-	font-size: 19px;
-	z-index: 9;	padding: 0;
-	margin: 0;
-	letter-spacing: -0.5px;
-}
-
-
 
 /* ------------------------------------------------------------------- */
 /* Jobs List Page
@@ -7124,17 +7083,6 @@ ul.footer-links { margin: 0 0 15px 0; }
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-}
-
-.checkboxes input[type=checkbox]:checked + label:before {
-	content: "";
-	font-family: "FontAwesome";
-	font-size: 12px;
-	color: #fff;
-	text-align: center;
-	line-height: 15px;
-	background-color: #505050;
-	border: 2px solid transparent;
 }
 
 

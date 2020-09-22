@@ -184,43 +184,6 @@
     });
 
 
-    /*----------------------------------------------------*/
-    /*  Flip Banner
-    /*----------------------------------------------------*/
-    // function flipBanner() {
-
-    //     $('.flip-banner').prepend('<div class="flip-banner-overlay"></div>');
-
-    //     $(".flip-banner").each(function() {
-    //         var attrImage = $(this).attr('data-background');
-    //         var attrColor = $(this).attr('data-color');
-    //         var attrOpacity = $(this).attr('data-color-opacity');
-
-    //         if(attrImage !== undefined) {
-    //             $(this).css('background-image', 'url('+attrImage+')');
-    //         }
-
-    //         if(attrColor !== undefined) {
-    //             $(this).find(".flip-banner-overlay").css('background-color', ''+attrColor+'');
-    //         }
-
-    //         if(attrOpacity !== undefined) {
-    //             $(this).find(".flip-banner-overlay").css('opacity', ''+attrOpacity+'');
-    //         }
-
-    //     });
-    // }
-    // flipBanner();
-
-
-    /*----------------------------------------------------*/
-    /*  Image Box
-    /*----------------------------------------------------*/
-    $('.img-box').each(function(){
-        $(this).append('<div class="img-box-background"></div>');
-        $(this).children('.img-box-background').css({'background-image': 'url('+ $(this).attr('data-background-image') +')'});
-    });
-
 
     /*----------------------------------------------------*/
     /*  Revolution Slider
