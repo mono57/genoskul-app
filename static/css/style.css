@@ -1,8 +1,6 @@
 
 
-@import url("/static/css/base.css");				
-@import url("/static/css/responsive.css");			
-@import url("/static/css/font-awesome.css");		
+		
 @import url("http://fonts.googleapis.com/css?family=Montserrat:400,500,600");
 @import url("http://fonts.googleapis.com/css?family=Lato:400,700,300");
 
@@ -2900,18 +2898,6 @@ img.mfp-img {
 .instagram:hover { background-color: #3f6f94; }
 .footer-bottom .instagram:hover { background-color: #3f6f94;border-color:#3f6f94 ; }
 
-
-/* Web Font */
-@font-face {
-  font-family: 'fontello';
-  src: url('../fonts/fontello0bee.eot?31771571');
-  src: url('../fonts/fontello0bee.eot?31771571#iefix') format('embedded-opentype'),
-	   url('../fonts/fontello0bee.woff?31771571') format('woff'),
-	   url('../fonts/fontello0bee.ttf?31771571') format('truetype'),
-	   url('../fonts/fontello0bee.svg?31771571#fontello') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
 
 .social-icons li i {
 	font-family: "fontello";

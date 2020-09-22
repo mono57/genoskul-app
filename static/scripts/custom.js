@@ -187,30 +187,30 @@
     /*----------------------------------------------------*/
     /*  Flip Banner
     /*----------------------------------------------------*/
-    function flipBanner() {
+    // function flipBanner() {
 
-        $('.flip-banner').prepend('<div class="flip-banner-overlay"></div>');
+    //     $('.flip-banner').prepend('<div class="flip-banner-overlay"></div>');
 
-        $(".flip-banner").each(function() {
-            var attrImage = $(this).attr('data-background');
-            var attrColor = $(this).attr('data-color');
-            var attrOpacity = $(this).attr('data-color-opacity');
+    //     $(".flip-banner").each(function() {
+    //         var attrImage = $(this).attr('data-background');
+    //         var attrColor = $(this).attr('data-color');
+    //         var attrOpacity = $(this).attr('data-color-opacity');
 
-            if(attrImage !== undefined) {
-                $(this).css('background-image', 'url('+attrImage+')');
-            }
+    //         if(attrImage !== undefined) {
+    //             $(this).css('background-image', 'url('+attrImage+')');
+    //         }
 
-            if(attrColor !== undefined) {
-                $(this).find(".flip-banner-overlay").css('background-color', ''+attrColor+'');
-            }
+    //         if(attrColor !== undefined) {
+    //             $(this).find(".flip-banner-overlay").css('background-color', ''+attrColor+'');
+    //         }
 
-            if(attrOpacity !== undefined) {
-                $(this).find(".flip-banner-overlay").css('opacity', ''+attrOpacity+'');
-            }
+    //         if(attrOpacity !== undefined) {
+    //             $(this).find(".flip-banner-overlay").css('opacity', ''+attrOpacity+'');
+    //         }
 
-        });
-    }
-    flipBanner();
+    //     });
+    // }
+    // flipBanner();
 
 
     /*----------------------------------------------------*/
