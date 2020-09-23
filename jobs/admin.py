@@ -16,3 +16,4 @@ admin.site.register(Job, JobModelAdmin)
 
 admin.site.register(JobType)
 admin.site.register(JobCategory)
+admin.site.register(Company)

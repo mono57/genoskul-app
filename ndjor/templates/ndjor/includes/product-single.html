@@ -1,0 +1,16 @@
+<div class="card" style="width: 18rem;">
+    <img src="{{product.image.url}}" alt="{{product.name}}" class="img-fluid card-img-top">
+
+    <div class="card-body">
+
+        <h2 class="card-title mb-3" style="line-height: 0 !important;">{{product.name}}</h2>
+        <h4 class="font-weight-bold text-primary mt-0">{{product.price|default:'Non défini'}} {% if product.price %}
+            F CFA
+        {% endif %}</h4>
+        <h6 class="card-subtitle mt-0 text-muted ">Etat du produit: <span
+                class="text-primary">{{product.get_state_display}}</span></h6>
+
+        <p class="card-text mb-0">Lieu: <span class="text-primary">{{product.location}}</span></p>
+        <p class="card-text mt-0">Contact: <span class="text-primary">{{product.reference}}</span></p>
+    </div>
+</div>

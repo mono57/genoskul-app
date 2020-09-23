@@ -50,27 +50,24 @@ class Job(TimeStampModel):
     title = models.CharField(max_length=200, verbose_name='Titre')
     type = models.ForeignKey(
         JobType, verbose_name='Type', on_delete=models.CASCADE)
-    category = models.ManyToManyField(JobCategory, verbose_name='Catégorie')
+    category = models.ManyToManyField(JobCategory, verbose_name='Secteur d\'emploi')
     location = models.CharField(
         max_length=100, verbose_name='Lieu d\'execution', blank=True)
-    tags = models.CharField(max_length=255, verbose_name='Tags', blank=True)
+    # tags = models.CharField(max_length=255, verbose_name='Tags', blank=True)
     description = models.TextField(verbose_name='Description du poste')
     application_email = models.EmailField(
         verbose_name='Adresse email de postulat')
     closing_date = models.DateField(
-        verbose_name='Date de fermeture', blank=True,null=True)
+        verbose_name='Date de fermeture', blank=True, null=True)
     company = models.ForeignKey(
         Company, verbose_name='Entreprise', on_delete=models.CASCADE)
     user = models.ForeignKey(
         User, verbose_name='Créateur', related_name='jobs', on_delete=models.CASCADE)
 
-
     objects = JobManager()
-
 
     def get_absolute_url(self):
         return reverse("jobs:job-detail", kwargs={"pk": self.pk})
-    
 
     def __str__(self):
         return self.title
@@ -86,7 +83,11 @@ class Resume(TimeStampModel):
     location = models.CharField(
         max_length=150, verbose_name='Lieu de résidence')
     website = models.URLField(verbose_name='Lien du portfolio', blank=True)
-    resume_file = models.FileField(verbose_name='Fichier CV', upload_to='resumes')
+    resume_file = models.FileField(
+        verbose_name='Fichier CV', upload_to='resumes')
+
+    contact = models.CharField(
+        max_length=255, verbose_name='Votre contact', help_text='Aidez les récruteurs à vous contacter')
 
     description = models.TextField(verbose_name='A propos de vous')
 
@@ -97,7 +98,6 @@ class Resume(TimeStampModel):
 
     def get_absolute_url(self):
         return reverse("jobs:resume-detail", kwargs={"pk": self.pk})
-    
 
     def __str__(self):
         return '{} : {}'.format(self.pro_title, self.user.first_name)

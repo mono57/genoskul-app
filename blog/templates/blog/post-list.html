@@ -1,0 +1,37 @@
+{% extends "base_site.html" %}
+
+{% load static %}
+
+{% block title %}
+{{title}}
+{% endblock title %}
+
+
+{% block breadcrumb-item %}
+  <li>{{title}}</li>
+{% endblock breadcrumb-item %}
+
+{% block content %}
+  <div class="container">
+   
+    <h4 class="mb-2 mb-lg-4">Liste des articles</h4>
+
+    <div class="row">
+
+      {% for post in posts %}
+      {% include "blog/includes/post-single.html" with post=post %}
+      {% empty %}
+      <p class="text-center text-danger">Aucun article</p>
+      {% endfor %}
+    </div>
+
+   {% if is_paginated %}
+   <div class="row">
+    <div class=" col-12 col-md-6">
+      {% include "includes/pagination.html" %}
+    </div>
+  </div>
+   {% endif %}
+   
+  </div>
+{% endblock content %}

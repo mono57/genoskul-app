@@ -12,7 +12,6 @@ class RegisterStep2ModelForm(forms.ModelForm):
         }
 
 
-
 class ProfileModelForm(forms.ModelForm):
     class Meta:
         model = Profile

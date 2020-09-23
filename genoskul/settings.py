@@ -23,6 +23,9 @@ LOGIN_REDIRECT_URL = '/'
 # Application definition
 
 INSTALLED_APPS = [
+    'tinymce_4',
+    # 'grappelli',
+    'filebrowser',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     'ndjor.apps.NdjorConfig',
     'blog.apps.BlogConfig',
     'dashboard.apps.DashboardConfig',
+    'services.apps.ServicesConfig',
 ]
 
 SITE_ID = 1

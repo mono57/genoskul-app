@@ -23,6 +23,10 @@ urlpatterns = [
          DashboardResumeCreateView.as_view(),
          name='resume-create'),
 
+    path('resume/<int:pk>/update/',
+         DashboardResumeUpdateView.as_view(),
+         name='resume-update'),
+
     path('product/create/',
          ProductCreateView.as_view(), name='product-create'),
     path('product/<int:pk>/update/',

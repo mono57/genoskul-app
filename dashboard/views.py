@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy, reverse
@@ -10,7 +10,7 @@ from django.views.generic import (
 )
 
 from jobs.forms import JobModelForm, ResumeModelForm
-from jobs.models import Company, Job
+from jobs.models import Company, Job, Resume
 from learning.models import Document
 
 
@@ -82,6 +82,21 @@ class DashboardResumeCreateView(
         print(form.data)
         obj.save()
         return super().form_valid(form)
+
+class DashboardResumeUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    template_name = 'dashboard/profile-add.html'
+    form_class = ResumeModelForm
+    success_message = 'Votre CV a été bien mis à jour !'
+    success_url = reverse_lazy('dashboard:resume-update')
+
+    def get_object(self):
+        return get_object_or_404(Resume, pk=self.kwargs.get('pk'))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Modifier votre CV'
+        return context
+        
 
 class DashboardJobUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = 'dashboard/job-create.html'

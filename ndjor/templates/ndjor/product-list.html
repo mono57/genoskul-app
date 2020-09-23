@@ -5,9 +5,40 @@
 {% endblock title %}
 
 {% block breadcrumb-item %}
-  {{title}}
+  <li>{{title}}</li>
 {% endblock breadcrumb-item %}
 
 {% block content %}
   
+  <div class="container pb-5">
+    <div class="row mb-4">
+      <div class="col-12 col-md-6">
+        <form action="" method="get" class="form-inline">
+          <div class="form-group mb-0">
+            <input type="text" class="form-control-sm rounded-0" placeholder="Rechercher un produit">
+          </div>
+          <button class="btn btn-primary btn-sm rounded-0" type="submit" style="margin-left: -5px">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      {% for product in products %}
+      <div class="col-12 col-md-4 mb-2">
+        {% include "ndjor/includes/product-single.html" with product=product %}
+      </div>
+      {% endfor %}
+    </div>
+    
+    {% if is_paginated %}
+    <div class="row">
+      <div class="col-12 col-md-6">
+        {% include "includes/pagination.html" %}
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+
 {% endblock content %}

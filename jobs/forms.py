@@ -32,11 +32,16 @@ class ResumeModelForm(forms.ModelForm):
         model = Resume
         exclude = ('user',)
         widgets = {
-            'description': forms.Textarea(attrs={'rows': 4})
+            'description': forms.Textarea(attrs={'rows': 4}),
+            'location': forms.TextInput(attrs={'placeholder': 'Ville/Pays'}),
+            'pro_title': forms.TextInput(attrs={'placeholder': 'Votre compétence'}),
+            'website': forms.TextInput(attrs={'placeholder': 'Entrez le lien de votre portfolio'}),
+            'contact': forms.TextInput(attrs={'placeholder': 'Numéro de téléphone ou Adresse email'})
         }
         labels = {
             'resume_file': 'Joindre un CV'
         }
+
 
 
 class JobFilterForm(forms.Form):
