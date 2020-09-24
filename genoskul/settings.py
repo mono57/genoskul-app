@@ -15,7 +15,10 @@ SECRET_KEY = 'iwd^4am&mbqn2#d-n6g-03mppo8rza@fh9-wqsi@ua1%@o^zya'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = os.getenv('DEBUG', True)
+DEBUG = True
+
+if os.getenv('ENV') == 'PROD':
+    DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
