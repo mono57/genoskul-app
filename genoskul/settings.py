@@ -130,7 +130,7 @@ AWS_S3_OBJECT_PARAMETERS = {
 
 AWS_DEFAULT_ACL = None
 
-if not DEBUG:
+if os.getenv('ENV') == 'PROD':
     DEFAULT_FILE_STORAGE = 'genoskul.storage_backends.MediaStorage'
 
 # Internationalization
