@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'crispy_forms',
+    'storages',
     
     'learning.apps.LearningConfig',
     'accounts.apps.AccountsConfig',
@@ -110,6 +111,24 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# AWS S3 config
+
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+
+AWS_STORAGE_BUCKET_NAME = os.getenv('BUCKET_NAME')
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+# print(os.getenv('AWS_SECRET_ACCESS_KEY'))
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+AWS_DEFAULT_ACL = None
+
+if not DEBUG:
+    DEFAULT_FILE_STORAGE = 'genoskul.storage_backends.MediaStorage'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
