@@ -18,8 +18,9 @@
       {% for document in documents %}
       <div class="col-md-6 mb-2 mb-md-3">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body pb-0">
             <p class="h5">{{document.name}}</p>
+            <p style="line-height: 1.2rem;">{{document.description|truncatewords:10}}</p>
             <p><a href="{{document.file.url}}">cliquez pour télécharger</a></p>
           </div>
         </div>

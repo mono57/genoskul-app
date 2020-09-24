@@ -33,6 +33,7 @@ urlpatterns = [
          ProductUpdateView.as_view(),
          name='product-update'
          ),
+     path('services/create/', DashboardServiceCreateView.as_view(), name='service-create'),
     path('product/list/',
          DashboardProductListView.as_view(), name='products'),
 

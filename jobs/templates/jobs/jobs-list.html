@@ -8,17 +8,31 @@
 {% endblock title %}
 
 {% block breadcrumb-item %}
+<li>
+	<a href="{% url 'jobs:category-list' %}">Liste des secteurs d'emploi</a>
+</li>
 <li>{{title}}</li>
 {% endblock breadcrumb-item %}
 
 {% block content %}
 <div class="container">
 
+	<h3 class="mt-0 mb-2"><span class="text-primary text-uppercase">{{category.name}}</span></h3>
+
 	<div class="ten columns">
 		<div class="padding-right">
 
 			<div class="listings-container">
 
+				{% if category %}
+				{% for job in category.jobs.all %}
+				{% include "jobs/includes/job-single.html" with job=job %}
+				{% empty %}
+
+				<p class="primary">Aucune offre d'emploi à lister pour cet secteur !</p>
+
+				{% endfor %}
+				{% else %}
 				{% for job in jobs %}
 				{% include "jobs/includes/job-single.html" with job=job %}
 				{% empty %}
@@ -27,6 +41,8 @@
 
 				{% endfor %}
 
+
+				{% endif %}
 				<!-- <a href="job-page.html" class="listing internship">
 							<div class="listing-logo">
 								<img src="images/job-list-logo-04.png" alt="">
@@ -51,6 +67,7 @@
 
 		</div>
 	</div>
+	{% if not category %}
 	<div class="five columns">
 
 		<div class="widget">
@@ -66,11 +83,12 @@
 
 		</div>
 
-		
+
 
 	</div>
 
 
+	{% endif %}
 
 
 	<!-- Widgets / End -->

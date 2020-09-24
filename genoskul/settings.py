@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'dashboard.apps.DashboardConfig',
     'services.apps.ServicesConfig',
+    'us.apps.UsConfig',
 ]
 
 SITE_ID = 1

@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404 
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy, reverse
@@ -12,7 +12,7 @@ from django.views.generic import (
 from jobs.forms import JobModelForm, ResumeModelForm
 from jobs.models import Company, Job, Resume
 from learning.models import Document
-
+from services.forms import ServiceModelForm
 
 
 class DashboardTemplateView(LoginRequiredMixin, TemplateView):
@@ -21,6 +21,7 @@ class DashboardTemplateView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
 
 class DashboardDocumentListView(LoginRequiredMixin, ListView):
     model = Document
@@ -83,6 +84,7 @@ class DashboardResumeCreateView(
         obj.save()
         return super().form_valid(form)
 
+
 class DashboardResumeUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = 'dashboard/profile-add.html'
     form_class = ResumeModelForm
@@ -96,7 +98,7 @@ class DashboardResumeUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateV
         context = super().get_context_data(**kwargs)
         context['title'] = 'Modifier votre CV'
         return context
-        
+
 
 class DashboardJobUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = 'dashboard/job-create.html'
@@ -124,10 +126,10 @@ class DashboardJobUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView
         obj = form.save()
         company = obj.company
         print(data)
-        company.name = data.get('company_name') 
-        company.website = data.get('website') 
-        company.tagline = data.get('tagline') 
-        company.logo = form.files.get('logo') 
+        company.name = data.get('company_name')
+        company.website = data.get('website')
+        company.tagline = data.get('tagline')
+        company.logo = form.files.get('logo')
         company.save()
         return super().form_valid(form)
 
@@ -136,12 +138,44 @@ class DashboardJobUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView
         context['title'] = 'Modification de l\'offre d\'emploi'
         return context
 
+
 class DashboardProductListView(LoginRequiredMixin, ListView):
     template_name = 'dashboard/products.html'
     context_object_name = 'products'
 
     def get_queryset(self):
         return self.request.user.products.all()
+
+
+class DashboardServiceCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    template_name = 'services/service-form.html'
+    form_class = ServiceModelForm
+    success_url = reverse_lazy('dashboard:dashboard')
+    success_message = "Votre demande a été bien reçu, veuillez patienter pendant que nous validons! "
+
+    def form_valid(self, form):
+        obj = form.save()
+        obj.owner = self.request.user
+        obj.save()
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Créer un service'
+        return context
+        
+# class DashboardServiceCreateView(LoginRequiredMixin, SuccessMessageMixin, Update):
+#     template_name = 'services/service-form.html'
+#     form_class = ServiceModelForm
+#     success_url = reverse_lazy('dashboard:service-update')
+#     success_message = "Votre demande a été bien reçu, veuillez patienter pendant que nous validons! "
+
+#     def get_object(self):
+#         return get_object_or_404(Box, pk=self.kwargs.get('pk'))
+
+#     def get_context_data(self):
+#         context = super().get_context_data(**kwargs)
+#         context['title'] = 'Modifier votre demande'
 
 
 class DashboardJobsListView(LoginRequiredMixin, ListView):

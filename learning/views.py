@@ -5,6 +5,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import (
     CreateView,
     ListView,
+    TemplateView
 )
 
 from learning.models import Document, DocumentCategory
@@ -50,4 +51,12 @@ class DocumentCategoryListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Toutes les catégories disponibles'
+        return context
+
+class CourseListView(TemplateView):
+    template_name = 'learning/course-list'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Nos formations'
         return context

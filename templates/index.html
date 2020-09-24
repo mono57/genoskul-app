@@ -12,63 +12,14 @@ Acceuil
 
 <div class="container">
 	<div class="sixteen columns">
-		<h3 class="margin-bottom-20 margin-top-10 text-primary">Catégories les plus populaires</h3>
+		<h3 class="margin-bottom-20 margin-top-10 text-primary">Nos secteurs d'emploi</h3>
 		<div class="categories-boxes-container">
 				
-			<!-- Box -->
-			<a href="#" class="category-small-box">
-				<i class="ln ln-icon-Bar-Chart"></i>
-				<h4>Accouting / Finance</h4>
-				<span>32</span>
-			</a>
-
-			<!-- Box -->
-			<a href="#" class="category-small-box">
-				<i class="ln ln-icon-Car"></i>
-				<h4>Automotive Jobs</h4>
-				<span>76</span>
-			</a>
-
-			<!-- Box -->
-			<a href="#" class="category-small-box">
-				<i class="ln  ln-icon-Worker"></i>
-				<h4>Construction / Facilities</h4>
-				<span>31</span>
-			</a>
-
-			<!-- Box -->
-			<a href="#" class="category-small-box">
-				<i class="ln  ln-icon-Student-Female"></i>
-				<h4>Education / Training</h4>
-				<span>76</span>
-			</a>
-
-			<!-- Box -->
-			<a href="#" class="category-small-box">
-				<i class="ln ln-icon-Medical-Sign"></i>
-				<h4>Healthcare</h4>
-				<span>32</span>
-			</a>
-
-			<!-- Box -->
-			<a href="#" class="category-small-box">
-				<i class="ln ln-icon-Plates"></i>
-				<h4>Restarant / Food Service</h4>
-				<span>67</span>
-			</a>
-
-			<!-- Box -->
-			<a href="#" class="category-small-box">
-				<i class="ln ln-icon-Globe"></i>
-				<h4>Transportation / Logistics</h4>
-				<span>45</span>
-			</a>
-
-			<a href="#" class="category-small-box">
-				<i class="ln   ln-icon-Laptop-3"></i>
-				<h4>Telecommunication</h4>
-				<span>96</span>
-			</a>
+			{% for category in job_categories %}
+			  {% include "jobs/includes/category-single.html" with categery=category %}
+				{% empty %}
+				<p>Aucune catégorie à lister !</p>
+			  {% endfor %}
 
 		</div>
 		<!-- <div class="categories-boxes-container">
@@ -86,7 +37,7 @@ Acceuil
 		<div class="clearfix"></div>
 		<div class="margin-top-30"></div>
 
-		<a href="{% url 'learning:doc_category-list' %}" class="button centered">Voir toutes les autres catégories</a>
+		<a href="{% url 'jobs:category-list' %}" class="button centered">Tous les secteurs</a>
 		<div class="margin-bottom-55"></div>
 	</div>
 </div>
@@ -129,20 +80,11 @@ Acceuil
 
 							<ul>
 
+								{% for service in services %}
 								<li>
-									<div class="job-spotlight">
-										<a href="#">
-											<h4>Logo Design <span class="freelance">Freelance</span></h4>
-										</a>
-										<span><i class="fa fa-briefcase"></i> Hexagon</span>
-										<span><i class="fa fa-map-marker"></i> Sydney</span>
-										<span><i class="fa fa-money"></i> $10 / hour</span>
-										<p>Proin ligula neque, pretium et ipsum eget, mattis commodo dolor. Etiam
-											tincidunt
-											libero quis commodo.</p>
-										<a href="#" class="button">Voir le details</a>
-									</div>
+									{% include "services/includes/service-single.html" with service=service %}
 								</li>
+								{% endfor %}
 
 
 							</ul>

@@ -13,8 +13,8 @@ urlpatterns = [
     path('document/list/',
          DocumentListView.as_view(),
          name='document-list'),
-        
-    path('document/categories/list/',
-    DocumentCategoryListView.as_view(), name='doc_category-list')
+    
+    path('courses/', CourseListView.as_view(), name='course-list')
+   
 
 ]

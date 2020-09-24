@@ -26,9 +26,15 @@ class JobType(AbstractJob):
 
 
 class JobCategory(AbstractJob):
+    linear_icon = models.CharField(max_length=50, verbose_name='Icon')
+    
     class Meta:
-        verbose_name = 'Catégorie d\'emploi'
-        verbose_name_plural = 'Catégories d\'emplois'
+        verbose_name = 'Secteur d\'emploi'
+        verbose_name_plural = 'Secteurs d\'emplois'
+
+
+    def get_absolute_url(self):
+        return reverse('jobs:category-detail', kwargs={'pk': self.pk})
 
 
 class Company(TimeStampModel):
@@ -50,7 +56,7 @@ class Job(TimeStampModel):
     title = models.CharField(max_length=200, verbose_name='Titre')
     type = models.ForeignKey(
         JobType, verbose_name='Type', on_delete=models.CASCADE)
-    category = models.ManyToManyField(JobCategory, verbose_name='Secteur d\'emploi')
+    category = models.ManyToManyField(JobCategory, related_name='jobs', verbose_name='Secteur d\'emploi')
     location = models.CharField(
         max_length=100, verbose_name='Lieu d\'execution', blank=True)
     # tags = models.CharField(max_length=255, verbose_name='Tags', blank=True)

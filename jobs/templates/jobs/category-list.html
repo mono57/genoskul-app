@@ -1,0 +1,28 @@
+{% extends "base_site.html" %}
+
+{% block title %}
+  {{title}}
+{% endblock title %}
+
+{% block breadcrumb-item %}
+  <li>Secteurs d'emploi disponibles</li>
+{% endblock breadcrumb-item %}
+
+{% block content %}
+  
+<div class="container py-4">
+
+    <div class="categories-boxes-container">
+				
+        {% for category in categories %}
+          {% include "jobs/includes/category-single.html" with category=category %}
+
+          {% empty %}
+          <p>Aucun secteur à lister !</p>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock content %}

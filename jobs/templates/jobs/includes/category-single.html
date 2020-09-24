@@ -1,0 +1,5 @@
+<a href="{{category.get_absolute_url}}" class="category-small-box">
+    <i class="ln {{category.linear_icon}}"></i>
+    <h4>{{category.name}}</h4>
+    <span>{{category.jobs.count|default:0}}</span>
+</a>

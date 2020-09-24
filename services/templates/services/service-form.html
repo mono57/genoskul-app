@@ -1,0 +1,74 @@
+{% extends "dashboard/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+{{title}}
+{% endblock title %}
+
+{% block breadcrumb %}
+<li>
+  <a href="{% url 'dashboard:dashboard' %}">Tableau de bord</a>
+</li>
+<li>{{title}}</li>
+{% endblock breadcrumb %}
+
+{% block dashboard_content %}
+
+<div class="row">
+
+  <!-- Table-->
+  <div class="col-lg-12 col-md-12">
+
+    <form method="post" enctype="multipart/form-data">
+
+      {% csrf_token %}
+
+      <div class="dashboard-list-box margin-top-0">
+        <h4>Informations sur le service</h4>
+        <div class="dashboard-list-box-content">
+
+          <div class="submit-page">
+
+            <div class="form">
+              {{form.type|as_crispy_field}}
+            </div>
+
+            <div class="form">
+              {{form.struct_name|as_crispy_field}}</div>
+
+
+            <div class="form">
+              {{form.struct_description|as_crispy_field}}
+            </div>
+
+            <!-- Description -->
+            <div class="form">
+              {{form.activity_description|as_crispy_field}}
+            </div>
+
+            <div class="form">
+              {{form.address|as_crispy_field}}
+            </div>
+            <div class="form">
+              {{form.contact|as_crispy_field}}
+            </div>
+            <div class="form">
+              {{form.logo|as_crispy_field}}
+            </div>
+            <div class="form">
+              {{form.detail_link|as_crispy_field}}
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+
+      <button class="button margin-top-30" type="submit">Enregistrer mon service</button>
+    </form>
+  </div>
+</div>
+
+{% endblock dashboard_content %}

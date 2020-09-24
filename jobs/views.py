@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
@@ -8,7 +8,7 @@ from django.views.generic import (
 )
 
 from accounts.models import Profile
-from jobs.models import Job, Resume
+from jobs.models import Job, Resume, JobCategory
 from jobs.forms import ResumeModelForm, JobFilterForm
 
 
@@ -32,6 +32,35 @@ class JobListView(ListView):
         context['form'] = JobFilterForm(self.request.GET)
         return context
 
+
+class CategoryListView(ListView):
+    template_name = 'jobs/category-list.html'
+    model = JobCategory
+    context_object_name = 'categories'
+    paginate_by = 12
+
+
+class CategoryDetailView(DetailView):
+    template_name = 'jobs/jobs-list.html'
+    model = JobCategory
+    context_object_name = 'category'
+
+    def get_object(self):
+        return get_object_or_404(JobCategory, self.kwargs.get('pk'))
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = self.get_object().name
+        return context
+
+    def get_object(self):
+        return get_object_or_404(JobCategory, pk=self.kwargs.get('pk'))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = self.get_object().name
+        return context
 
 class ResumeListView(ListView):
     template_name = 'jobs/profile-list.html'
