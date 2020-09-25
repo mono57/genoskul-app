@@ -9,6 +9,7 @@
 
 {% url 'dashboard:document-create' as document_create_url %}
 {% url 'learning:document-list' as document_list_url %}
+{% url 'learning:course-list' as course_list_url %}
 
 {% url 'dashboard:job-create' as job_create_url %}
 {% url 'dashboard:resume-create' as resume_create_url %}
@@ -38,7 +39,7 @@
                 <li><a href="#">Etudes</a>
                     <ul>
                         <li><a href="{{document_list_url}}">Bibliothèque</a></li>
-                        <li><a href="#">Nos formations</a></li>
+                        <li><a href="{{course_list_url}}">Nos formations</a></li>
                         <li><a href="{{document_create_url}}">Publier un document</a></li>
 
                     </ul>

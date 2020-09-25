@@ -36,9 +36,17 @@ class ProductListView(LoginRequiredMixin, ListView):
     context_object_name = 'products'
     paginate_by = 9
 
+    def get(self, request, *args, **kwargs):
+        self.query = request.GET.get('query')
+        return super().get(request, *args, **kwargs)
+
+    def get_queryset(self):
+        return self.model.objects.get_products(self.query)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Produits disponibles'
+        context['query'] = self.query
         return context
 
 class ProductUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):

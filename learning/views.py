@@ -54,7 +54,7 @@ class DocumentCategoryListView(ListView):
         return context
 
 class CourseListView(TemplateView):
-    template_name = 'learning/course-list'
+    template_name = 'learning/course-list.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

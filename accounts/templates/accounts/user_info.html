@@ -1,0 +1,40 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}
+  Modifier vos informations personnelles
+{% endblock title %}
+
+{% block breadcrumb-item %}
+  <li>
+      Modifiez vos informations personnelles
+  </li>
+{% endblock breadcrumb-item %}
+
+{% block dashboard_content %}
+<div class="row">
+    <div class="col-lg-6 col-md-12">
+        <div class="dashboard-list-box margin-top-0">
+            <h4 class="gray">Modifiez vos informations personnelles</h4>
+            <div class="dashboard-list-box-static">
+
+                <form method="post">
+                    {% csrf_token %}
+
+
+                    <div class="my-profile">
+                        {{form|crispy}}
+                    </div>
+
+                    <button class="button margin-top-15" type="submit">Enregistrer les changements</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    {% include "dashboard/footer.html" %}
+</div>
+  
+{% endblock dashboard_content %}

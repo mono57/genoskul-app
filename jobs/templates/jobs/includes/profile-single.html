@@ -13,7 +13,9 @@
         {% endwith %}
 
         <div class="resumes-list-content">
-            <h4>{{profile.user.get_full_name}} <span>{{profile.pro_title}}</span></h4>
+            <h4>{% if not profile.user.get_full_name %}
+                {{profile.user.get_username}}
+            {% endif %} {{profile.user.get_full_name}}<span>{{profile.pro_title}}</span></h4>
             <span><i class="fa fa-map-marker"></i> {{profile.location}}</span>
             <p class="d-block">{{profile.description|truncatewords:15}}</p>
             <div class="clearfix"></div>

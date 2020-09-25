@@ -138,7 +138,7 @@ if os.getenv('ENV') == 'PROD':
 
 LANGUAGE_CODE = 'fr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Douala'
 
 USE_I18N = True
 

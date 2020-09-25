@@ -6,13 +6,15 @@ from django.views.generic import (
     ListView,
     CreateView,
     TemplateView,
-    UpdateView
+    UpdateView,
+    DeleteView
 )
 
 from jobs.forms import JobModelForm, ResumeModelForm
 from jobs.models import Company, Job, Resume
 from learning.models import Document
 from services.forms import ServiceModelForm
+from ndjor.models import Product
 
 
 class DashboardTemplateView(LoginRequiredMixin, TemplateView):
@@ -37,6 +39,29 @@ class DashboardDocumentListView(LoginRequiredMixin, ListView):
         context['title'] = 'Mes documents'
         return context
 
+
+class DashboardDocumentDeleteView(LoginRequiredMixin, DeleteView):
+    template_name = 'dashboard/delete-confirm.html'
+    model = Document
+    success_url = reverse_lazy('dashboard:documents')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Suppression'
+        context['previous_path'] = self.request.META.get('HTTP_REFERER')
+        return context
+
+
+class DashboardProductDeleteView(LoginRequiredMixin, DeleteView):
+    template_name = 'dashboard/delete-confirm.html'
+    model = Product
+    success_url = reverse_lazy('dashboard:products')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Suppression'
+        context['previous_path'] = self.request.META.get('HTTP_REFERER')
+        return context
 
 class DashboardJobCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = JobModelForm

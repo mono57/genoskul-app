@@ -13,19 +13,23 @@
             <div class="resume-titlebar">
                 {% with profile.user.profile as user_profile %}
                   {% if user_profile.avatar %}
-                <img src="{% static 'images/avatar-placeholder.png' %}" alt="">
+                <img src="{{user_profile.avatar.url}}" alt="">
                     {% else %}
                 <img src="{% static 'images/avatar-placeholder.png' %}" alt="">
 
                   {% endif %}
                 {% endwith %}
                 <div class="resumes-list-content">
-                    <h4>{{profile.user.get_full_name}} <span>{{profile.pro_title}}</span></h4>
+                    <h4>{% if not profile.user.get_full_name %}
+                        {{profile.user.get_username}}
+                    {% endif %} {{profile.user.get_full_name}}<span>{{profile.pro_title}}</span></h4>
                     <span class="icons"><i class="fa fa-map-marker"></i> {{profile.location}}</span>
                     <!-- <span class="icons"><i class="fa fa-money"></i> $100 / hour</span> -->
                     <span class="icons"><a href="{{profile.website}}"><i class="fa fa-link"></i> Portfolio ou Site internet</a></span>
+                    {% if profile.user.email %}
                     <span class="icons"><a href="mailto:{{profile.user.email}}"><i class="fa fa-envelope"></i>
                         {{profile.user.email}}</a></span>
+                    {% endif %}
                     <!-- <div class="skills">
                         <span>JavaScript</span>
                         <span>PHP</span>

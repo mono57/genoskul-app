@@ -40,15 +40,17 @@
                         <td>{{document.download_count}}</td>
                         <td>{{document.created_at}}</td>
                         <td class="action">
-                            <a href="#"><i class="fa fa-pencil"></i> Editer</a>
-                            <a href="#"><i class="fa  fa-eye-slash"></i> Cacher</a>
+                            <!-- <a href="#"><i class="fa fa-pencil"></i> Editer</a> -->
+                            <a href="{% url 'dashboard:document-delete' pk=document.pk %}"><i class="fa  fa-trash"></i>
+                                Supprimer</a>
                             <!-- <a href="#" class="delete"><i class="fa fa-remove"></i> Supprimer</a> -->
                         </td>
                     </tr>
                     {% empty %}
                     <tr>
-                        <td colspan="5" class="text-center">Vous n'avez publié aucun document. Cliquez sur le lien suivant pour en publier un
-                            <br><a href="{% url 'learning:document-create' %}">Publier un nouveau document</a></td>
+                        <td colspan="5" class="text-center">Vous n'avez publié aucun document. Cliquez sur le lien
+                            suivant pour en publier un
+                            <br><a href="{% url 'dashboard:document-create' %}">Publier un nouveau document</a></td>
                     </tr>
                     {% endfor %}
 

@@ -13,12 +13,30 @@ urlpatterns = [
     path('documents/',
          DashboardDocumentListView.as_view(),
          name='documents'),
-    path('document/create/', DocumentCreateView.as_view(), name='document-create'),
+    path('document/create/',
+         DocumentCreateView.as_view(),
+         name='document-create'),
+
+    path('document/<int:pk>/delete/',
+         DashboardDocumentDeleteView.as_view(),
+         name='document-delete'),
+
+    path('products/<int:pk>/delete/',
+         DashboardProductDeleteView.as_view(),
+         name='product-delete'),
+
     path('jobs/create/',
          DashboardJobCreateView.as_view(),
          name='job-create'),
-    path('job/<int:pk>/update/', DashboardJobUpdateView.as_view(), name='job-update'),
-    path('jobs/list/', DashboardJobsListView.as_view(), name='jobs-list'),
+
+    path('job/<int:pk>/update/',
+         DashboardJobUpdateView.as_view(),
+         name='job-update'),
+
+    path('jobs/list/',
+         DashboardJobsListView.as_view(),
+         name='jobs-list'),
+
     path('resume/add/',
          DashboardResumeCreateView.as_view(),
          name='resume-create'),
@@ -28,14 +46,22 @@ urlpatterns = [
          name='resume-update'),
 
     path('product/create/',
-         ProductCreateView.as_view(), name='product-create'),
+         ProductCreateView.as_view(),
+         name='product-create'),
+
     path('product/<int:pk>/update/',
          ProductUpdateView.as_view(),
-         name='product-update'
-         ),
-     path('services/create/', DashboardServiceCreateView.as_view(), name='service-create'),
-    path('product/list/',
-         DashboardProductListView.as_view(), name='products'),
+         name='product-update'),
 
-    path('profile/update/', ProfileUpdateView.as_view(), name='profile-update'),
+    path('services/create/',
+         DashboardServiceCreateView.as_view(),
+         name='service-create'),
+
+    path('product/list/',
+         DashboardProductListView.as_view(),
+         name='products'),
+
+    path('profile/update/',
+         ProfileUpdateView.as_view(),
+         name='profile-update'),
 ]

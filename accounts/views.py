@@ -7,7 +7,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from allauth.account.views import SignupView as AllauthSignupView
 from allauth.account.forms import SignupForm
 
-from accounts.forms import ProfileModelForm, RegisterStep2ModelForm
+from accounts.forms import ProfileModelForm, RegisterStep2ModelForm, UserInfoForm
 
 
 class SignupView(AllauthSignupView):
@@ -16,6 +16,7 @@ class SignupView(AllauthSignupView):
     
     def get_success_url(self):
         return reverse('accounts:register-step2')
+
 
 class RegisterStep1(LoginRequiredMixin, FormView):
     template_name = 'accounts/register-step2.html'
@@ -81,3 +82,35 @@ class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, FormView):
         profile.function = data.get('function')
         profile.save()
         return super().form_valid(form)
+
+
+class UserInfoUpdateView(LoginRequiredMixin, SuccessMessageMixin, FormView):
+    template_name = 'accounts/user_info.html'
+    model = UserInfoForm
+    context_object_name = 'user'
+    
+    def get_queryset(self):
+        return self.request.user
+
+    def get_initial(self):
+        initial = super().get_initial()
+        user = self.request.user
+        initial.update({
+            'username': user.username,
+            'first_name': user.first_name,
+            'last_name': user.last_name
+        })
+        return initial
+
+    def form_valid(self, form):
+        data = form.cleaned_data
+        user = self.request.user
+        user.username = data.get('username')
+        user.first_name = data.get('first_name')
+        user.last_name = data.get('last_name')
+        user.save()
+        return super().form_valid(form)
+
+
+    def get_success_url(self):
+        return reverse('accounts:user_info-update')

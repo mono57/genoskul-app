@@ -10,3 +10,5 @@ class BoxModelAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Box, BoxModelAdmin)
+
+admin.site.register(BoxType)

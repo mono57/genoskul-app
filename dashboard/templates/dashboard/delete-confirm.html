@@ -1,0 +1,28 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}
+  {{title}}
+{% endblock title %}
+
+{% block breadcrumb %}
+  <li>{{title}}</li>
+{% endblock breadcrumb %}
+
+{% block dashboard_content %}
+  
+
+    <div class="row">
+        <div class="col-12">
+            <form method="POST">
+                <h3>Êtes-vous sûr ?</h3>
+                <p>Voulez-vous vraiment supprimer l’objet utilisateur « {{object}} » ?</p>
+                {% csrf_token %}
+                <input type="hidden" value="Confirm">
+                <a href="{{previous_path}}" class="btn btn-light">Annuler</a>
+                <button type="submit" class="btn btn-danger">Continuer</button>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock dashboard_content %}

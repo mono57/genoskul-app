@@ -27,6 +27,8 @@ Tableau de bord
 {% url 'dashboard:dashboard' as dashboard_url %}
 {% url 'dashboard:profile-update' as profile_url %}
 
+{% url 'accounts:user_info-update' as user_info_update_url %}
+
 <div id="dashboard">
 
 
@@ -78,8 +80,8 @@ Tableau de bord
 			{% endwith %}
 			<ul data-submenu-title="Compte">
 				<li><a href="{{profile_url}}">Mon profil</a></li>
-				<li><a href="{{profile_url}}">Securité</a></li>
-				<li><a href="{{profile_url}}">Perso</a></li>
+				<li><a href="{% url 'account_change_password' %}">Securité</a></li>
+				<li><a href="{{user_info_update_url}}">Perso</a></li>
 			</ul>
 
 		</div>
