@@ -1,22 +1,44 @@
-<div class="one-third column">
+{% load static %}
 
-    <div class="recent-post">
+<div class="one-third column">
+    <div class="pb-2">
+        <div class="d-flex align-items-center px-3 pt-3 pb-2">
+            <img src="{% static "images/user.png" %}" class="img-fluid rounded-circle mr-2" width="50" alt="">
+            <div class="d-flex flex-column">
+                <p style="margin-bottom: 0px; line-height: 1.2rem;"><span class="text-primary">{{post.creator}}</span>
+                </p>
+                <p style="margin-bottom: 0px;  line-height: 1.2rem;"><span class="text-muted">{{post.updated_at}}</span>
+                </p>
+            </div>
+        </div>
+        <div class="tags">
+            <span class="badge badge-primary">
+                divertissements
+            </span>
+            <span class="badge badge-primary">
+                divertissements
+            </span>
+            <span class="badge badge-primary">
+                divertissements
+            </span>
+        </div>
+    </div>
+    <div class="recent-post mt-0">
         <div class="recent-post-img">
             <a href="{{post.get_absolute_url}}">
                 {% if post.image %}
                 <img src="{{post.image.url}}" alt="">
                 {% endif %}
             </a>
-            <div class="hover-icon"></div>
+            <!-- <div class="hover-icon"></div> -->
         </div>
         <a href="{{post.get_absolute_url}}">
-            <h4>{{post.title}}</h4>
+            <h4 class="mt-0">{{post.title}}</h4>
         </a>
-        <div class="meta-tags">
+        <!-- <div class="meta-tags">
             <span>{{post.created_at}}</span>
-        </div>
-        <p>{{post.content|safe|truncatewords:15}}</p>
-        <a href="{{post.get_absolute_url}}" class="button">Lire plus</a>
+        </div> -->
+        <p>{{post.content|safe|truncatewords:15}} <a href="{{post.get_absolute_url}}">lire plus</a></p>
     </div>
 
 </div>

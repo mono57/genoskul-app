@@ -64,4 +64,10 @@ urlpatterns = [
     path('profile/update/',
          ProfileUpdateView.as_view(),
          name='profile-update'),
+
+    path('posts/create/',
+         DashboardPostCreateView.as_view(),
+         name='post-create'),
+
+     path('post/list/', DashboardPostListView.as_view(), name='posts'),
 ]

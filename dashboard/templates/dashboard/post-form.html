@@ -1,0 +1,73 @@
+{% extends "dashboard/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+  {{title}}
+{% endblock title %}
+
+{% block extrastyles %}
+  {{form.media}}
+{% endblock extrastyles %}
+
+{% block breadcrumb %}
+  <li>
+      <a href="">Tableau de bord</a>
+  </li>
+  <li>
+      {{title}}
+  </li>
+{% endblock breadcrumb %}
+
+{% block dashboard_content %}
+    
+<div class="row">
+
+    <!-- Table-->
+    <div class="col-lg-12 col-md-12">
+  
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+  
+        <div class="dashboard-list-box margin-top-0">
+          <h4>Nouveau document</h4>
+          <div class="dashboard-list-box-content">
+  
+            <div class="submit-page">
+  
+  
+              <div class="form" style="width: 100%;">
+                {{form.title|as_crispy_field}}
+              </div>
+
+              <div class="form" style="width: 100%;">
+                {{form.category|as_crispy_field}}
+              </div>
+              <div class="form" style="width: 100%;">
+                {{form.image|as_crispy_field}}
+              </div>
+  
+              <div class="form" style="width: 100%;">
+                {{form.content|as_crispy_field}}
+              </div>
+  
+
+  
+            </div>
+  
+          </div>
+        </div>
+  
+  
+  
+        <button type="submit" class="button margin-top-30">Publier le post </button>
+  
+      </form>
+    </div>
+    {% include "dashboard/footer.html" %}
+  
+    <!-- <div class="copyrights">© 2019 WorkScout. All Rights Reserved.</div> -->
+  </div>
+  
+
+{% endblock dashboard_content %}

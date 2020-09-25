@@ -1,0 +1,45 @@
+{% extends "base_site.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+
+{% block title %}
+  Confirmation deconnexion
+{% endblock title %}
+
+{% block breadcrumb-item %}
+  <li>
+      Confirmez votre deconnexion
+  </li>
+{% endblock breadcrumb-item %}
+
+{% block content %}
+
+<div class="container pb-4">
+    <div class="row">
+      <div class="col-12 col-md-5">
+        <h1>{% trans "Sign Out" %}</h1>
+
+        <p>{% trans 'Are you sure you want to sign out?' %}</p>
+
+        <form method="post" action="{% url 'account_logout' %}">
+            {% csrf_token %}
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <button type="submit">{% trans 'Sign Out' %}</button>
+        </form>
+      </div>
+      <div class="d-sm-none d-md-block col-5">
+      </div>
+    </div>
+  </div>
+<div class="container">
+    <div class="row">
+        
+
+    </div>
+</div>
+
+{% endblock %}

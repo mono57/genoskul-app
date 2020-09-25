@@ -1,23 +1,19 @@
 <div class="margin-top-15"></div>
 
 <div id="footer">
-	<!-- Main -->
 	<div class="container">
 
 		<div class="five columns">
 			<h4>A propos de Genoskul</h4>
 			<p>{{footer.content}}</p>
-			<!-- <a href="#" class="button">Get Started</a> -->
 		</div>
 
 		<div class="three columns">
 			<h4>Entreprise</h4>
 			<ul class="footer-links">
 				<li><a href="{% url 'about' %}">A propos</a></li>
-				<li><a href="{% url 'blog:post-list' %}">Notre Blog</a></li>
 				<li><a href="{% url 'terms' %}">Termes de services</a></li>
 				<li><a href="{% url 'privacy' %}">Politique de confidentialité</a></li>
-				<!-- <li><a href="#">Hiring Hub</a></li> -->
 			</ul>
 		</div>
 		
@@ -27,8 +23,7 @@
 				<li><a href="{% url 'dashboard:service-create' %}">Créer un service</a></li>
 				<li><a href="{% url 'dashboard:document-create' %}">Créer un produit</a></li>
 				<li><a href="{% url 'ndjor:product-list' %}">Acheter un produit</a></li>
-				<!-- <li><a href="#">Testimonials</a></li>
-				<li><a href="#">Timeline</a></li> -->
+
 			</ul>
 		</div>		
 
@@ -36,18 +31,16 @@
 			<h4>Explorer</h4>
 			<ul class="footer-links">
 				<li><a href="{% url 'learning:document-list' %}">Bibliothèque</a></li>
-				<li><a href="#">Formations</a></li>
+				<li><a href="{% url 'learning:course-list' %}">Formations</a></li>
 				<li><a href="{% url 'jobs:job-list' %}">Offres d'emploi</a></li>
 				<li><a href="{% url 'ndjor:product-list' %}">Produits</a></li>
-				<!-- <li><a href="#">Freelancers in Australia</a></li>
-				<li><a href="#">Find Jobs</a></li> -->
+				<li><a href="{% url 'blog:post-list' %}">Divertissements</a></li>
 
 			</ul>
 		</div>
 
 	</div>
 
-	<!-- Bottom -->
 	<div class="container">
 		<div class="footer-bottom">
 			<div class="sixteen columns">
@@ -65,7 +58,6 @@
 
 </div>
 
-<!-- Back To Top Button -->
 <div id="backtotop"><a href="#"></a></div>
 
 </div>

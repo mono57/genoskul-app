@@ -17,11 +17,17 @@ Inscrption
         <div class="col-12 col-md-5">
             <h4>Inscrivez-vous pour profiter de tous nos offres !</h4>
             <p>Vous avez déjà un compte ? alors <a href="{% url 'account_login' %}">connectez vous.</a></p>
-            <h5 class="mb-2"><span class="text-primary">Etape 1:</span>  Informations sur le compte !</h5>
+            <h5 class="mb-2"><span class="text-primary">Etape 1:</span> Informations sur le compte !</h5>
             <form method="POST">
                 {% csrf_token %}
 
                 {{form|crispy}}
+                <div class="custom-control custom-checkbox py-2">
+                    <input type="checkbox" class="custom-control-input" required id="customCheck1">
+                    <label class="custom-control-label" for="customCheck1">J'ai lu et j'accepte les <a
+                            href="{% url 'terms' %}">termes</a> et <a href="{% url 'privacy' %}">conditions
+                            d'utilisation</a> de genoskul.</label>
+                </div>
                 <button class="btn btn-primary" type="submit">Je m'inscris !</button>
 
             </form>

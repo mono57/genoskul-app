@@ -18,6 +18,10 @@ admin.site.register(Post, PostModelAdmin)
 class PostCategoryModelAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
+    prepopulated_fields = {
+        'slug': ('name',)
+    }
+
 admin.site.register(PostCategory, PostCategoryModelAdmin)
 
 

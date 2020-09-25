@@ -15,6 +15,7 @@ from jobs.models import Company, Job, Resume
 from learning.models import Document
 from services.forms import ServiceModelForm
 from ndjor.models import Product
+from blog.models import Post
 
 
 class DashboardTemplateView(LoginRequiredMixin, TemplateView):
@@ -212,4 +213,35 @@ class DashboardJobsListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Liste des offres d\'emploi'
+        return context
+
+
+class DashboardPostCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    template_name = 'dashboard/post-form.html'
+    model = Post
+    fields = ('title', 'category', 'image', 'content')
+    success_message = 'Votre post a été ajouté avec succès !'
+    success_url = reverse_lazy('dashboard:post-create')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Poster'
+        return context
+    
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.creator = self.request.user
+        obj.save()
+        return super().form_valid(form)
+
+
+class DashboardPostListView(LoginRequiredMixin, ListView):
+    template_name = 'dashboard/posts.html'
+    model = Post
+    context_object_name = 'posts'
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Posts crées'
         return context

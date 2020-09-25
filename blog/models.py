@@ -27,10 +27,11 @@ class Post(TimeStampModel):
     content = TinyMCEModelField(verbose_name="Contenu")
     image = models.ImageField(
         verbose_name='Image de couverture', upload_to='posts/', blank=True, null=True)
-    creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
+    creator = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='posts')
     # publish = models.BooleanField(default=False, verbose_name="publier")
-    # categories = models.ManyToManyField(
-    #     PostCategory, related_name='posts', verbose_name='Categorie')
+    category = models.ForeignKey(
+        PostCategory, related_name='posts', null=True ,on_delete=models.CASCADE, verbose_name='Categorie')
 
     # objects = PostManager()
 

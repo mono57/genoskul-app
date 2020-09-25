@@ -7,10 +7,10 @@
 {% endblock title %}
 
 {% block breadcrumb-item %}
-  <li>
-      <a href="{% url 'blog:post-list' %}">Liste des actualités</a>
-  </li>
-  <li>{{title}}</li>
+<li>
+	<a href="{% url 'blog:post-list' %}">Liste des actualités</a>
+</li>
+<li>{{title}}</li>
 {% endblock breadcrumb-item %}
 
 {% block content %}
@@ -23,22 +23,44 @@
 
 			<!-- Post -->
 			<div class="post-container">
-				<div class="post-img"><a href="#"><img src="{% if post.image %}
-                  {{post.image.url}}
-                  
-                {% endif %}" alt="{{post.title}}"></a></div>
+				<div class="pb-2">
+					<div class="d-flex align-items-center px-3 pt-3 pb-2">
+						<img src="{% static "images/user.png" %}" class="img-fluid rounded-circle mr-2" width="50" alt="">
+						<div class="d-flex flex-column">
+							<p style="margin-bottom: 0px; line-height: 1.2rem;"><span class="text-primary">{{post.creator}}</span>
+							</p>
+							<p style="margin-bottom: 0px;  line-height: 1.2rem;"><span class="text-muted">{{post.updated_at}}</span>
+							</p>
+						</div>
+					</div>
+					<div class="tags">
+						{% for category in post.category.all %}
+						<span class="badge badge-primary">
+							{{category.name}}
+						</span>
+						{% endfor %}
+						
+					</div>
+				</div>
+				{% if post.image %}
+				<div class="post-img">
+					<!-- <a href="#"> -->
+					<img src="{{post.image.url}}" alt="{{post.title}}">
+					<!-- </a> -->
+				</div>
+				{% endif %}
 				<div class="post-content">
 					<h3>{{post.title}}</h3>
-					<div class="meta-tags">
+					<!-- <div class="meta-tags">
 						<span>{{post.created_at}}</span>
 						<span><a href="#">Publié par {{post.creator}}</a></span>
 					</div>
 					<div class="clearfix"></div>
-					<div class="margin-bottom-25"></div>
+					<div class="margin-bottom-25"></div> -->
 
 					<p>{{post.content|safe}}</p>
 
-					
+
 				</div>
 			</div>
 
@@ -48,7 +70,7 @@
 
 		</div>
 	</div>
-	
+
 
 
 </div>

@@ -26,6 +26,8 @@ Tableau de bord
 {% url 'dashboard:product-create' as product_create_url %}
 {% url 'dashboard:dashboard' as dashboard_url %}
 {% url 'dashboard:profile-update' as profile_url %}
+{% url 'dashboard:post-create' as post_create_url %}
+{% url 'dashboard:posts' as posts_url %}
 
 {% url 'accounts:user_info-update' as user_info_update_url %}
 
@@ -50,6 +52,14 @@ Tableau de bord
 									class="nav-tag">{{user.documents.count}}</span></a></li>
 						<!-- <li><a href="#">Manage Applications <span class="nav-tag">4</span></a></li> -->
 						<li><a href="{{document_create_url}}">Publier un document</a></li>
+					</ul>
+				</li>
+				<li><a>Posts</a>
+					<ul>
+						<li><a href="{{posts_url}}">Mes Posts <span
+									class="nav-tag">{{user.posts.count}}</span></a></li>
+						<!-- <li><a href="#">Manage Applications <span class="nav-tag">4</span></a></li> -->
+						<li><a href="{{post_create_url}}">Publier un post</a></li>
 					</ul>
 				</li>
 				<li><a>Produits</a>
