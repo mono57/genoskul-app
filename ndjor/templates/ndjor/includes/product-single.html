@@ -12,5 +12,10 @@
 
         <p class="card-text mb-0">Lieu: <span class="text-primary">{{product.location}}</span></p>
         <p class="card-text mt-0">Contact: <span class="text-primary">{{product.reference}}</span></p>
+            <div class="skills m-0">
+                <span>
+                    <a href="{{product.category.get_absolute_url}}" class="text-white">{{product.category}}</a>
+                </span>
+            </div>
     </div>
 </div>

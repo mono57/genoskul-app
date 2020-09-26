@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models import Q
 from django.contrib.auth import get_user_model
 from genoskul.common.timestamp import TimeStampModel
-
+from django.urls import reverse
 
 User = get_user_model()
 
@@ -29,6 +29,9 @@ class ProductCategory(TimeStampModel):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("ndjor:category-details", kwargs={"pk": self.pk})
+    
     class Meta:
         verbose_name = 'Catégorie de produit'
         verbose_name_plural = 'Catégories des produits'
@@ -37,7 +40,7 @@ class Product(TimeStampModel):
     name = models.CharField(max_length=100, verbose_name='Nom du produit')
     state = models.CharField(max_length=30, choices=(
         ('new', 'Neuf'), ('like_new', 'Comme Neuf'), ('others', 'Autres')), verbose_name='Etat du produit')
-    categories = models.ForeignKey(
+    category = models.ForeignKey(
         ProductCategory, on_delete=models.CASCADE, verbose_name='Catégorie du produit', related_name='products')
     reference = models.CharField(
         max_length=254, verbose_name='Contact du vendeur')

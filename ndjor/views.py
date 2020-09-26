@@ -5,11 +5,12 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import (
     CreateView,
     ListView,
-    UpdateView
+    UpdateView,
+    DetailView
 )
 
 from ndjor.forms import ProductModelForm
-from ndjor.models import Product
+from ndjor.models import Product, ProductCategory
 
 
 class ProductCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
@@ -62,4 +63,14 @@ class ProductUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Modification du document'
+        return context
+
+class ProductCategoryDetailView(DetailView):
+    template_name = 'ndjor/product-list.html'
+    model = ProductCategory
+    context_object_name  = 'category'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Les produits'
         return context

@@ -1,47 +1,56 @@
 {% extends "base_site.html" %}
 
 {% block title %}
-  {{title}}
+{{title}}
 {% endblock title %}
 
 {% block breadcrumb-item %}
-  <li>{{title}}</li>
+<li>{{title}}</li>
 {% endblock breadcrumb-item %}
 
 {% block content %}
-  
-  <div class="container pb-5">
-    <div class="row mb-4">
-      <div class="col-12 col-md-6">
-        <form action="{% url 'ndjor:product-list' %}" method="get" class="form-inline">
-          <div class="form-group mb-0">
-            <input type="text" name="query" value="{{query|default:''}}" class="form-control-sm rounded-0" placeholder="Rechercher un produit">
-          </div>
-          <button class="btn btn-primary btn-sm rounded-0" type="submit" style="margin-left: -5px">
-            <i class="fa fa-search"></i>
-          </button>
-        </form>
-        {% if query %}
-          <p>Résultat de recherches pour: {{query}}</p>
-        {% endif %}
-      </div>
-    </div>
-    <div class="row">
-      {% for product in products %}
-      <div class="col-12 col-md-4 mb-2">
-        {% include "ndjor/includes/product-single.html" with product=product %}
-      </div>
-      {% endfor %}
-    </div>
-    
-    {% if is_paginated %}
-    <div class="row">
-      <div class="col-12 col-md-6">
-        {% include "includes/pagination.html" %}
-      </div>
-    </div>
-    {% endif %}
 
+<div class="container pb-5">
+  <div class="row mb-4">
+    <div class="col-12 col-md-6">
+      <form action="{% url 'ndjor:product-list' %}" method="get" class="form-inline">
+        <div class="form-group mb-0">
+          <input type="text" name="query" value="{{query|default:''}}" class="form-control-sm rounded-0"
+            placeholder="Rechercher un produit">
+        </div>
+        <button class="btn btn-primary btn-sm rounded-0" type="submit" style="margin-left: -5px">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+      {% if query %}
+      <p>Résultat de recherches pour: {{query}}</p>
+      {% endif %}
+    </div>
   </div>
+  <div class="row">
+    {% if category %}
+    {% for product in category.products.all %}
+    <div class="col-12 col-md-4 mb-2">
+      {% include "ndjor/includes/product-single.html" with product=product %}
+    </div>
+    {% endfor %}
+    {% else %}
+    {% for product in products %}
+    <div class="col-12 col-md-4 mb-2">
+      {% include "ndjor/includes/product-single.html" with product=product %}
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+
+  {% if is_paginated %}
+  <div class="row">
+    <div class="col-12 col-md-6">
+      {% include "includes/pagination.html" %}
+    </div>
+  </div>
+  {% endif %}
+
+</div>
 
 {% endblock content %}
