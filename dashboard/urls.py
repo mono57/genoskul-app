@@ -25,6 +25,10 @@ urlpatterns = [
          DashboardProductDeleteView.as_view(),
          name='product-delete'),
 
+    path('posts/<int:pk>/delete/',
+         DashboardPostDeleteView.as_view(),
+         name='post-delete'),
+
     path('jobs/create/',
          DashboardJobCreateView.as_view(),
          name='job-create'),
@@ -69,5 +73,5 @@ urlpatterns = [
          DashboardPostCreateView.as_view(),
          name='post-create'),
 
-     path('post/list/', DashboardPostListView.as_view(), name='posts'),
+    path('post/list/', DashboardPostListView.as_view(), name='posts'),
 ]

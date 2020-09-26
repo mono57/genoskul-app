@@ -17,11 +17,9 @@
 
 <div class="container">
 
-	<!-- Blog Posts -->
 	<div class="ten columns">
 		<div class="padding-right">
 
-			<!-- Post -->
 			<div class="post-container">
 				<div class="pb-2">
 					<div class="d-flex align-items-center px-3 pt-3 pb-2">
@@ -44,20 +42,12 @@
 				</div>
 				{% if post.image %}
 				<div class="post-img">
-					<!-- <a href="#"> -->
 					<img src="{{post.image.url}}" alt="{{post.title}}">
-					<!-- </a> -->
 				</div>
 				{% endif %}
 				<div class="post-content">
 					<h3>{{post.title}}</h3>
-					<!-- <div class="meta-tags">
-						<span>{{post.created_at}}</span>
-						<span><a href="#">Publié par {{post.creator}}</a></span>
-					</div>
-					<div class="clearfix"></div>
-					<div class="margin-bottom-25"></div> -->
-
+					
 					<p>{{post.content|safe}}</p>
 
 

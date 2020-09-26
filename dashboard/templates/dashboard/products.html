@@ -41,8 +41,8 @@
                         <td>{{product.created_at}}</td>
                         <td class="action">
                             <a href="{% url 'dashboard:product-update' pk=product.pk %}"><i class="fa fa-pencil"></i> Editer</a>
-                            <a href="#"><i class="fa  fa-eye-slash"></i> Cacher</a>
-                            <!-- <a href="#" class="delete"><i class="fa fa-remove"></i> Supprimer</a> -->
+                            <!-- <a href="#"><i class="fa  fa-eye-slash"></i> Cacher</a> -->
+                            <a href="{% url 'dashboard:product-delete' pk=product.pk %}" class="delete"><i class="fa fa-remove"></i> Supprimer</a>
                         </td>
                     </tr>
                     {% empty %}

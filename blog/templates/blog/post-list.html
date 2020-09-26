@@ -8,30 +8,44 @@
 
 
 {% block breadcrumb-item %}
-  <li>{{title}}</li>
+<li>{{title}}</li>
 {% endblock breadcrumb-item %}
 
 {% block content %}
-  <div class="container">
-   
-    <h4 class="mb-2 mb-lg-4">Liste des articles</h4>
+<div class="container">
 
-    <div class="row">
+  <h4 class="mb-2 mb-lg-4">Education et Divertissements
+    {% if category %}
+    dans la catégorie <span class="text-primary">{{category}}</span>
+    {% endif %}
+  </h4>
 
-      {% for post in posts %}
-      {% include "blog/includes/post-single.html" with post=post %}
-      {% empty %}
-      <p class="text-center text-danger">Aucun article</p>
-      {% endfor %}
-    </div>
+  <div class="row">
 
-   {% if is_paginated %}
-   <div class="row">
+    {% if category %}
+    {% for post in category.posts.all %}
+    {% include "blog/includes/post-single.html" with post=post %}
+    {% empty %}
+    <p class="text-center text-danger">Aucun post publié</p>
+    {% endfor %}
+    {% else %}
+    {% for post in posts %}
+    {% include "blog/includes/post-single.html" with post=post %}
+    {% empty %}
+    <p class="text-center text-danger">Aucun post publié</p>
+    {% endfor %}
+    {% endif %}
+
+
+  </div>
+
+  {% if is_paginated %}
+  <div class="row">
     <div class="col-12 col-md-6">
       {% include "includes/pagination.html" %}
     </div>
   </div>
-   {% endif %}
-   
-  </div>
+  {% endif %}
+
+</div>
 {% endblock content %}

@@ -1,6 +1,6 @@
 {% load static %}
 
-<div class="one-third column">
+<div class="col-12 col-md-4 mb-2 mb-md-4">
     <div class="pb-2">
         <div class="d-flex align-items-center px-3 pt-3 pb-2">
             <img src="{% static "images/user.png" %}" class="img-fluid rounded-circle mr-2" width="50" alt="">
@@ -11,20 +11,16 @@
                 </p>
             </div>
         </div>
-        <div class="tags">
-            <span class="badge badge-primary">
-                divertissements
-            </span>
-            <span class="badge badge-primary">
-                divertissements
-            </span>
-            <span class="badge badge-primary">
-                divertissements
-            </span>
-        </div>
+        
+            <div class="skills mt-0">
+                <span class="text-primary"><a
+                        href="{{post.category.get_absolute_url}}" class="text-white">{{post.category|default:'Aucune catégorie spécifiée !'}}</a></span>
+
+            </div>
     </div>
+    <br>
     <div class="recent-post mt-0">
-        <div class="recent-post-img">
+        <div class="recent-post-img mb-0">
             <a href="{{post.get_absolute_url}}">
                 {% if post.image %}
                 <img src="{{post.image.url}}" alt="">
@@ -36,7 +32,7 @@
             <h4 class="mt-0">{{post.title}}</h4>
         </a>
         <!-- <div class="meta-tags">
-            <span>{{post.created_at}}</span>
+            <span>{{post.created_at|date}}</span>
         </div> -->
         <p>{{post.content|safe|truncatewords:15}} <a href="{{post.get_absolute_url}}">lire plus</a></p>
     </div>

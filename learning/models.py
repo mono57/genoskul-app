@@ -3,6 +3,7 @@ from django.db.models.signals import post_save
 from django.contrib.auth import get_user_model
 
 from genoskul.common.timestamp import TimeStampModel
+from genoskul.common.validators import file_size
 
 User = get_user_model()
 
@@ -30,7 +31,7 @@ class DocumentType(TimeStampModel):
 
 class Document(TimeStampModel):
     name = models.CharField(max_length=150, verbose_name='Nom', blank=True)
-    file = models.FileField(verbose_name='Fichier')
+    file = models.FileField(verbose_name='Fichier', validators=[file_size])
     type = models.ForeignKey(
         DocumentType,
         verbose_name='Type du fichier', on_delete=models.CASCADE)

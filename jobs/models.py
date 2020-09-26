@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 
 from genoskul.common.timestamp import TimeStampModel
+from genoskul.common.validators import file_size
 
 from jobs.managers import JobManager, ResumeManager
 
@@ -27,11 +28,10 @@ class JobType(AbstractJob):
 
 class JobCategory(AbstractJob):
     linear_icon = models.CharField(max_length=50, verbose_name='Icon')
-    
+
     class Meta:
         verbose_name = 'Secteur d\'emploi'
         verbose_name_plural = 'Secteurs d\'emplois'
-
 
     def get_absolute_url(self):
         return reverse('jobs:category-detail', kwargs={'pk': self.pk})
@@ -42,7 +42,8 @@ class Company(TimeStampModel):
     website = models.URLField(blank=True, verbose_name='URL site internet')
     tagline = models.CharField(
         max_length=255, verbose_name='Brève description', blank=True)
-    logo = models.ImageField(verbose_name='Logo', blank=True, null=True)
+    logo = models.ImageField(
+        verbose_name='Logo', blank=True, null=True, validators=[file_size])
 
     def __str__(self):
         return self.name
@@ -56,7 +57,8 @@ class Job(TimeStampModel):
     title = models.CharField(max_length=200, verbose_name='Titre')
     type = models.ForeignKey(
         JobType, verbose_name='Type', on_delete=models.CASCADE)
-    category = models.ManyToManyField(JobCategory, related_name='jobs', verbose_name='Secteur d\'emploi')
+    category = models.ManyToManyField(
+        JobCategory, related_name='jobs', verbose_name='Secteur d\'emploi')
     location = models.CharField(
         max_length=100, verbose_name='Lieu d\'execution', blank=True)
     # tags = models.CharField(max_length=255, verbose_name='Tags', blank=True)
@@ -90,7 +92,7 @@ class Resume(TimeStampModel):
         max_length=150, verbose_name='Lieu de résidence')
     website = models.URLField(verbose_name='Lien du portfolio', blank=True)
     resume_file = models.FileField(
-        verbose_name='Fichier CV', upload_to='resumes')
+        verbose_name='Fichier CV', upload_to='resumes', validators=[file_size])
 
     contact = models.CharField(
         max_length=255, verbose_name='Votre contact', help_text='Aidez les récruteurs à vous contacter')

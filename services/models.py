@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from genoskul.common.timestamp import TimeStampModel
+from genoskul.common.validators import file_size
 
 User = get_user_model()
 
@@ -36,7 +37,7 @@ class Box(TimeStampModel):
 
     contact = models.CharField(max_length=50, verbose_name='Contact')
 
-    logo = models.ImageField(verbose_name='Logo de la boite')
+    logo = models.ImageField(verbose_name='Logo de la boite', validators=[file_size])
 
     detail_link = models.URLField(verbose_name='Lien')
 

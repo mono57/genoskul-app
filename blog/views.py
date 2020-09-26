@@ -29,7 +29,7 @@ class PostListView(ListView, View):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Liste des articles'
+        context['title'] = 'Education & Divertissement'
         return context
 
 class PostDetailView(DetailView):
@@ -38,7 +38,7 @@ class PostDetailView(DetailView):
     context_object_name = 'post'
 
     def get_object(self):
-        return get_object_or_404(Post, slug=self.kwargs.get('slug'))
+        return get_object_or_404(Post, pk=self.kwargs.get('pk'))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -46,6 +46,16 @@ class PostDetailView(DetailView):
 
         return context
 
+
+class CategoryDetailView(DetailView):
+    template_name = 'blog/post-list.html'
+    model = PostCategory
+    context_object_name = 'category'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Détails de la catégorie'
+        return context
 
 class ConsultSpecialite(TemplateView):
     template_name = 'blog/consult-specialiste.html'
