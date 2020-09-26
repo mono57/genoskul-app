@@ -15,7 +15,7 @@ from learning.forms import DocumentModelForm
 class DocumentCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     template_name = 'learning/document-form.html'
     form_class = DocumentModelForm
-    success_url = reverse_lazy('learning:document-create')
+    success_url = reverse_lazy('dashboard:document-create')
     success_message = 'Votre document a été publié. Merci pour votre contribution ! 🙏🏾'
 
     def get_context_data(self, **kwargs):
