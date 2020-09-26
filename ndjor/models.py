@@ -29,6 +29,9 @@ class ProductCategory(TimeStampModel):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'Catégorie de produit'
+        verbose_name_plural = 'Catégories des produits'
 
 class Product(TimeStampModel):
     name = models.CharField(max_length=100, verbose_name='Nom du produit')
@@ -38,7 +41,7 @@ class Product(TimeStampModel):
         ProductCategory, on_delete=models.CASCADE, verbose_name='Catégorie du produit', related_name='products')
     reference = models.CharField(
         max_length=254, verbose_name='Contact du vendeur')
-    image = models.ImageField(verbose_name='Photo de produit', blank=False, null=True)
+    image = models.ImageField(verbose_name='Photo de produit')
     owner = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='products', verbose_name='Propriétaire')
     location = models.CharField(max_length=30, verbose_name='Lieu de vente')
