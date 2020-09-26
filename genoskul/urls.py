@@ -26,5 +26,5 @@ urlpatterns = [
     path('blog/', include('blog.urls', namespace="blog")),
     path('ndjor/', include('ndjor.urls', namespace="ndjor")),
     path('admin/filebrowser/', site.urls),
-    path('admin/', admin.site.urls),
+    path('admin/staff/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
