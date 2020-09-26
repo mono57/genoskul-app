@@ -25,12 +25,12 @@ class ProfileModelForm(forms.ModelForm):
 class UserInfoForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('username','first_name', 'last_name', )
+        fields = ('first_name', 'last_name', )
 
 
-    def clean_username(self):
-        username = self.cleaned_data.get('username')
-        if User.objects.filter(username=username).exists():
-            raise forms.ValidationError('Ce nom d\'utilisateur existe déjà !')
+    # def clean_username(self):
+    #     username = self.cleaned_data.get('username')
+    #     if User.objects.filter(username=username).exists():
+    #         raise forms.ValidationError('Ce nom d\'utilisateur existe déjà !')
     
-        return username
+    #     return username

@@ -84,33 +84,14 @@ class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, FormView):
         return super().form_valid(form)
 
 
-class UserInfoUpdateView(LoginRequiredMixin, SuccessMessageMixin, FormView):
+class UserInfoUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = 'accounts/user_info.html'
-    model = UserInfoForm
+    form_class = UserInfoForm
     context_object_name = 'user'
     
-    def get_queryset(self):
+    def get_object(self):
         return self.request.user
-
-    def get_initial(self):
-        initial = super().get_initial()
-        user = self.request.user
-        initial.update({
-            'username': user.username,
-            'first_name': user.first_name,
-            'last_name': user.last_name
-        })
-        return initial
-
-    def form_valid(self, form):
-        data = form.cleaned_data
-        user = self.request.user
-        user.username = data.get('username')
-        user.first_name = data.get('first_name')
-        user.last_name = data.get('last_name')
-        user.save()
-        return super().form_valid(form)
 
 
     def get_success_url(self):
-        return reverse('accounts:user_info-update')
+        return reverse('accounts:user_info-update', kwargs={'pk': self.kwargs.get('pk')})

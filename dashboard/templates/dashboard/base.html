@@ -29,7 +29,7 @@ Tableau de bord
 {% url 'dashboard:post-create' as post_create_url %}
 {% url 'dashboard:posts' as posts_url %}
 
-{% url 'accounts:user_info-update' as user_info_update_url %}
+{% url 'accounts:user_info-update' pk=request.user as user_info_update_url %}
 
 <div id="dashboard">
 
@@ -91,7 +91,7 @@ Tableau de bord
 			<ul data-submenu-title="Compte">
 				<li><a href="{{profile_url}}">Mon profil</a></li>
 				<li><a href="{% url 'account_change_password' %}">Securité</a></li>
-				<li><a href="{{user_info_update_url}}">Perso</a></li>
+				<li><a href="{% url 'accounts:user_info-update' pk=request.user.pk %}">Perso</a></li>
 			</ul>
 
 		</div>

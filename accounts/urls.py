@@ -8,5 +8,5 @@ urlpatterns = [
     # path('', include('allauth.urls')),
     path('step2/', RegisterStep1.as_view(),name='register-step2'),
     path('register/', SignupView.as_view(), name='register'),
-    path('user/update/', UserInfoUpdateView.as_view(), name='user_info-update'),
+    path('user/<int:pk>/update/', UserInfoUpdateView.as_view(), name='user_info-update'),
 ]
