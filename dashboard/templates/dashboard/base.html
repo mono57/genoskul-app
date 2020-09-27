@@ -40,7 +40,6 @@ Tableau de bord
 		<div class="dashboard-nav-inner">
 
 			<ul data-submenu-title="Forum étudiants">
-				<!-- <li class="active"><a href="dashboard.html">Dashboard</a></li> -->
 				<li><a href="#">Messages <span class="badge badge-warning">bientôt dispo</span> </a></li>
 			</ul>
 
@@ -50,7 +49,6 @@ Tableau de bord
 					<ul>
 						<li><a href="{{documents_url}}">Mes documents <span
 									class="nav-tag">{{user.documents.count}}</span></a></li>
-						<!-- <li><a href="#">Manage Applications <span class="nav-tag">4</span></a></li> -->
 						<li><a href="{{document_create_url}}">Publier un document</a></li>
 					</ul>
 				</li>
@@ -58,7 +56,6 @@ Tableau de bord
 					<ul>
 						<li><a href="{{posts_url}}">Mes Posts <span
 									class="nav-tag">{{user.posts.count}}</span></a></li>
-						<!-- <li><a href="#">Manage Applications <span class="nav-tag">4</span></a></li> -->
 						<li><a href="{{post_create_url}}">Publier un post</a></li>
 					</ul>
 				</li>
@@ -69,13 +66,7 @@ Tableau de bord
 						<li><a href="{{product_create_url}}">Ajouter un produit</a></li>
 					</ul>
 				</li>
-				<!-- <li><a>Candidatures</a>
-					<ul>
-						<li><a href="#">Manage Jobs <span class="nav-tag">5</span></a></li>
-						<li><a href="#">Manage Applications <span class="nav-tag">4</span></a></li>
-						<li><a href="#">Add Job</a></li>
-					</ul>
-				</li> -->
+				
 				{% with request.user.resumes.first as resume %}
 				<li><a href="{% if resume %}
 					{% url 'dashboard:resume-update' pk=resume.pk %}
@@ -103,7 +94,6 @@ Tableau de bord
 			<div class="row">
 				<div class="col-md-12">
 					<h2>Hello {{request.user.get_username}}</h2>
-					<!-- Breadcrumbs -->
 					<nav id="breadcrumbs">
 						<ul>
 							<li><a href="{{dashboard_url}}">Accueil</a></li>

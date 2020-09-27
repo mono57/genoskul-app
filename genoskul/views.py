@@ -12,9 +12,9 @@ class HomeTemplateView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['jobs'] = Job.objects.all()[:3]
-        context['documents'] = Document.objects.all()[:4]
-        context['posts'] = Post.objects.all()[:3]
+        context['jobs'] = Job.objects.order_by('-created_at').all()[:3]
+        context['documents'] = Document.objects.order_by('-created_at').all()[:4]
+        context['posts'] = Post.objects.order_by('-created_at').all()[:3]
         context['job_categories'] = JobCategory.objects.all()[:8]
         context['services'] = Box.objects.get_confirmed_services()
         context['footer'] = Footer.objects.last()

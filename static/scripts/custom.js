@@ -649,7 +649,7 @@
     /*  Sticky Header 
     /*----------------------------------------------------*/
     $(".sticky-header").clone(true).addClass('cloned').insertAfter(".sticky-header");
-    $(".sticky-header.cloned.transparent #logo a img").attr("src", "static/images/genoskul.png");
+    $(".sticky-header.cloned.transparent #logo a img").attr("src", "static/images/logo1.jpg");
     $(".sticky-header.cloned.alternative").removeClass('alternative');
 
     if ( $( ".sticky-header" ).length) { 
