@@ -1,24 +1,7 @@
 {% load static %}
 
 <div class="col-12 col-md-4 mb-2 mb-md-4">
-    <div class="pb-2">
-        <div class="d-flex align-items-center px-3 pt-3 pb-2">
-            <img src="{% if post.creator.profile.avatar %}{{post.creator.profile.avatar.url}}{% else %}{% static 'images/user.png' %}{% endif %}" class="img-fluid rounded-circle mr-2" width="50" alt="">
-            <div class="d-flex flex-column">
-                <p style="margin-bottom: 0px; line-height: 1.2rem;"><span class="text-primary">{{post.creator}}</span>
-                </p>
-                <p style="margin-bottom: 0px;  line-height: 1.2rem;"><span class="text-muted">{{post.updated_at}}</span>
-                </p>
-            </div>
-        </div>
-        
-            <div class="skills mt-0">
-                <span class="text-primary"><a
-                        href="{{post.category.get_absolute_url}}" class="text-white">{{post.category|default:'Aucune catégorie spécifiée !'}}</a></span>
-
-            </div>
-    </div>
-    <br>
+    
     <div class="recent-post mt-0">
         <div class="recent-post-img mb-0">
             <a href="{{post.get_absolute_url}}">
@@ -30,6 +13,10 @@
         <a href="{{post.get_absolute_url}}">
             <h4 class="mt-0">{{post.title}}</h4>
         </a>
+        <div class="meta-tags">
+            <span>{{post.updated_at}}</span>
+            <span>par <span class="text-primary">{{post.creator}}</span> </span>
+        </div> 
 
         <p>{{post.content|safe|truncatewords:15}} <a href="{{post.get_absolute_url}}">lire plus</a></p>
     </div>
