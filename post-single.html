@@ -1,0 +1,42 @@
+{% load static %}
+
+<div class="col-12 col-md-4 mb-2 mb-md-4"style="margin-bottom: -5px ; margin-top: -6px ; line-height: -3cm;  " >
+    <div class="pb-2">
+        <div class="d-flex align-items-center px-3 pt-3 pb-2">
+            <img src="{% static "images/user.png" %}" class="img-fluid rounded-circle mr-2" width="50" alt="">
+            <div class="d-flex flex-column">
+                <p style="margin-bottom: 0px; line-height: 1.2rem;"><span class="text-primary">{{post.creator}}</span>
+                </p>
+                <p style="margin-bottom: 0px;  line-height: 1.2rem;"><span class="text-muted">{{post.updated_at}}</span>
+                </p>
+            </div>
+        </div>
+        
+            <div class="skills mt-0">
+                <span class="text-primary" style="background-color: #1278c0;" ><a
+                        href="{{post.category.get_absolute_url}}" class="text-white">{{post.category|default:'Aucune catégorie spécifiée !'}}</a></span>
+
+            </div>
+    </div>
+    <br>
+    <div class="recent-post mt-0" style="margin-bottom: -3px ; margin-top: -3px ;">
+        
+        <div class="recent-post-img mb-0" style="margin-bottom: -3px ; margin-top: -3px ;" >
+            <a href="{{post.get_absolute_url}}">
+                {% if post.image %}
+                <img src="{{post.image.url}}" style="height: 200px; width: 100%;"  alt="">
+                {% endif %}
+            </a>
+            <!-- <div class="hover-icon"></div> -->
+        </div>
+        <a href="{{post.get_absolute_url}}" style="margin-bottom: -3px ; margin-top: -3px ;">
+            <h5 style="font-style: italic; color: rgb(42, 128, 240); " class="mt-0">{{post.title}}</h5>
+        </a>
+       
+        <!-- <div class="meta-tags">
+            <span>{{post.created_at|date}}</span>
+        </div> -->
+        <p style="margin-bottom: 0px ; margin-top: 0px ;" >{{post.content|safe|truncatewords:15}} <a href="{{post.get_absolute_url}}">lire plus</a></p>
+    </div>
+
+</div>

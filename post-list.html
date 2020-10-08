@@ -1,0 +1,51 @@
+{% extends "base_site.html" %}
+
+{% load static %}
+
+{% block title %}
+{{title}}
+{% endblock title %}
+
+
+{% block breadcrumb-item %}
+<li>{{title}}</li>
+{% endblock breadcrumb-item %}
+
+{% block content %}
+<div class="container">
+
+  <h3 class="mb-2 mb-lg-4">Généralités et Divertissements
+    {% if category %}
+    dans la catégorie <span class="text-primary">{{category}}</span>
+    {% endif %}
+  </h3>
+
+  <div class="row">
+
+    {% if category %}
+    {% for post in category.posts.all %}
+    {% include "blog/includes/post-single.html" with post=post %}
+    {% empty %}
+    <p class="text-center text-danger">Aucun post publié</p>
+    {% endfor %}
+    {% else %}
+    {% for post in posts %}
+    {% include "blog/includes/post-single.html" with post=post %}
+    {% empty %}
+    <p class="text-center text-danger">Aucun post publié</p>
+    {% endfor %}
+    {% endif %}
+
+
+  </div>
+
+  {% if is_paginated %}
+  <div class="row">
+    <div class="col-12 col-md-6">
+      {% include "includes/pagination.html" %}
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+{% endblock content %}
