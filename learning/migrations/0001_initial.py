@@ -48,7 +48,7 @@ class Migration(migrations.Migration):
                 ('updated_at', models.DateTimeField(auto_now=True, verbose_name='Date de modification')),
                 ('name', models.CharField(blank=True, max_length=150, verbose_name='Nom')),
                 ('file', models.FileField(upload_to='', verbose_name='Fichier')),
-                ('description', models.TextField(blank=True, verbose_name='Petite description')),
+                ('description', models.CharField (verbose_name='Auteur du document')),
                 ('download_count', models.IntegerField(blank=True, default=0, verbose_name='Nombre de téléchargements')),
                 ('categories', models.ManyToManyField(blank=True, help_text='Appuyez sur «Ctrl» pour sélectionner plusieurs', to='learning.DocumentCategory', verbose_name='Catégories')),
                 ('type', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='learning.documenttype', verbose_name='Type du fichier')),

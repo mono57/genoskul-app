@@ -12,27 +12,27 @@ Acceuil
 
 <div class="container">
 	<div class="sixteen columns">
-		<h3 class="margin-bottom-20 margin-top-10 text-primary"><a href="{% url 'jobs:category-list' %}"> Nos secteurs
-				d'emploi</a></h3>
+		<h3 class="margin-bottom-20 margin-top-10 text-primary"><a href="{% url 'learning:doc_category-list' %}"> Nos spécialités de
+				 document</a></h3>
 		<div class="categories-boxes-container">
 
-			{% for category in job_categories %}
-			{% include "jobs/includes/category-single.html" with categery=category %}
+			{% for documents in doc_categories %}
+			{% include "learning/doc_category-list.html" with documents=documents %}
 			{% empty %}
-			<p>Aucune catégorie à lister !</p>
+			<p>Aucune spécialité à lister !</p>
 			{% endfor %}
 
 		</div>
+		<li><a href="{% url 'learning:doc_category-list' %}">Bibliothèque</a></li>
 
 
 		<div class="clearfix"></div>
 		<div class="margin-top-30"></div>
 
-		<a href="{% url 'jobs:category-list' %}" class="button centered">Tous les secteurs</a>
+		<a href="{% url 'learning:doc_category-list' %}" class="button centered">Toutes nos spécialités</a>
 		<div class="margin-bottom-55"></div>
 	</div>
 </div>
-
 
 <div class="container">
 
@@ -41,7 +41,7 @@ Acceuil
 			<div class="ten columns">
 				<div class="padding-right">
 					<h3 class="margin-bottom-25 text-primary">
-						<a href="{% url 'jobs:job-list' %}">Nos offres d'emploi</a>
+						<a href="{% url 'jobs:category-list' %}">Nos offres d'emploi</a>
 					</h3>
 					<div class="listings-container">
 
@@ -51,7 +51,7 @@ Acceuil
 
 					</div>
 
-					<a href="{% url 'jobs:job-list' %}" class="button centered"><i class="fa fa-plus-circle"></i>Voir
+					<a href="{% url 'jobs:category-list' %}" class="button centered"><i class="fa fa-plus-circle"></i>Voir
 						plus d'offres</a>
 					<div class="margin-bottom-55"></div>
 				</div>
@@ -96,16 +96,18 @@ Acceuil
 </div>
 
 <div class="container">
-	<div class="sixteen columns">
-		<h3 class="margin-bottom-25 text-primary">
-			<a href="{% url 'blog:post-list' %}">Education & Divertissements</a>
-		</h3>
-	</div>
+		<div class="col-12 col-md-12">
+					<div class="sixteen columns"></div>
+						<h3 class="margin-bottom-25 text-primary">
+							<a href="{% url 'blog:post-list' %}">Généralités & Divertissements</a>
+						</h3>
+					<div>
 
-	{% for post in posts %}
-	{% include "blog/includes/post-single.html" with post=post %}
-	{% endfor %}
-
+							{% for post in posts %}
+							{% include "blog/includes/post-single.html" with post=post %}
+							{% endfor %}
+					</div>
+		</div>
 </div>
 
 {% endblock content %}

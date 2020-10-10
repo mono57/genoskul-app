@@ -24,10 +24,10 @@
 <div class="container">
     <div class="sixteen columns">
 
-        <div id="logo">
+        <!--<div id="logo">
             <h1><a href="{{home_url}}"><img class="img-fluid"
                         src="{% static "images/genoskul1.png" %}" style="width: 200px;" alt="GENOSKUL" /></a></h1>
-        </div>
+        </div>-->
 
         <nav id="navigation" class="menu">
             <ul id="responsive">
@@ -38,7 +38,7 @@
 
                 <li><a href="#">Etudes</a>
                     <ul>
-                        <li><a href="{{document_list_url}}">Bibliothèque</a></li>
+                        <li><a href="{% url 'learning:doc_category-list' %}">Bibliothèque</a></li>
                         <li><a href="{{course_list_url}}">Nos formations</a></li>
                         <li><a href="{{document_create_url}}">Publier un document</a></li>
 
@@ -55,7 +55,7 @@
                     </ul>
                 </li>
 
-                <li><a href="#">N'Djor</a>
+                <li><a href="#">N'Djohr</a>
                     <ul>
                         <li><a href="{{product_create_url}}">Vendre un produit</a></li>
                         <li><a href="{{product_list_url}}">Acheter un produit</a></li>

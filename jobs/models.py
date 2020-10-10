@@ -108,4 +108,4 @@ class Resume(TimeStampModel):
         return reverse("jobs:resume-detail", kwargs={"pk": self.pk})
 
     def __str__(self):
-        return '{} : {}'.format(self.pro_title, self.user.first_name)
+        return ('{} : {}'.format(self.pro_title,self.user.first_name))

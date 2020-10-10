@@ -1,11 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render ,get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse, reverse_lazy
 from django.views.generic import (
     CreateView,
     ListView,
-    TemplateView
+    TemplateView,
+    DetailView
 )
 
 from learning.models import Document, DocumentCategory
@@ -50,7 +51,7 @@ class DocumentCategoryListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Toutes les catégories disponibles'
+        context['title'] = 'Toutes les specialités disponibles'
         return context
 
 class CourseListView(TemplateView):
@@ -59,4 +60,18 @@ class CourseListView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Nos formations'
+        return context
+
+class CategoryDetailView(DetailView):
+    template_name = 'learning/document-single.html'
+    model = DocumentCategory
+    context_object_name = 'doc_categories'
+
+    def get_object(self):
+        return get_object_or_404(DocumentCategory, self.kwargs.get('pk'))
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = self.get_object().name
         return context

@@ -14,11 +14,11 @@
 
     <div class="categories-boxes-container">
 				
-        {% for post in posts %}
-          {% include "post-single.html" with post=post %}
+        {% for services in types %}
+          {% include "services/includes/service-single.html" with services = services%}
 
           {% empty %}
-          <p>Aucun post à lister !</p>
+          <p>Aucun secteur à lister !</p>
         {% endfor %}
 
     </div>

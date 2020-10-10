@@ -14,6 +14,7 @@ from jobs.forms import JobModelForm, ResumeModelForm
 from jobs.models import Company, Job, Resume
 from learning.models import Document
 from services.forms import ServiceModelForm
+from services.models import Box
 from ndjor.models import Product
 from blog.models import Post
 
@@ -194,10 +195,10 @@ class DashboardServiceCreateView(LoginRequiredMixin, SuccessMessageMixin, Create
     template_name = 'services/service-form.html'
     form_class = ServiceModelForm
     success_url = reverse_lazy('dashboard:dashboard')
-    success_message = "Votre demande a été bien reçu, veuillez patienter pendant que nous validons! "
+    success_message = "Votre demande a été bien reçu,vous recevrez un mail pour confirmer votre demande. Restez connecter avec genoskul "
 
     def form_valid(self, form):
-        obj = form.save()
+        obj = form.save(commit=False)
         obj.owner = self.request.user
         obj.save()
         return super().form_valid(form)

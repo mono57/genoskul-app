@@ -22,16 +22,15 @@ class BoxType(TimeStampModel):
         verbose_name = 'Type de service'
         verbose_name_plural = 'Types de services'
 
-
 class Box(TimeStampModel):
     type = models.ForeignKey(BoxType, verbose_name='Type de service',
                              on_delete=models.CASCADE, related_name='services')
     struct_name = models.CharField(
-        max_length=150, verbose_name='Nom de la structure')
+        max_length=150, verbose_name='Nom de la structure', help_text="Nom &  prenoms si c'est une personne")
     struct_description = models.TextField(
-        verbose_name='Description de la structure')
+        verbose_name='Description de la structure', help_text="Biographie si c'est une personne")
     activity_description = models.TextField(
-        verbose_name='Description des activités')
+        verbose_name='Description des activités', help_text="Qu'est ce que vous et/ou votre structure faites?")
     address = models.CharField(
         max_length=100, verbose_name='Adresse de localisation', help_text='Quartier/Ville/Pays')
 
@@ -39,7 +38,7 @@ class Box(TimeStampModel):
 
     logo = models.ImageField(verbose_name='Logo de la boite', validators=[file_size])
 
-    detail_link = models.URLField(verbose_name='Lien')
+    detail_link = models.URLField(verbose_name='Lien', help_text="lien du site de votre structure ou de votre page")
 
     confirmed = models.BooleanField(default=False, verbose_name='Confirmé ?')
 

@@ -48,7 +48,7 @@ class Product(TimeStampModel):
     owner = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='products', verbose_name='Propriétaire')
     location = models.CharField(max_length=30, verbose_name='Lieu de vente')
-    price = models.CharField(max_length=30, blank=True, verbose_name='Prix')
+    price = models.CharField(max_length=30, blank=True, verbose_name='Prix' )
 
     objects = ProductManager()
 

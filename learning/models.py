@@ -14,6 +14,8 @@ class DocumentCategory(TimeStampModel):
     def __str__(self):
         return self.name
 
+    
+
     class Meta:
         verbose_name = 'Catégorie de document'
         verbose_name_plural = 'Catégories de document'
@@ -36,15 +38,17 @@ class Document(TimeStampModel):
         DocumentType,
         verbose_name='Type du fichier', on_delete=models.CASCADE)
     categories = models.ManyToManyField(
-        DocumentCategory, blank=True, verbose_name='Catégories',
+        DocumentCategory,related_name='learning', verbose_name='Catégories',
         help_text='Appuyez sur «Ctrl» pour sélectionner plusieurs')
-    description = models.TextField(
-        blank=True, verbose_name='Petite description')
+    auteur = models.CharField(max_length=150,
+         verbose_name='Auteur du document', help_text="NB:Entrez le nom de l'auteur original du document" )
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='documents', verbose_name='Créateur')
     download_count = models.IntegerField(
         blank=True, default=0, verbose_name='Nombre de téléchargements')
 
+    
+    
     class Meta:
         verbose_name = 'Document'
         verbose_name_plural = 'Documents'

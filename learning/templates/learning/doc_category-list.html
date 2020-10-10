@@ -1,0 +1,29 @@
+{% extends "base_site.html" %}
+
+{% block title %}
+  {{title}}
+{% endblock title %}
+
+{% block breadcrumb-item %}
+  <li>Spécialités des documents disponibles</li>
+{% endblock breadcrumb-item %}
+
+{% block content %}
+
+  
+<div class="container py-4">
+
+    <div class="categories-boxes-container">
+				
+        {% for documents in doc_categories %}
+          {% include "learning/includes/doc_category-single.html" with categories=categories %}
+
+          {% empty %}
+          <p>Aucune specialité disponible</p>
+        {% endfor %}
+
+    </div>
+    
+</div>
+
+{% endblock content %}

@@ -17,7 +17,6 @@ class SignupView(AllauthSignupView):
     def get_success_url(self):
         return reverse('accounts:register-step2')
 
-
 class RegisterStep1(LoginRequiredMixin, FormView):
     template_name = 'accounts/register-step2.html'
     form_class = RegisterStep2ModelForm
@@ -39,7 +38,6 @@ class RegisterStep1(LoginRequiredMixin, FormView):
         messages.success(self.request, 'Bienvenue sur Genoskul !')
 
         return super().form_valid(form)
-
 
 class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, FormView):
     template_name = 'accounts/profile.html'

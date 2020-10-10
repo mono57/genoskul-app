@@ -12,7 +12,7 @@
 			<h4>Entreprise</h4>
 			<ul class="footer-links">
 				<li><a href="{% url 'about' %}">A propos</a></li>
-				<li><a href="{% url 'terms' %}">Termes de services</a></li>
+				<li><a href="{% url 'terms' %}">Termes de services et conditions d'utilisation</a></li>
 				<li><a href="{% url 'privacy' %}">Politique de confidentialité</a></li>
 			</ul>
 		</div>
@@ -20,7 +20,7 @@
 		<div class="three columns">
 			<h4>Actions</h4>
 			<ul class="footer-links">
-				<li><a href="{% url 'dashboard:service-create' %}">Créer un service</a></li>
+				<li><a href="{% url 'dashboard:service-create' %}">Demande services</a></li>
 				<li><a href="{% url 'dashboard:document-create' %}">Vendre un produit</a></li>
 				<li><a href="{% url 'ndjor:product-list' %}">Acheter un produit</a></li>
 
@@ -30,7 +30,7 @@
 		<div class="three columns">
 			<h4>Explorer</h4>
 			<ul class="footer-links">
-				<li><a href="{% url 'learning:document-list' %}">Bibliothèque</a></li>
+				<li><a href="{% url 'learning:doc_category-list' %}">Bibliothèque</a></li>
 				<li><a href="{% url 'learning:course-list' %}">Formations</a></li>
 				<li><a href="{% url 'jobs:job-list' %}">Offres d'emploi</a></li>
 				<li><a href="{% url 'blog:post-list' %}">Divertissements</a></li>

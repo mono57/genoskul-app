@@ -1,55 +1,99 @@
 {% extends "base_site.html" %}
 
+{% load static %}
+{% load crispy_forms_tags %}
+
 {% block title %}
 {{title}}
 {% endblock title %}
 
 {% block breadcrumb-item %}
+<li>
+	<a href="{% url 'learning:doc_category-single' %}">Liste des secteurs d'emploi</a>
+</li>
 <li>{{title}}</li>
 {% endblock breadcrumb-item %}
 
-
 {% block content %}
-
 <div class="container">
 
-  <div class="row">
-    <div class="col-12 col-md-8">
-      {% for document in documents %}
-      <div class="col-md-6 mb-2 mb-md-3">
-        <div class="card">
-          <div class="card-body pb-0">
-            <p class="h5">{{document.name}}</p>
-            <p style="line-height: 1.2rem;">{{document.description|truncatewords:10}}</p>
-            <p><a href="{{document.file.url}}">cliquez pour télécharger</a></p>
-          </div>
-        </div>
-      </div>
-      {% empty %}
-      <p>Aucun document n'a encore été publié !</p>
-      {% endfor %}
+	<h3 class="mt-0 mb-2"><span class="text-primary text-uppercase">{{doc_categories.name}}</span></h3>
+
+	<div class="ten columns">
+		<div class="padding-right">
+
+			<div class="listings-container">
+
+				{% if doc_categories %}
+				{% for documents in doc_categories.learning.all %}
+				{% include "learning/includes/document-single.html" with documets=documents %}
+				{% empty %}
+
+				<p class="primary">Aucune offre d'emploi à lister pour cet secteur !</p>
+
+				{% endfor %}
+				{% else %}
+				{% for documents in learning %}
+				{% include "learning/includes/document-single.html" with documents=documents %}
+				{% empty %}
+
+				<p class="primary">Aucune offre d'emploi à lister !</p>
+
+				{% endfor %}
+
+
+				{% endif %}
+				<!-- <a href="job-page.html" class="listing internship">
+							<div class="listing-logo">
+								<img src="images/job-list-logo-04.png" alt="">
+							</div>
+							<div class="listing-title">
+								<h4>Power Systems User Experience Designer <span class="listing-type">Internship</span></h4>
+								<ul class="listing-icons">
+									<li><i class="ln ln-icon-Management"></i> Hexagon</li>
+									<li><i class="ln ln-icon-Map2"></i> London</li>
+									<li><i class="ln ln-icon-Money-2"></i> $55 / hour</li>
+									<li><div class="listing-date">4d ago</div></li>
+								</ul>
+							</div>
+						</a> -->
+
+			</div>
+			<div class="clearfix"></div>
+
+			{% if is_paginated %}
+			{% include "includes/pagination.html" %}
+			{% endif %}
+
+		</div>
+	</div>
+	{% if not category %}
+	<div class="five columns">
+
+		<div class="widget">
+			<h4>Filtrer les offres</h4>
+
+			<form method="get" action="{% url 'learning:doc_category-list' %}">
+				{{form.type|as_crispy_field}}
+
+				{{form.location|as_crispy_field}}
+
+				<button class="btn btn-primary" type="submit">Filtrer</button>
+			</form>
+
+		</div>
 
 
 
-    </div>
+	</div>
 
-    <!-- <div class="col-md-4">
-      <div class="five columns">
-        {% include "includes/filter.html" %}
-      </div>
-    </div> -->
-  </div>
-  {% if is_paginated %}
-  <div class="row">
-    <div class="col-12 col-md-8">
-      {% include "includes/pagination.html" %}
-    </div>
 
-  </div>
-  {% endif %}
+	{% endif %}
+
+
+	<!-- Widgets / End -->
 
 
 </div>
-
 
 {% endblock content %}
