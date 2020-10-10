@@ -4218,9 +4218,10 @@ body .recent-post a h4 { font-size: 20px; }
 }
 
 .category-box {
-	background: #ccc;
+	background: grey;
 	border-radius: 4px;
 	height: 100%;
+	color: white;
 	display: block;
 	margin-bottom: 20px;
 	position: relative;
