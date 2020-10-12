@@ -1,5 +1,5 @@
 
-<div class="card" style="width: 18rem;">
+<div class="card" style="width: 15rem;">
     <img src="{{product.image.url}}" style="height: 200px;width: 100%;" alt="{{product.name}}" class="img-fluid card-img-top">
 
     <div class="card-body">
@@ -8,11 +8,11 @@
         <h5 class="font-weight-bold text-primary mt-0">Prix: <span class="text-primary">{{product.price }}F CFA </span>
             
         </h5>
-        <h6 class="card-subtitle mt-0 text-muted ">Etat du produit: <span
+        <h6 class="card-subtitle mt-0 text-muted ">Etat: <span
                 class="text-primary">{{product.get_state_display}}</span></h6>
 
         <p class="card-text mb-0">Lieu: <span class="text-primary">{{product.location}}</span></p>
-        <p class="card-text mt-0">Contact: <span class="text-primary">{{product.reference}}</span></p>
+        <p class="card-text mt-0">Tel: <span class="text-primary">{{product.reference}}</span></p>
             <div class="skills m-0">
                 <span>
                     <a href="{{product.category.get_absolute_url}}" class="text-white">{{product.category}}</a>

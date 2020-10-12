@@ -98,15 +98,20 @@ Acceuil
 <div class="container">
 		<div class="col-12 col-md-12">
 					<div class="sixteen columns"></div>
-						<h3 class="margin-bottom-25 text-primary">
+						<h4 class="margin-bottom-25 text-primary">
 							<a href="{% url 'blog:post-list' %}">Généralités & Divertissements</a>
-						</h3>
+						</h4>
 					<div>
 
 							{% for post in posts %}
 							{% include "blog/includes/post-single.html" with post=post %}
 							{% endfor %}
 					</div>
+					<div class="clearfix"></div>
+					<div class="margin-top-30"></div>
+
+					<a href="{% url 'blog:post-list' %}" class="button centered">Voir plus de posts</a>
+					<div class="margin-bottom-55"></div>
 		</div>
 </div>
 
