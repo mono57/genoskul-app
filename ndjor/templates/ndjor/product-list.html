@@ -30,13 +30,13 @@
   <div class="row">
     {% if category %}
     {% for product in category.products.all %}
-    <div class="col-12 col-md-4 mb-2">
+    <div class="col-12 col-md-4 mb-3">
       {% include "ndjor/includes/product-single.html" with product=product %}
     </div>
     {% endfor %}
     {% else %}
     {% for product in products %}
-    <div class="col-12 col-md-4 mb-2">
+    <div class="col-12 col-md-4 mb-3">
       {% include "ndjor/includes/product-single.html" with product=product %}
     </div>
     {% endfor %}

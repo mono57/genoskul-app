@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, TemplateView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.utils.text import slugify
+
 
 from blog.models import Post, PostCategory, Comment
 from blog.forms import PostModelForm
@@ -31,6 +32,8 @@ class PostListView(ListView, View):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Généralités & Divertissement'
         return context
+
+  
 
 class PostDetailView(DetailView):
     template_name = 'blog/post-details.html'
