@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth import get_user_model
-
+from django.urls import reverse
 from genoskul.common.timestamp import TimeStampModel
 from genoskul.common.validators import file_size
 
@@ -14,11 +14,12 @@ class DocumentCategory(TimeStampModel):
     def __str__(self):
         return self.name
 
-    
-
     class Meta:
         verbose_name = 'Catégorie de document'
         verbose_name_plural = 'Catégories de document'
+
+    def get_absolute_url(self):
+        return reverse('learning:doc_category-list', kwargs={'pk': self.pk})
 
 class DocumentType(TimeStampModel):
     name = models.CharField(max_length=100, verbose_name='Nom')
@@ -46,6 +47,9 @@ class Document(TimeStampModel):
         User, on_delete=models.CASCADE, related_name='documents', verbose_name='Créateur')
     download_count = models.IntegerField(
         blank=True, default=0, verbose_name='Nombre de téléchargements')
+
+    def get_absolute_url(self):
+        return reverse('learning:document-list', kwargs={'pk': self.pk})
 
     
     

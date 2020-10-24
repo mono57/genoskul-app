@@ -34,7 +34,7 @@ class Box(TimeStampModel):
     address = models.CharField(
         max_length=100, verbose_name='Adresse de localisation', help_text='Quartier/Ville/Pays')
 
-    contact = models.CharField(max_length=50, verbose_name='Contact')
+    contact = models.CharField(max_length=50, verbose_name='Contact', help_text="adress mail ou numero whatsapp" )
 
     logo = models.ImageField(verbose_name='Logo de la boite', validators=[file_size])
 

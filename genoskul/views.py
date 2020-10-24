@@ -16,7 +16,7 @@ class HomeTemplateView(TemplateView):
         context['jobs'] = Job.objects.all().order_by('-created_at')[:3]
         context['categories'] = Document.objects.all()[:5]
         context['documents'] = DocumentCategory.objects.all()[:10]
-        context['posts'] =Post.objects.all().order_by('-created_at')[:3]
+        context['posts'] =Post.objects.all().order_by('-created_at')[:15]
         context['job_categories'] = JobCategory.objects.all()[:10]
         context['services'] = Box.objects.get_confirmed_services().order_by('-created_at')
         context['footer'] = Footer.objects.last()

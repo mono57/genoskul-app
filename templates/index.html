@@ -10,29 +10,12 @@ Acceuil
 
 {% include "base/banner.html" %}
 
-<div class="container">
-	<div class="sixteen columns">
-		<h3 class="margin-bottom-20 margin-top-10 text-primary"><a href="{% url 'learning:doc_category-list' %}"> Nos spécialités de
-				 document</a></h3>
-		<div class="categories-boxes-container">
-
-			{% for documents in doc_categories %}
-			{% include "learning/doc_category-list.html" with documents=documents %}
-			{% empty %}
-			<p>Aucune spécialité à lister !</p>
-			{% endfor %}
-
-		</div>
-		<li><a href="{% url 'learning:doc_category-list' %}">Bibliothèque</a></li>
-
 
 		<div class="clearfix"></div>
 		<div class="margin-top-30"></div>
 
-		<a href="{% url 'learning:doc_category-list' %}" class="button centered">Toutes nos spécialités</a>
+		<a href="{% url 'learning:doc_category-list' %}" class="button centered">Acceder à la bibliotheque </a>
 		<div class="margin-bottom-55"></div>
-	</div>
-</div>
 
 <div class="container">
 
@@ -40,9 +23,9 @@ Acceuil
 		<div class="col-12 col-md-8">
 			<div class="ten columns">
 				<div class="padding-right">
-					<h3 class="margin-bottom-25 text-primary">
-						<a href="{% url 'jobs:category-list' %}">Nos offres d'emploi</a>
-					</h3>
+					<h5 class="margin-bottom-25 text-primary">
+						<a href="{% url 'jobs:category-list' %}">Offres d'emploi</a>
+					</h5>
 					<div class="listings-container">
 
 						{% for job in jobs %}
@@ -59,7 +42,7 @@ Acceuil
 		</div>
 		<div class="col-12 col-md-4">
 			<div class="five columns">
-				<h3 class="margin-bottom-5"><a href="">Services</a></h3>
+				<h5 class="margin-bottom-5"><a href="">Services</a></h5>
 
 				<div class="showbiz-navigation">
 					<div id="showbiz_left_1" class="sb-navigation-left"><i class="fa fa-angle-left"></i></div>
@@ -98,9 +81,9 @@ Acceuil
 <div class="container">
 		<div class="col-12 col-md-12">
 					<div class="sixteen columns"></div>
-						<h3 class="margin-bottom-25 text-primary">
+						<h5 class="margin-bottom-25 text-primary">
 							<a href="{% url 'blog:post-list' %}">Généralités & Divertissements</a>
-						</h3>
+						</h5>
 					<div>
 
 							{% for post in posts %}

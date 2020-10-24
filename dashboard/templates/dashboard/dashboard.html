@@ -39,8 +39,8 @@
         <div class="dashboard-stat color-3">
             <div class="dashboard-stat-content">
                 {% with request.user.jobs.count as job_count %}
-                <h4 class="counter">{{job_count}}</h4> <span>Offre{{job_count|pluralize}} d'emploi
-                    publiée{{job_count|pluralize}}</span>
+                <h4 class="counter">{{job_count}}</h4> <span><!--Offre{{job_count|pluralize}} d'emploi
+                    publiée{{job_count|pluralize}}-->Parrainages-Formations suivies</span>
 
                 {% endwith %}
             </div>

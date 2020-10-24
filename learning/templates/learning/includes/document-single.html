@@ -1,3 +1,15 @@
+{% extends "base_site.html" %}
+
+{% block title %}
+{{title}}
+{% endblock title %}
+
+{% block breadcrumb-item %}
+<li>{{title}}</li>
+{% endblock breadcrumb-item %}
+
+
+{% block content %}
 
 <div class="container">
 
@@ -8,12 +20,13 @@
         <div class="card">
           <div class="card-body pb-0">
             <p class="h5">{{document.name}}</p>
-            <p style="line-height: 1.2rem;">{{document.auteur|truncatewords:10}}</p>
+            <p style="line-height: 1.2rem;">{{document.description|truncatewords:10}}</p>
             <p><a href="{{document.file.url}}">cliquez pour télécharger</a></p>
           </div>
         </div>
       </div>
       {% empty %}
+      <p>Aucun document n'a encore été publié !</p>
       {% endfor %}
 
 
@@ -37,3 +50,6 @@
 
 
 </div>
+
+
+{% endblock content %}

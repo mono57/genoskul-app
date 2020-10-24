@@ -53,7 +53,16 @@ class CategoryDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['title'] = self.get_object().name
         return context
+        
+    def get_object(self):
+        return get_object_or_404(JobCategory, pk=self.kwargs.get('pk'))
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = self.get_object().name
+        return context
+
+    
 
 class ResumeListView(ListView):
     template_name = 'jobs/profile-list.html'

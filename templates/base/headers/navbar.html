@@ -48,9 +48,9 @@
                 <li><a href="#">Emplois</a>
                     <ul>
                         
-                        <li><a href="{{jobs_list_url}}">Trouver un poste</a></li>
+                        <li><a href="{{jobs_list_url}}">Voir offres</a></li>
                         <!-- <li><a href="{{resume_create_url}}">Déposer son CV</a></li> -->
-                        <li><a href="{{resume_list_url}}">Voir les profils</a></li>
+                        <li><a href="{{resume_list_url}}">Reseau-jeunes</a></li>
                         <!-- <li><a href="{{job_create_url}}">Publiez une offre</a></li> -->
                     </ul>
                 </li>
@@ -67,7 +67,7 @@
 
             <ul class="float-right">
                 {% if request.user.is_authenticated %}
-                <li><a id="{% if request.path == dashboard_url %}current{% endif %}" href="{{dashboard_url}}"> <img src="https://img.icons8.com/fluent/48/000000/user-male-circle.png" style="height: 20px;width: 30px; padding-left: 8.5px;"/>
+                <li><a id="{% if request.path == dashboard_url %}current{% endif %}" href="{{dashboard_url}}"> <img src="https://img.icons8.com/fluent/48/000000/user-male-circle.png" style="height: 22px;width: 27px; position: relative;"/>
                         </i> {{request.user.username}}</a></li>
                 <li><a href="{{logout_url}}"><i class="fa fa-lock"></i> Deconnexion</a></li>
                 {% else %}

@@ -37,11 +37,13 @@ class DocumentListView(ListView):
     model = Document
     context_object_name = 'documents'
     paginate_by = 12
+    
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Liste des documents'
         return context
+    
 
 class DocumentCategoryListView(ListView):
     template_name = 'learning/doc_category-list.html'
@@ -75,3 +77,4 @@ class CategoryDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['title'] = self.get_object().name
         return context
+        

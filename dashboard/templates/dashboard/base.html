@@ -39,8 +39,13 @@ Tableau de bord
 	<div class="dashboard-nav">
 		<div class="dashboard-nav-inner">
 
-			<ul data-submenu-title="Forum étudiants">
-				<li><a href="#">Messages <span class="badge badge-warning">bientôt dispo</span> </a></li>
+			<ul data-submenu-title="Espace d'étudiants">
+				<li><a href="#">Forum des étudiants de: </a></li>
+				<li><a href="#">(Mon)Université:<span class="badge badge-warning">bientôt dispo</span> </a></li>
+				<li><a href="#">(Ma)Spécialité:<span class="badge badge-warning">bientôt dispo</span> </a></li>
+				<li><a href="#">(Mon)Pays de R<span class="badge badge-warning">bientôt dispo</span> </a></li>
+				<li><a href="#">(Mon)Pays d'O<span class="badge badge-warning">bientôt dispo</span> </a></li>
+				
 			</ul>
 
 			{% with request.user as user %}
@@ -72,7 +77,7 @@ Tableau de bord
 					{% url 'dashboard:resume-update' pk=resume.pk %}
 					{% else %}
 					{% url 'dashboard:resume-create' %}
-				  {% endif %}">Curriculum Vitae</a>
+				  {% endif %}">Adhérer au reseau</a>
 				  </li>
 				{% endwith %}
 				

@@ -3544,12 +3544,12 @@ li .job-spotlight p { color: #888; }
 }
 
 .category-small-box {
-	background-color: #121213c0;
+	background-color:rgb(34, 34, 34);
 	border-radius: 3px;
 	margin: 20px 0 0 20px;
 	padding: 20px;
 	text-align: center;
-	color: whitesmoke;
+	color:white;
 	transition: 0.4s;
 	transform: scale(1);
 	vertical-align: top;
@@ -3564,8 +3564,8 @@ li .job-spotlight p { color: #888; }
 .category-small-box:before {
 	width: 100%;
 	height: 100%;
-	background-color: rgba(32, 32, 32, 0.973);
-	color: whitesmoke;
+	background-color: rgb(34, 34, 34);
+	color:white;
 	content: "";
 	position: absolute;
 	top: 0;
@@ -3577,7 +3577,7 @@ li .job-spotlight p { color: #888; }
 
 /* Hover Animation */
 .category-small-box:hover {
-	background-color: #505050;
+	background-color: rgba(100, 100, 100, 0.795);
 	color: #fff;
 	-webkit-transform: scale(1.06);
 	-moz-transform: scale(1.07);
