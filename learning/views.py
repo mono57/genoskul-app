@@ -38,7 +38,9 @@ class DocumentListView(ListView):
     context_object_name = 'documents'
     paginate_by = 12
     
-
+    def get_object(self):
+       return get_object_or_404(Document, self.kwargs.get('pk'))
+        
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Liste des documents'
@@ -65,13 +67,12 @@ class CourseListView(TemplateView):
         return context
 
 class CategoryDetailView(DetailView):
-    template_name = 'learning/document-single.html'
+    template_name = 'learning/document-list.html'
     model = DocumentCategory
     context_object_name = 'doc_categories'
 
-    def get_object(self):
-        return get_object_or_404(DocumentCategory, self.kwargs.get('pk'))
-
+    #def get_object(self):
+        #return get_object_or_404(Document, self.kwargs.get('pk'))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

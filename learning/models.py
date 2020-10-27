@@ -19,7 +19,7 @@ class DocumentCategory(TimeStampModel):
         verbose_name_plural = 'Catégories de document'
 
     def get_absolute_url(self):
-        return reverse('learning:doc_category-list', kwargs={'pk': self.pk})
+        return reverse('learning:doc_categories', kwargs={'pk': self.pk})
 
 class DocumentType(TimeStampModel):
     name = models.CharField(max_length=100, verbose_name='Nom')
@@ -48,24 +48,19 @@ class Document(TimeStampModel):
     download_count = models.IntegerField(
         blank=True, default=0, verbose_name='Nombre de téléchargements')
 
-    def get_absolute_url(self):
-        return reverse('learning:document-list', kwargs={'pk': self.pk})
-
-    
-    
     class Meta:
         verbose_name = 'Document'
         verbose_name_plural = 'Documents'
 
     def __str__(self):
         return self.name
-
+    def get_absolute_url(self):
+       return reverse('learning:documents', kwargs={'pk': self.pk})
 
 def post_save_document_split_name(sender, instance, created, **kwargs):
     if created:
         file = instance.file
         instance.name = str(file).split('.')[0]
-        instance.save()
-
-
+        instance.save() 
+         
 post_save.connect(post_save_document_split_name, sender=Document)

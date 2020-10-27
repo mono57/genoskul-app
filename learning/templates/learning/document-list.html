@@ -15,15 +15,15 @@
   </div>
   <div class="row">
     {% if documents %}
-    {% for document in doc_categories.learning.all %}
+    {% for doc_categories in documents.learning.all %}
     <div class="col-12 col-md-4 mb-3">
-      {% include "learning/includes/document-single.html" with document=document%}
+      {% include "learning/includes/document-single.html" with doc_categories=doc_categories%}
     </div>
     {% endfor %}
     {% else %}
-    {% for document in doc_categories %}
+    {% for doc_categories in documents %}
     <div class="col-12 col-md-4 mb-3">
-      {% include "learning/includes/document-single.html" with document=document %}
+      {% include "learning/includes/document-single.html" with doc_categories=doc_categories %}
     </div>
     {% endfor %}
     {% endif %}
