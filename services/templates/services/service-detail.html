@@ -1,0 +1,88 @@
+{% extends "base_site.html" %}
+
+{% load static %}
+
+{% block title %}
+{{title}}
+{% endblock title %}
+
+{% block breadcrumb-item %}
+<li>
+    <a href="{% url 'services:list-service' %}">Offres disponibles</a>
+</li>
+<li>{{title}}</li>
+{% endblock breadcrumb-item %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- Recent Jobs -->
+    <div class="ten columns">
+        <div class="padding-right">
+
+            <!-- Company Info -->
+            <div class="company-info">
+                {% if box.logo %}
+                <img src="{{box.logo.url}}" alt="{{box.struct_name}}">
+                {% else %}
+                <img src="{% static 'images/logo-05.png' %}" alt="{{box.struct_name}}">
+                {% endif %}
+                <div class="content">
+                    <h4>{{box.struct_name}}</h4>
+                    <span><a href="{{job.company.website}}"><i class="fa fa-link"></i> Site internet</a></span>
+                    <!-- <span><a href="#"><i class="fa fa-twitter"></i> @kingrestaurants</a></span> -->
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <p class="margin-reset">
+                {{box.struct_description|safe}}</p>
+
+
+
+        </div>
+    </div>
+
+
+    <!-- Widgets -->
+    <div class="five columns">
+
+        <!-- Sort by -->
+        <div class="widget">
+            <h4>Vue d'ensemble</h4>
+
+            <div class="job-overview">
+
+                <ul>
+                    <li>
+                        <i class="fa fa-map-marker"></i>
+                        <div>
+                            <strong>Lieu d'execution:</strong>
+                            <span>{{job.location}}</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa fa-user"></i>
+                        <div>
+                            <strong>Titre de l'emploi</strong>
+                            <span>{{job.title}}</span>
+                        </div>
+                    </li>
+
+                </ul>
+
+
+                <a href="mailto:{{job.application_email}}" class="btn btn-primary shadow-none btn-block">Postuler pour
+                    cet offre</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+{% endblock content %}

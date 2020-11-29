@@ -5,38 +5,55 @@
 {% endblock title %}
 
 {% block breadcrumb-item %}
+<li>
+	<a href="{% url 'learning:doc_category-list' %}">Liste des documents</a>
+</li>
 <li>{{title}}</li>
 {% endblock breadcrumb-item %}
 
 {% block content %}
 
-<div class="container pb-5">
-  <div class="row mb-4">
-  </div>
-  <div class="row">
-    {% if documents %}
-    {% for doc_categories in documents.learning.all %}
-    <div class="col-12 col-md-4 mb-3">
-      {% include "learning/includes/document-single.html" with doc_categories=doc_categories%}
-    </div>
-    {% endfor %}
-    {% else %}
-    {% for doc_categories in documents %}
-    <div class="col-12 col-md-4 mb-3">
-      {% include "learning/includes/document-single.html" with doc_categories=doc_categories %}
-    </div>
-    {% endfor %}
-    {% endif %}
-  </div>
+<div class="container">
 
+  <div class="row">
+    <div class="col-12 col-md-8">
+      {{ data }}
+      {% for document in documents %}
+      
+      <div class="col-md-6 mb-2 mb-md-3">
+        <div class="card">
+          <div class="card-body pb-0">
+            <p class="h5">{{document.name}}</p>
+            <p style="line-height: 1.2rem;">{{document.description|truncatewords:10}}</p>
+            <p><a href="{{document.file.url}}">cliquez pour télécharger</a></p>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p>Aucun document n'a encore été publié!</p>
+      {% endfor %}
+
+
+
+    </div>
+
+    <!--<div class="col-md-4">
+      <div class="five columns">
+        {% include "includes/filter.html" %}
+      </div>
+    </div>--> 
+  </div>
   {% if is_paginated %}
   <div class="row">
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-8">
       {% include "includes/pagination.html" %}
     </div>
+
   </div>
   {% endif %}
 
+
 </div>
+
 
 {% endblock content %}

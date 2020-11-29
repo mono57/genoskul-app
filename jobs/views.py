@@ -12,11 +12,11 @@ from jobs.models import Job, Resume, JobCategory
 from jobs.forms import ResumeModelForm, JobFilterForm
 
 
-class JobListView(ListView):
+class JobListView(LoginRequiredMixin, ListView):
     template_name = 'jobs/jobs-list.html'
     model = Job
     context_object_name = 'jobs'
-    paginate_by = 6
+    paginate_by = 15
 
     def get(self, request, *args, **kwargs):
         self.type = request.GET.get('type', None)
@@ -37,7 +37,7 @@ class CategoryListView(ListView):
     template_name = 'jobs/category-list.html'
     model = JobCategory
     context_object_name = 'categories'
-    paginate_by = 12
+    paginate_by = 15
 
 
 class CategoryDetailView(DetailView):
@@ -64,11 +64,11 @@ class CategoryDetailView(DetailView):
 
     
 
-class ResumeListView(ListView):
+class ResumeListView(LoginRequiredMixin, ListView):
     template_name = 'jobs/profile-list.html'
     model = Resume
     context_object_name = 'resumes'
-    paginate_by = 6
+    paginate_by = 20
 
     def get(self, request, *args, **kwargs):
         self.query = request.GET.get('query', None)

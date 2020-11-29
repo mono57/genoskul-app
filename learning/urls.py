@@ -7,7 +7,7 @@ urlpatterns = [
      path('document/create/',
           DocumentCreateView.as_view(),
           name='document'),
-     path('list/',
+     path('documents/list/',
          DocumentListView.as_view(), name='document-list'),   
 
      path('doc_categories/list/',

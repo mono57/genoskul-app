@@ -16,7 +16,7 @@
     <div class="categories-boxes-container">
 				
         {% for documents in doc_categories %}
-          {% include "learning/includes/doc_category-single.html" with documents=documents %}
+          {% include "learning/includes/doc_category-single.html" with document=document %}
 
           {% empty %}
           <p>Aucune specialité de document disponible</p>

@@ -35,7 +35,7 @@ class ProductListView(LoginRequiredMixin, ListView):
     template_name = 'ndjor/product-list.html'
     model = Product
     context_object_name = 'products'
-    paginate_by = 9
+    paginate_by = 20
 
     def get(self, request, *args, **kwargs):
         self.query = request.GET.get('query')

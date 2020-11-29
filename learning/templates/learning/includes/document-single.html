@@ -5,9 +5,11 @@
 {% endblock title %}
 
 {% block breadcrumb-item %}
+<li>
+	<a href="{% url 'learning:doc_category-list' %}">Liste des documents</a>
+</li>
 <li>{{title}}</li>
 {% endblock breadcrumb-item %}
-
 
 {% block content %}
 

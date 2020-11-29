@@ -32,22 +32,31 @@ class DocumentCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
     
 
-class DocumentListView(ListView):
+class DocumentListView(LoginRequiredMixin, ListView):
     template_name = 'learning/document-list.html'
     model = Document
     context_object_name = 'documents'
-    paginate_by = 12
-    
+    paginate_by = 20
+
     def get_object(self):
-       return get_object_or_404(Document, self.kwargs.get('pk'))
+       return get_object_or_404(DocumentCategory, self.kwargs.get('pk'))
         
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Liste des documents'
+        data = Document.objects.all()
+        print(data)
+        context['data'] = data
         return context
     
+def getDocuments(request):
+    document = Document.objects.all()
+    context = {
+        'document' : document
+    }
+    return render(request, 'learning/document-list.html' , context)
 
-class DocumentCategoryListView(ListView):
+class DocumentCategoryListView(LoginRequiredMixin, ListView):
     template_name = 'learning/doc_category-list.html'
     model = DocumentCategory
     context_object_name = 'doc_categories'
@@ -58,7 +67,7 @@ class DocumentCategoryListView(ListView):
         context['title'] = 'Toutes les specialités disponibles'
         return context
 
-class CourseListView(TemplateView):
+class CourseListView(LoginRequiredMixin, TemplateView):
     template_name = 'learning/course-list.html'
 
     def get_context_data(self, **kwargs):
@@ -66,7 +75,7 @@ class CourseListView(TemplateView):
         context['title'] = 'Nos formations'
         return context
 
-class CategoryDetailView(DetailView):
+class CategoryDetailView(LoginRequiredMixin,DetailView):
     template_name = 'learning/document-list.html'
     model = DocumentCategory
     context_object_name = 'doc_categories'
