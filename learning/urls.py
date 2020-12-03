@@ -8,7 +8,7 @@ urlpatterns = [
          DocumentCreateView.as_view(),
          name='document'),
     path('documents/list/',
-         getDocuments, name='document-list'),
+         DocumentListView.as_view(), name='document-list'),
 
     path('doc_categories/list/',
          DocumentCategoryListView.as_view(),
