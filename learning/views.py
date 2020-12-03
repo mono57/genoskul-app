@@ -48,13 +48,7 @@ class DocumentListView(LoginRequiredMixin, ListView):
         print(data)
         context['data'] = data
         return context
-    
-def getDocuments(request):
-    document = Document.objects.all()
-    context = {
-        'document' : document
-    }
-    return render(request, 'learning/document-list.html' , context)
+  
 
 class DocumentCategoryListView(LoginRequiredMixin, ListView):
     template_name = 'learning/doc_category-list.html'
@@ -73,7 +67,7 @@ class CourseListView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Nos formations'
-        return context
+        return contex
 
 class CategoryDetailView(LoginRequiredMixin,DetailView):
     template_name = 'learning/document-list.html'
