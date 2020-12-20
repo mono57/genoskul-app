@@ -28,6 +28,7 @@ Tableau de bord
 {% url 'dashboard:profile-update' as profile_url %}
 {% url 'dashboard:post-create' as post_create_url %}
 {% url 'dashboard:posts' as posts_url %}
+{% url 'forum' as forum_url %}
 
 {% url 'accounts:user_info-update' pk=request.user as user_info_update_url %}
 
@@ -40,11 +41,9 @@ Tableau de bord
 		<div class="dashboard-nav-inner">
 
 			<ul data-submenu-title="Espace d'étudiants">
-				<li><a href="#">Forum des étudiants de: </a></li>
-				<li><a href="#">(My)Etablissement:<span class="badge badge-warning">bientôt dispo</span> </a></li>
-				<li><a href="#">(My)Spécialité:<span class="badge badge-warning">bientôt dispo</span> </a></li>
-				<li><a href="#">(My)Pays de R<span class="badge badge-warning">bientôt dispo</span> </a></li>
-				<li><a href="#">(My)Pays d'O<span class="badge badge-warning">bientôt dispo</span> </a></li>
+				<li><a href="#">Forum des étudiants : </a></li>
+				<li><a href="{{forum_url}}">Forum 1</a></li>
+
 				
 			</ul>
 
@@ -77,7 +76,7 @@ Tableau de bord
 					{% url 'dashboard:resume-update' pk=resume.pk %}
 					{% else %}
 					{% url 'dashboard:resume-create' %}
-				  {% endif %}">Adhérer au reseau</a>
+				  {% endif %}">Créer profil</a>
 				  </li>
 				{% endwith %}
 				

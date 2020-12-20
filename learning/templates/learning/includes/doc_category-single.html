@@ -1,5 +1,5 @@
-<a href="{{documents.get_absolute_url}}" class="category-small-box">
-    <h4>{{documents.name}}</h4>
-    <span>{{documents.learning.count|default:0}}</span>
+<a href="{{category.get_absolute_url}}" class="category-small-box">
+    <h4>{{category.name}}</h4>
+    <span>{{category.documents.count|default:0}}</span>
 </a>
 

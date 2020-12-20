@@ -7,7 +7,8 @@ from services.models import Box
 from us.models import SocialNetwork, Footer, About
 from django.urls import reverse
 
-
+import random
+ 
 class HomeTemplateView(TemplateView):
     template_name = 'index.html'
 
@@ -17,11 +18,20 @@ class HomeTemplateView(TemplateView):
         context['categories'] = Document.objects.all()[:5]
         context['documents'] = DocumentCategory.objects.all()[:10]
         context['document'] = Document.objects.all()[:10]
-        context['posts'] =Post.objects.all().order_by('-created_at')[:21]
         context['job_categories'] = JobCategory.objects.all()[:10]
         context['services'] = Box.objects.get_confirmed_services().order_by('-created_at')
         context['footer'] = Footer.objects.last()
         context['social_networks'] = SocialNetwork.objects.all()
         context['about'] = About.objects.last()
+
+        posts = list(Post.objects.all().order_by('-created_at'))[:21]
+
+        r_posts = []
+        for _ in range(len(posts)):
+            choice = random.choice(posts)
+            r_posts.append(choice)
+            posts.remove(choice)
+
+        context['posts'] = r_posts
 
         return context

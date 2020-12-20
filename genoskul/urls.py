@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-
+from django.views.generic.base import TemplateView
 from us.views import PrivacyTemplateView, TermOfServiceTemplateView, AboutTemplateView
 from genoskul.views import HomeTemplateView
 from filebrowser.sites import site
@@ -18,6 +18,7 @@ urlpatterns = [
     path('privacy/', PrivacyTemplateView.as_view(), name='privacy'),
     path('terms/', TermOfServiceTemplateView.as_view(), name='terms'),
     path('about/', AboutTemplateView.as_view(), name='about'),
+    path('forum/', TemplateView.as_view(template_name='forum.html'), name='forum'),
     path('accounts/', include('allauth.urls')),
     path('dashboard/', include('dashboard.urls', namespace="dashboard")),
     path('registration/', include('accounts.urls', namespace="accounts")),
@@ -25,7 +26,7 @@ urlpatterns = [
     path('learning/', include('learning.urls', namespace="learning")),
     path('blog/', include('blog.urls', namespace="blog")),
     path('ndjor/', include('ndjor.urls', namespace="ndjor")),
-    path('services', include('services.urls', namespace="services")),
+    path('services/', include('services.urls', namespace="services")),
     path('admin/filebrowser/', site.urls),
     path('admin/staff/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

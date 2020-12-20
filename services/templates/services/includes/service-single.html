@@ -1,18 +1,15 @@
-<a href="services.get_absolute_url">
-<div class="job-spotlight">
-    <div class="d-flex flex-row align-items-center justify-content-between">
-        <a href="{{service.detail_link}}" target="blank">
-            <h4>{{service.struct_name}} <br><span class="part-time">{{service.type}}</span></h4>
-        </a>
-        <a href="{{service.detail_link}}" target="blank">
-            <img src="{{service.logo.url}}" alt="{{service.struct_name}}" class="img-fluid" style="width: 75px;">
 
-        </a>
+<li>
+    <a href="{{service.detail_link}}">
+
+    <img src="{{service.logo.url}}" alt="{{service.struct_name}}">
+
+    <div class="resumes-list-content">
+        <h4>{{service.struct_name}}<span>{{service.struct_description}}</span></h4>
+        <span><i class="fa fa-map-marker"></i> {{service.address}}</span>
+        <p class="d-block">{{service.activity_description}}</p>
+        <div class="clearfix"></div>
     </div>
-    <span><i class="fa fa-phone"></i> {{service.contact}}</span>
-    <span><i class="fa fa-map-marker"></i> {{service.address}}</span>
-    <!-- <span><i class="fa fa-money"></i> $20 / hour</span> -->
-    <p>{{service.activity_description}}</p>
-    <a href="{{service.detail_link}}" class="button" target="blank">Solliciter<i
-            class=" text-white fa fa-external-link"></i> </a>
-</div></a>
+</a>
+<div class="clearfix"></div>
+</li>

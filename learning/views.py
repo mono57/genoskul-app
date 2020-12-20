@@ -36,7 +36,7 @@ class DocumentListView(LoginRequiredMixin, ListView):
     template_name = 'learning/document-list.html'
     model = Document
     context_object_name = 'documents'
-    paginate_by = 20
+    paginate_by = 50
 
     def get_object(self):
        return get_object_or_404(DocumentCategory, self.kwargs.get('pk'))
@@ -54,7 +54,7 @@ class DocumentCategoryListView(LoginRequiredMixin, ListView):
     template_name = 'learning/doc_category-list.html'
     model = DocumentCategory
     context_object_name = 'doc_categories'
-    paginate_by = 20
+    paginate_by = 30
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -67,7 +67,7 @@ class CourseListView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Nos formations'
-        return contex
+        return context
 
 class CategoryDetailView(LoginRequiredMixin,DetailView):
     template_name = 'learning/document-list.html'

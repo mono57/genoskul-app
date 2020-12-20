@@ -5,24 +5,59 @@
 {% endblock title %}
 
 {% block breadcrumb-item %}
-  <li>Secteurs d'emploi disponibles</li>
+  <li>Differents services disponibles</li>
 {% endblock breadcrumb-item %}
 
 {% block content %}
   
-<div class="container py-4">
+<div class="container">
+  <div class="row">
+      <div class="col-12 col-md-8 order-2 order-md-1">
+          <div class="ten columns" style="">
+              <div class="padding-right">
 
-    <div class="categories-boxes-container">
-				
-        {% for services in types %}
-          {% include "services/includes/service-single.html" with services = services%}
+                  <ul class="resumes-list alternative">
 
-          {% empty %}
-          <p>Aucun secteur à lister !</p>
-        {% endfor %}
+                    {% for service in services %}
+                    {% include "services/includes/service-single.html" with service=service %}
+          
+                    {% empty %}
+                    <p>Aucun service à lister !</p>
+                  {% endfor %}
 
-    </div>
+                  </ul>
+                  <div class="clearfix"></div>
+
+                  {% if is_paginated %}
+
+                  {% include "includes/pagination.html" %}
+
+                  {% endif %}
+
+              </div>
+          </div>
+      </div>
+      <!-- <div class="col-12 col-md-4 order-1 order-md-2">
+          <div class="five columns">
+
+              <div class="widget">
+                  <h4>Rechercher</h4>
+
+                  <form action="{% url 'jobs:resume-list' %}" method="get">
+                      <input type="text" name="query" value="{{query}}" class="form-control"
+                          placeholder="Entrez le motif de la recherche">
+                      <button class="btn btn-primary">Rechercher</button>
+                      
+
+              </div>
+          </div>
+
+      </div> -->
+  </div>
+
+
 
 </div>
+
 
 {% endblock content %}

@@ -39,7 +39,7 @@ class Document(TimeStampModel):
         DocumentType,
         verbose_name='Type du fichier', on_delete=models.CASCADE)
     categories = models.ManyToManyField(
-        DocumentCategory,related_name='learning', verbose_name='Catégories',
+        DocumentCategory,related_name='documents', verbose_name='Catégories',
         help_text='Appuyez sur «Ctrl» pour sélectionner plusieurs')
     auteur = models.CharField(max_length=150,
          verbose_name='Auteur du document', help_text="NB:Entrez le nom de l'auteur original du document" )

@@ -8,6 +8,7 @@ from django.utils.text import slugify
 from blog.models import Post, PostCategory, Comment
 from blog.forms import PostModelForm
 
+import random
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     form_class = PostModelForm
@@ -22,11 +23,22 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class PostListView(ListView, View):
+class PostListView(ListView):
     template_name = 'blog/post-list.html'
     model = Post
     context_object_name = 'posts'
     paginate_by = 21
+
+    def get_queryset(self):
+        posts = list(super().get_queryset())
+        r_posts = []
+        for i in range(len(posts)):
+            choice = random.choice(posts)
+            r_posts.append(choice)
+            posts.remove(choice)
+
+        return r_posts
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
