@@ -28,7 +28,7 @@ Tableau de bord
 {% url 'dashboard:profile-update' as profile_url %}
 {% url 'dashboard:post-create' as post_create_url %}
 {% url 'dashboard:posts' as posts_url %}
-{% url 'forum' as forum_url %}
+{% url 'forum:forum-list' as forum_list_url %}
 
 {% url 'accounts:user_info-update' pk=request.user as user_info_update_url %}
 
@@ -41,9 +41,8 @@ Tableau de bord
 		<div class="dashboard-nav-inner">
 
 			<ul data-submenu-title="Espace d'étudiants">
-				<li><a href="#">Forum des étudiants : </a></li>
-				<li><a href="{{forum_url}}">Forum 1</a></li>
-
+				<li><a href="{{forum_list_url}}">Forums</a></li>
+				
 				
 			</ul>
 

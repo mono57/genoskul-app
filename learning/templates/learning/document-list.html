@@ -16,6 +16,8 @@
 <div class="container">
 
   <div class="row">
+    <a href="{% url 'dashboard:document-create' %}" class="btn btn-primary btn-sm">Publier un document</a>
+
     <div class="col-12 col-md-8">
       {% for document in doc_categories.documents.all %}
       
