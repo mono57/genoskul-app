@@ -7,15 +7,17 @@ from django.contrib.messages.views import SuccessMessageMixin
 from allauth.account.views import SignupView as AllauthSignupView
 from allauth.account.forms import SignupForm
 
-from accounts.forms import ProfileModelForm, RegisterStep2ModelForm, UserInfoForm
+from accounts.forms import (
+    ProfileModelForm, RegisterStep2ModelForm, UserInfoForm, RegisterForm)
 
 
 class SignupView(AllauthSignupView):
     template_name = 'account/signup.html'
     form_class = SignupForm
-    
+
     def get_success_url(self):
         return reverse('accounts:register-step2')
+
 
 class RegisterStep1(LoginRequiredMixin, FormView):
     template_name = 'accounts/register-step2.html'
@@ -38,6 +40,7 @@ class RegisterStep1(LoginRequiredMixin, FormView):
         messages.success(self.request, 'Bienvenue sur Genoskul !')
 
         return super().form_valid(form)
+
 
 class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, FormView):
     template_name = 'accounts/profile.html'
@@ -65,7 +68,7 @@ class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, FormView):
             'gender': profile.gender,
             'birthday': profile.birthday,
             'avatar': profile.avatar,
-            'function': profile.function
+            'telephone': profile.telephone
         })
         return initial
 
@@ -86,10 +89,9 @@ class UserInfoUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = 'accounts/user_info.html'
     form_class = UserInfoForm
     context_object_name = 'user'
-    
+
     def get_object(self):
         return self.request.user
-
 
     def get_success_url(self):
         return reverse('accounts:user_info-update', kwargs={'pk': self.kwargs.get('pk')})

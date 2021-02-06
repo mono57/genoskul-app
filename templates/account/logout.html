@@ -8,15 +8,13 @@
   Confirmation deconnexion
 {% endblock title %}
 
-{% block breadcrumb-item %}
-  <li>
-      Confirmez votre deconnexion
-  </li>
-{% endblock breadcrumb-item %}
+{% block breadcrumbs %}
+
+{% endblock breadcrumbs %}
 
 {% block content %}
 
-<div class="container pb-4">
+<div class="container pb-4 mt-3">
     <div class="row">
       <div class="col-12 col-md-5">
         <h3>{% trans "Sign Out" %}</h3>
@@ -30,7 +28,7 @@
             {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
             {% endif %}
-            <button type="submit">{% trans 'Sign Out' %}</button>
+            <button type="submit" class="btn btn-primary">{% trans 'Sign Out' %}</button>
         </form>
       </div>
       <div class="d-sm-none d-md-block col-5">

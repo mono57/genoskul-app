@@ -1,65 +1,52 @@
-{% extends "forum/base.html" %}
-
-
-{% block title %}
-  Mes forums
-{% endblock title %}
-
-{% block dashboard_content %}
+{% extends "forum/base.html" %} 
+{% block title %} Mes forums {% endblock title%} {% block dashboard_content %}
 
 <div class="row">
-    <div class="col-lg-12">
-        <div class="wrapper wrapper-content animated fadeInRight">
+  <div class="col-lg-12">
+    <div class="wrapper wrapper-content animated fadeInRight">
+      <div class="ibox-content m-b-sm border-bottom">
+        <div class="p-xs">
+          <div class="pull-left m-r-md">
+            <i class="fa fa-globe text-navy mid-icon"></i>
+          </div>
+          <h2>Bienvenue au forum</h2>
+          <span
+            >Un mot de bienvenue à mettre ici. une idée ? Valery, Solly
+          </span>
+        </div>
+      </div>
 
-            <div class="ibox-content m-b-sm border-bottom">
-                <div class="p-xs">
-                    <div class="pull-left m-r-md">
-                        <i class="fa fa-globe text-navy mid-icon"></i>
-                    </div>
-                    <h2>Bienvenue au forum</h2>
-                    <span>Un mot de bienvenue à mettre ici. une idée ? Valery, Solly </span>
+      <div class="ibox-content forum-container">
+        <div class="forum-title">
+          <div class="pull-right forum-desc">
+            <small>Plus de 320,800 interventions</small>
+          </div>
+          <h3>Vos forums de discussions</h3>
+        </div>
+        {% for register in forums %} 
+        {% with register.forum as forum %}
 
-                </div>
+        <div class="forum-item active">
+          <div class="row">
+            <div class="col-md-10">
+              <div class="forum-icon">
+                <i class="fa fa-shield"></i>
+              </div>
+              <a href="{{forum.get_absolute_url}}" class="forum-item-title"
+                >{{forum.name}}</a
+              >
+              <div class="forum-sub-title">
+                {{forum.description|default:"Aucune description n'est founie pour ce forum"}}
+              </div>
             </div>
-
-            <div class="ibox-content forum-container">
-
-                <div class="forum-title">
-                    <div class="pull-right forum-desc">
-                        <samll>Plus de 320,800 interventions</samll>
-                    </div>
-                    <h3>Discussions</h3>
-                </div>
-
-                {% for register in forums %}
-                {% with register.forum as forum %}
-                  
-                <div class="forum-item active">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="forum-icon">
-                                <i class="fa fa-shield"></i>
-                            </div>
-                            <a href="{{forum.get_absolute_url}}" class="forum-item-title">{{forum.name}}</a>
-                            <div class="forum-sub-title">{{forum.description|default:"Aucune description n'est founie pour ce forum"}}</div>
-                        </div>
-                        <div class="col-md-2 forum-info">
-                            <span class="views-number">
-                                1216
-                            </span>
-                            <div>
-                                <small>Intervenants</small>
-                            </div>
-                        </div>
-                        <div class="col-md-2 forum-info">
-                            <span class="views-number">
-                                {{forum.topics.count}}
-                            </span>
-                            <div>
-                                <small>Sujets</small>
-                            </div>
-                        </div>
-                        <!-- <div class="col-md-2 forum-info">
+            
+            <div class="col-md-2 forum-info">
+              <span class="views-number"> {{forum.topics.count}} </span>
+              <div>
+                <small>Sujets</small>
+              </div>
+            </div>
+            <!-- <div class="col-md-2 forum-info">
                             <span class="views-number">
                                 {{form.comments_count}}
                             </span>
@@ -67,13 +54,47 @@
                                 <small>Commentaires</small>
                             </div>
                         </div> -->
-                    </div>
-                </div>
-                {% endwith %}
-
-                {% endfor %}
-            </div>
+          </div>
         </div>
+        {% endwith %} 
+        {% endfor %}
+        <div class="forum-title">
+          
+          <h3>Forums publiques</h3>
+        </div>
+        {% for forum in public_forums %}
+        <div class="forum-item active">
+          <div class="row">
+            <div class="col-md-10">
+              <div class="forum-icon">
+                <i class="fa fa-shield"></i>
+              </div>
+              <a href="{{forum.get_absolute_url}}" class="forum-item-title">{{forum.name}}  </a>
+              <div class="forum-sub-title">
+                {{forum.description|default:"Aucune description n'est founie pour ce forum"}}             
+              </div>
+              
+            </div>
+            
+            <div class="col-md-2 forum-info">
+              <span class="views-number"> {{forum.topics.count}} </span>
+              <div>
+                <small>Sujets</small>
+              </div>
+            </div>
+            <!-- <div class="col-md-2 forum-info">
+                            <span class="views-number">
+                                {{form.comments_count}}
+                            </span>
+                            <div>
+                                <small>Commentaires</small>
+                            </div>
+                        </div> -->
+          </div>
+        </div>
+        {% endfor %}
+      </div>
     </div>
+  </div>
 </div>
 {% endblock dashboard_content %}

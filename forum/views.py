@@ -18,7 +18,8 @@ class ForumListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        print(context)
+        context['public_forums'] = Forum.objects.get_not_registered_public_forums_by_user(
+            self.request.user)
         return context
 
 
@@ -48,6 +49,11 @@ class TopicCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = TopicModelForm
     success_message = 'Votre sujet a été ajouté'
 
+    def get_context_data(self, **kwargs: any) -> dict:
+        context = super().get_context_data(**kwargs)
+        context['forum_pk'] = kwargs.get('forum_pk')
+        return context
+
     def get_success_url(self):
         return reverse(
             'forum:forum-detail',
@@ -66,6 +72,7 @@ class TopicCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         obj.save()
 
         return super().form_valid(form)
+
 
 class CommentCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     template_name = 'forum/form.html'

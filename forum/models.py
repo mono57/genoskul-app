@@ -3,16 +3,21 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 
 from genoskul.common.timestamp import TimeStampModel
-from forum.managers import CommentManager
+from forum.managers import CommentManager, ForumManager
+from accounts.models import Speciality
 
 User = get_user_model()
 
 
 class Forum(TimeStampModel):
-    name = models.CharField(max_length=255, verbose_name='Nom du forum')
+    name = models.CharField(max_length=50, verbose_name='Nom du forum')
     description = models.TextField(
         blank=True, verbose_name='Description du forum')
     logo = models.ImageField(blank=True, null=True, upload_to='forums/logos/')
+    visibility = models.CharField(max_length=20, default='private', choices=(
+        ('private', 'Privé'), ('public', 'Public')), verbose_name='Visibilité')
+
+    objects = ForumManager()
 
     def __str__(self):
         return self.name
@@ -20,9 +25,9 @@ class Forum(TimeStampModel):
     def get_absolute_url(self):
         return reverse('forum:forum-detail', kwargs={'pk': self.pk})
 
-
     # def comments_count(self):
-    #     return 
+    #     return
+
 
 class ForumRegistration(TimeStampModel):
     date = models.DateField(verbose_name='Date d\'inscription au forum')
@@ -40,12 +45,12 @@ class Topic(TimeStampModel):
     title = models.CharField(max_length=254, verbose_name='Titre')
     detail = models.TextField(verbose_name='Commentaire')
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, 
-        verbose_name='Auteur', 
+        User, on_delete=models.CASCADE,
+        verbose_name='Auteur',
         related_name='my_topics')
     forum = models.ForeignKey(
-        Forum, on_delete=models.CASCADE, 
-        verbose_name='Forum', 
+        Forum, on_delete=models.CASCADE,
+        verbose_name='Forum',
         related_name='topics')
 
     class Meta:
@@ -53,7 +58,7 @@ class Topic(TimeStampModel):
 
     def __str__(self):
         return self.title
-    
+
     # def get_absolute_url(self):
     #     return reverse('forum:topic-detail', kwargs={'fo'})
 
@@ -73,13 +78,13 @@ class Topic(TimeStampModel):
 class Comment(TimeStampModel):
     content = models.TextField(verbose_name='Contenu du commentaire')
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, 
-        verbose_name='Auteur du commentaire', 
+        User, on_delete=models.CASCADE,
+        verbose_name='Auteur du commentaire',
         related_name='my_comments')
 
     topic = models.ForeignKey(
-        Topic, on_delete=models.CASCADE, 
-        verbose_name='Sujet', 
+        Topic, on_delete=models.CASCADE,
+        verbose_name='Sujet',
         related_name='comments')
 
     objects = CommentManager()
