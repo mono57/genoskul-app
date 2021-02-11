@@ -16,7 +16,7 @@ Connexion
   <div class="row">
     <div class="col-12 col-md-5">
       <h4>Connectez-vous !</h4>
-      <p>Vous n'avez pas de compte ? alors <a href="{% url 'account_signup' %}">inscrivez-vous.</a></p>
+      <p>Vous n'avez pas de compte ? alors <a href="{% url 'accounts:register' %}">inscrivez-vous.</a></p>
       <form method="POST">
         {% csrf_token %}
 

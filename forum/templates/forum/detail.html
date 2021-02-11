@@ -62,18 +62,13 @@
                             <div class="inner-main-header">
                                 <a href="{% url 'forum:forum-list' %}"> <i class="fa fa-arrow-circle-left"></i> Quitter
                                     le forum</a>
-                                <!-- <span class="input-icon input-icon-sm ml-auto w-auto">
-                                    <input type="text"
-                                        class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4"
-                                        placeholder="Search forum" />
-                                </span> -->
                             </div>
 
                             <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
 
                                 <div class="alert alert-primary">
                                     Les sujets qui ont été discutés dans le groupe. Cliquez en sur un
-                                        pour lire les interventions
+                                    pour lire les interventions
                                 </div>
                                 <div class="card mb-2">
                                     <div class="card-body p-2 p-sm-3">
@@ -101,25 +96,20 @@
                                                 {% endif %}
                                             </div>
                                             <div class="text-muted small text-center align-self-center">
-                                                
+
                                                 <span><i class="fa fa-comment ml-2"></i> {{topic.comments.count}}</span>
                                             </div>
                                         </div>
                                         {% empty %}
-                                        <p class="text">Auncun sujet n'a été créé. Pourquoi ne pas en créer un ? <a href="{% url 'forum:topic-add' forum_pk=forum.pk %}">Créer un sujet de discussion</a></p>
+                                        <p class="text">Auncun sujet n'a été créé. Pourquoi ne pas en créer un ? <a
+                                                href="{% url 'forum:topic-add' forum_pk=forum.pk %}">Créer un sujet de
+                                                discussion</a></p>
                                         {% endfor %}
                                     </div>
                                 </div>
                             </div>
-
-            
-
-
                         </div>
-
                     </div>
-
-                    
                 </div>
             </div>
         </div>

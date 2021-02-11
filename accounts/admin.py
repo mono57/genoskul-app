@@ -1,21 +1,21 @@
 from django.contrib import admin
-from accounts.models import SchoolStudentProfile, Speciality, StudentProfile
+from accounts.models import Speciality, Profile, Profession, SchoolStudentLevel
 
 # Register your models here.
 
 
-class StudentProfileModelAdmin(admin.ModelAdmin):
-    list_display = ('gender', 'speciality')
+class SchoolStudentLevelModelAdmin(admin.ModelAdmin):
+    list_display = ('level', 'description')
 
 
-admin.site.register(StudentProfile, StudentProfileModelAdmin)
+admin.site.register(SchoolStudentLevel, SchoolStudentLevelModelAdmin)
 
 
-class SchoolStudentProfileModelAdmin(admin.ModelAdmin):
-    list_display = ('gender', 'level')
+class ProfileModelAdmin(admin.ModelAdmin):
+    list_display = ('gender', 'profession')
 
 
-admin.site.register(SchoolStudentProfile, SchoolStudentProfileModelAdmin)
+admin.site.register(Profile, ProfileModelAdmin)
 
 
 class SpecialityModelAdmin(admin.ModelAdmin):
@@ -23,3 +23,6 @@ class SpecialityModelAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Speciality, SpecialityModelAdmin)
+
+
+admin.site.register(Profession)

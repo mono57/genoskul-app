@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'crispy_forms',
     'storages',
+    'django_extensions',
     
     'learning.apps.LearningConfig',
     'accounts.apps.AccountsConfig',

@@ -1,50 +1,75 @@
-from django.shortcuts import render
+from django.urls.base import reverse_lazy
+from accounts.models import Profile, Profession
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, FormView, UpdateView
 from django.urls import reverse
+from django.contrib.auth import get_user, get_user_model
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from allauth.account.views import SignupView as AllauthSignupView
-from allauth.account.forms import SignupForm
-
+# from allauth.account.forms import SignupForm
+from forum.models import ForumRegistration, Forum
 from accounts.forms import (
-    ProfileModelForm, RegisterStep2ModelForm, UserInfoForm, RegisterForm)
+    RegisterSchoolStudentModelForm,
+    RegisterStudentModelForm, User, UserInfoForm, RegisterForm)
+
+User = get_user_model()
 
 
 class SignupView(AllauthSignupView):
     template_name = 'account/signup.html'
-    form_class = SignupForm
+    form_class = RegisterForm
 
     def get_success_url(self):
-        return reverse('accounts:register-step2')
-
-
-class RegisterStep1(LoginRequiredMixin, FormView):
-    template_name = 'accounts/register-step2.html'
-    form_class = RegisterStep2ModelForm
-
-    def get_success_url(self):
-        return reverse('dashboard:dashboard')
+        user = get_object_or_404(User, username=self.user_username)
+        profile = user.profile
+        profile.profession = get_object_or_404(
+            Profession, pk=self.profession_pk)
+        profile.save()
+        return reverse('accounts:profile-completion')
 
     def form_valid(self, form):
-        data = form.cleaned_data
-        profile = self.request.user.profile
-        profile.residence = data.get('residence')
-        profile.nationality = data.get('nationality')
-        profile.gender = data.get('gender')
-        profile.birthday = data.get('birthday')
-        profile.telephone = data.get('telephone')
-        profile.function = data.get('function')
-        profile.save()
-
-        messages.success(self.request, 'Bienvenue sur Genoskul !')
-
+        cleaned_data = form.cleaned_data
+        self.user_username = cleaned_data.get('username')
+        self.profession_pk = int(cleaned_data.get('profession'))
         return super().form_valid(form)
 
 
+class ProfileCompletionUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    template_name = 'accounts/profile-completion.html'
+    success_message = 'Bienvenue sur Genoskul'
+    model = Profile
+
+    def get_object(self, queryset=None):
+        return self.request.user.profile
+
+    def get_success_url(self):
+        self.set_user_to_forum()
+        return reverse('dashboard:dashboard')
+
+    def get_form_class(self):
+        if self.request.user.profile.profession.name == "Elève":
+            return RegisterSchoolStudentModelForm
+        return RegisterStudentModelForm
+
+    def set_user_to_forum(self):
+        profile = self.get_object()
+        if not ForumRegistration.objects.filter(user=profile).exists():
+            forum = Forum.objects.get(name=profile.speciality.name)\
+                if profile.is_student else Forum.objects.get(
+                    name=profile.school_student_level.level)
+
+            ForumRegistration.objects.create(
+                forum=forum,
+                user=profile.user
+            )
+            return True
+        return False
+
 class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, FormView):
     template_name = 'accounts/profile.html'
-    form_class = ProfileModelForm
+    # form_class = ProfileModelForm
     success_message = 'Vos informations ont été bien mis à jour !'
 
     def get_queryset(self):

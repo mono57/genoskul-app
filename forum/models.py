@@ -4,7 +4,6 @@ from django.urls import reverse
 
 from genoskul.common.timestamp import TimeStampModel
 from forum.managers import CommentManager, ForumManager
-from accounts.models import Speciality
 
 User = get_user_model()
 
@@ -30,7 +29,7 @@ class Forum(TimeStampModel):
 
 
 class ForumRegistration(TimeStampModel):
-    date = models.DateField(verbose_name='Date d\'inscription au forum')
+    date = models.DateField(verbose_name='Date d\'inscription au forum', auto_now=True)
     is_admin = models.BooleanField(default=False, verbose_name='admin ?')
     forum = models.ForeignKey(
         Forum, on_delete=models.CASCADE, related_name='members')
