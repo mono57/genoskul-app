@@ -8,6 +8,7 @@ dj-database-url==0.5.0
 Django==3.1.1
 django-allauth==0.42.0
 django-crispy-forms==1.9.2
+django-extensions==3.1.1
 django-filebrowser==3.13.1
 django-grappelli==2.14.2
 django-heroku==0.3.1
@@ -18,7 +19,6 @@ idna==2.10
 jmespath==0.10.0
 oauthlib==3.1.0
 Pillow==7.2.0
-# pkg-resources==0.0.0
 psycopg2==2.8.6
 python-dateutil==2.8.1
 python3-openid==3.2.0
