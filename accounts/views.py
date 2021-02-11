@@ -11,8 +11,8 @@ from allauth.account.views import SignupView as AllauthSignupView
 # from allauth.account.forms import SignupForm
 from forum.models import ForumRegistration, Forum
 from accounts.forms import (
-    RegisterSchoolStudentModelForm,
-    RegisterStudentModelForm, User, UserInfoForm, RegisterForm)
+    SchoolStudentModelForm,
+    StudentModelForm, User, UserInfoForm, RegisterForm)
 
 User = get_user_model()
 
@@ -50,8 +50,8 @@ class ProfileCompletionUpdateView(LoginRequiredMixin, SuccessMessageMixin, Updat
 
     def get_form_class(self):
         if self.request.user.profile.profession.name == "Elève":
-            return RegisterSchoolStudentModelForm
-        return RegisterStudentModelForm
+            return SchoolStudentModelForm
+        return StudentModelForm
 
     def set_user_to_forum(self):
         profile = self.get_object()
@@ -67,10 +67,18 @@ class ProfileCompletionUpdateView(LoginRequiredMixin, SuccessMessageMixin, Updat
             return True
         return False
 
-class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, FormView):
+class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = 'accounts/profile.html'
     # form_class = ProfileModelForm
     success_message = 'Vos informations ont été bien mis à jour !'
+
+    def get_object(self):
+        return self.request.user.profile
+
+    def get_form_class(self):
+        if self.get_object().profession.name == 'Elève':
+            return SchoolStudentModelForm
+        return StudentModelForm
 
     def get_queryset(self):
         return self.request.user.profile
@@ -84,30 +92,30 @@ class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, FormView):
     def get_success_url(self):
         return reverse('dashboard:profile-update')
 
-    def get_initial(self):
-        profile = self.request.user.profile
-        initial = super().get_initial()
-        initial.update({
-            'residence': profile.residence,
-            'nationality': profile.nationality,
-            'gender': profile.gender,
-            'birthday': profile.birthday,
-            'avatar': profile.avatar,
-            'telephone': profile.telephone
-        })
-        return initial
+    # def get_initial(self):
+    #     profile = self.request.user.profile
+    #     initial = super().get_initial()
+    #     initial.update({
+    #         'residence': profile.residence,
+    #         'nationality': profile.nationality,
+    #         'gender': profile.gender,
+    #         'birthday': profile.birthday,
+    #         'avatar': profile.avatar,
+    #         'telephone': profile.telephone
+    #     })
+    #     return initial
 
-    def form_valid(self, form):
-        data = form.cleaned_data
-        profile = self.request.user.profile
-        profile.residence = data.get('residence')
-        profile.nationality = data.get('nationality')
-        profile.gender = data.get('gender')
-        profile.birthday = data.get('birthday')
-        profile.avatar = data.get('avatar')
-        profile.function = data.get('function')
-        profile.save()
-        return super().form_valid(form)
+    # def form_valid(self, form):
+    #     data = form.cleaned_data
+    #     profile = self.request.user.profile
+    #     profile.residence = data.get('residence')
+    #     profile.nationality = data.get('nationality')
+    #     profile.gender = data.get('gender')
+    #     profile.birthday = data.get('birthday')
+    #     profile.avatar = data.get('avatar')
+    #     profile.function = data.get('function')
+    #     profile.save()
+    #     return super().form_valid(form)
 
 
 class UserInfoUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):

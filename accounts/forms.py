@@ -20,7 +20,7 @@ class RegisterForm(SignupForm):
     
 
 
-class RegisterSchoolStudentModelForm(forms.ModelForm):
+class SchoolStudentModelForm(forms.ModelForm):
     class Meta:
         model = Profile
         exclude = ('user', 'avatar', 'speciality', 'profession')
@@ -41,7 +41,7 @@ class RegisterSchoolStudentModelForm(forms.ModelForm):
         self.fields['residence'].widget.attrs.update({'required': True})
         self.fields['birthday'].widget.attrs.update({'required': True})
 
-class RegisterStudentModelForm(forms.ModelForm):
+class StudentModelForm(forms.ModelForm):
     class Meta:
         model = Profile
         exclude = ('user', 'avatar', 'school_student_level', 'profession')
