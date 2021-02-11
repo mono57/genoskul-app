@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from django.db.models import query
 from allauth.account.forms import SignupForm
 
 from accounts.models import Profile, Profession
@@ -15,8 +16,8 @@ occupations_choices = (
 
 
 class RegisterForm(SignupForm):
-    profession = forms.ChoiceField(
-        label='Profession', choices=[(p.pk, p.name) for p in Profession.objects.all()], required=True)
+    profession = forms.ModelChoiceField(
+        label='Profession', queryset=Profession.objects.all(), required=True)
     
 
 
