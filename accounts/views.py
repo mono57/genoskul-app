@@ -56,7 +56,7 @@ class ProfileCompletionUpdateView(LoginRequiredMixin, SuccessMessageMixin, Updat
 
     def set_user_to_forum(self):
         profile = self.get_object()
-        if not ForumRegistration.objects.filter(user=profile).exists():
+        if not ForumRegistration.objects.filter(user=profile.user).exists():
             forum = Forum.objects.get(name=profile.speciality.name)\
                 if profile.is_student else Forum.objects.get(
                     name=profile.school_student_level.level)
