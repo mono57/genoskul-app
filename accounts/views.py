@@ -20,19 +20,20 @@ User = get_user_model()
 class SignupView(AllauthSignupView):
     template_name = 'account/signup.html'
     form_class = RegisterForm
+    user_username = None
 
     def get_success_url(self):
-        user = get_object_or_404(User, username=self.user_username)
-        profile = user.profile
-        profile.profession = get_object_or_404(
-            Profession, pk=self.profession_pk)
-        profile.save()
+        if self.user_username is not None:
+            user = get_object_or_404(User, username=self.user_username)
+            profile = user.profile
+            profile.profession = self.profession_pk
+            profile.save()
         return reverse('accounts:profile-completion')
 
     def form_valid(self, form):
         cleaned_data = form.cleaned_data
         self.user_username = cleaned_data.get('username')
-        self.profession_pk = int(cleaned_data.get('profession'))
+        self.profession_pk = cleaned_data.get('profession')
         return super().form_valid(form)
 
 
