@@ -65,8 +65,13 @@
                             </div>
 
                             <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
+                                <div class="d-md-none d-lg-none ">
+                                    <a href="{% url 'forum:topic-add' forum_pk=forum.pk %}"
+                                        class="btn btn-primary mb-2">Nouveau
+                                        sujet</a>
+                                </div>
 
-                                <div class="alert alert-primary">
+                                <div class="d-sm-none alert alert-primary">
                                     Les sujets qui ont été discutés dans le groupe. Cliquez en sur un
                                     pour lire les interventions
                                 </div>
