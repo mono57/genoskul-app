@@ -18,7 +18,8 @@
 {% url 'jobs:resume-list' as resume_list_url %}
 
 {% url 'ndjor:product-list' as product_list_url %}
-
+{% url 'services:service-list' as service_list_url %}
+{% url 'dashboard:service-create' as service_create_url %}
 {% url 'dashboard:product-create' as product_create_url %}
 
 <div class="container">
@@ -57,8 +58,8 @@
 
                 <li><a href="#">Services</a>
                     <ul>
-                        <li><a href="{{product_create_url}}">Voir service</a></li>
-                        <li><a href="{{product_list_url}}">Demande services</a></li>
+                        <li><a href="{{service_list_url}}">Voir service</a></li>
+                        <li><a href="{{service_create_url}}">Demande services</a></li>
 
                     </ul>
                 </li>
