@@ -42,7 +42,7 @@ Acceuil
 			</div>
 		</div>
 		<div class="col-12 col-md-4">
-			<div class="five columns">
+			<div class="five columns" style="max-height: 640px;">
 				<h5 class="margin-bottom-5"><a href="{% url 'services:service-list' %}">Services</a></h5>
 
 				<div class="showbiz-navigation">
@@ -81,16 +81,13 @@ Acceuil
 
 <div class="container">
 	<div class="col-12 col-md-12">
-		<div class="sixteen columns"></div>
 		<h5 class="margin-bottom-25 text-primary">
 			<a href="{% url 'blog:post-list' %}">Généralités & Divertissements</a>
 		</h5>
-		<div>
 
-			{% for post in posts %}
-			{% include "blog/includes/post-single.html" with post=post %}
-			{% endfor %}
-		</div>
+		{% for post in posts %}
+		{% include "blog/includes/post-single.html" with post=post %}
+		{% endfor %}
 		<div class="clearfix"></div>
 		<div class="margin-top-30"></div>
 
