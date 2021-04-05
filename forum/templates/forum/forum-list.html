@@ -1,4 +1,4 @@
-{% extends "forum/base.html" %} 
+{% extends "forum/base.html" %}
 {% block title %} Mes forums {% endblock title%} {% block dashboard_content %}
 
 <div class="row">
@@ -9,9 +9,10 @@
           <div class="pull-left m-r-md">
             <i class="fa fa-globe text-navy mid-icon"></i>
           </div>
-          <h2>Bienvenue au forum</h2>
-          <span
-            >Un mot de bienvenue à mettre ici. une idée ? Valery, Solly
+          <span>Bienvenu(e)s aux forums de discussion sur des actualités éducatives ou des actualités en rapport avec
+            les études et/ou la vie professionnelle. Vous pouvez partager vos difficultés scolaires et/ou vos
+            savoirs/connaissances avec vos collègues de différents horizons (mais avec qui vous avez en commun un ou
+            plusieurs centres d'intérêts).
           </span>
         </div>
       </div>
@@ -23,7 +24,7 @@
           </div>
           <h3>Vos forums de discussions</h3>
         </div>
-        {% for register in forums %} 
+        {% for register in forums %}
         {% with register.forum as forum %}
 
         <div class="forum-item active">
@@ -32,14 +33,12 @@
               <div class="forum-icon">
                 <i class="fa fa-shield"></i>
               </div>
-              <a href="{{forum.get_absolute_url}}" class="forum-item-title"
-                >{{forum.name}}</a
-              >
+              <a href="{{forum.get_absolute_url}}" class="forum-item-title">{{forum.name}}</a>
               <div class="forum-sub-title">
                 {{forum.description|default:"Aucune description n'est founie pour ce forum"}}
               </div>
             </div>
-            
+
             <div class="col-md-2 forum-info">
               <span class="views-number"> {{forum.topics.count}} </span>
               <div>
@@ -56,10 +55,10 @@
                         </div> -->
           </div>
         </div>
-        {% endwith %} 
+        {% endwith %}
         {% endfor %}
         <div class="forum-title">
-          
+
           <h3>Forums publiques</h3>
         </div>
         {% for forum in public_forums %}
@@ -69,13 +68,13 @@
               <div class="forum-icon">
                 <i class="fa fa-shield"></i>
               </div>
-              <a href="{{forum.get_absolute_url}}" class="forum-item-title">{{forum.name}}  </a>
+              <a href="{{forum.get_absolute_url}}" class="forum-item-title">{{forum.name}} </a>
               <div class="forum-sub-title">
-                {{forum.description|default:"Aucune description n'est founie pour ce forum"}}             
+                {{forum.description|default:"Aucune description n'est founie pour ce forum"}}
               </div>
-              
+
             </div>
-            
+
             <div class="col-md-2 forum-info">
               <span class="views-number"> {{forum.topics.count}} </span>
               <div>
